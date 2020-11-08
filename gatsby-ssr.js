@@ -1,7 +1,26 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+/* eslint-disable */
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.onRenderBody = onRenderBody;
 
-// You can delete this file if you're not using it
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function onRenderBody(_ref) {
+  var setPostBodyComponents = _ref.setPostBodyComponents;
+
+  setPostBodyComponents([
+    _react2.default.createElement('script', {
+      key: 'polyfill-io',
+      src:
+        'https://polyfill.io/v3/polyfill.min.js?flags=gated&features=IntersectionObserver%2CMap%2CSet',
+      crossOrigin: 'anonymous',
+    }),
+  ]);
+}

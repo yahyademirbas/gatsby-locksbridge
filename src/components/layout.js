@@ -1,55 +1,33 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Global } from '@emotion/core';
+import PropTypes from 'prop-types';
 
-import '../assets/scss/main.scss'
-import Header from './Header'
-import Menu from './Menu'
-import Contact from './Contact'
-import Footer from './Footer'
+import { globalStyles } from '../styles';
 
-class Layout extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isMenuVisible: false,
-            loading: 'is-loading'
-        }
-        this.handleToggleMenu = this.handleToggleMenu.bind(this)
-    }
+import { headerPropTypes } from './Header/Header';
+import Header from './Header';
+import Footer from './Footer';
+import SideItemsLeft from './sideItemsLeft';
+import SideItemsRight from './sideItemsRight';
 
-    componentDidMount () {
-        this.timeoutId = setTimeout(() => {
-            this.setState({loading: ''});
-        }, 100);
-    }
+import '../styles/layout.css';
 
-    componentWillUnmount () {
-        if (this.timeoutId) {
-            clearTimeout(this.timeoutId);
-        }
-    }
+const Layout = ({ children, headerData }) => (
+  <>
+    <Global styles={globalStyles} />
+    <Header {...headerData} />
+    <main>{children}</main>
+    <Footer />
+  </>
+);
 
-    handleToggleMenu() {
-        this.setState({
-            isMenuVisible: !this.state.isMenuVisible
-        })
-    }
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+  headerData: PropTypes.shape(headerPropTypes),
+};
 
-    render() {
-        const { children } = this.props
+Layout.defaultProps = {
+  headerData: {},
+};
 
-        return (
-            <div className={`body ${this.state.loading} ${this.state.isMenuVisible ? 'is-menu-visible' : ''}`}>
-                <div id="wrapper">
-                    <Header onToggleMenu={this.handleToggleMenu} />
-                    {children}
-                    <Contact />
-                    <Footer />
-                </div>
-                <Menu onToggleMenu={this.handleToggleMenu} />
-            </div>
-        )
-    }
-}
-
-export default Layout
+export default Layout;

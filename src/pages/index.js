@@ -1,93 +1,197 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Helmet from 'react-helmet'
-import Layout from '../components/layout'
-import Banner from '../components/Banner'
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { useRef } from 'react';
+import { navigate, graphql } from 'gatsby';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
-import pic01 from '../assets/images/pic01.jpg'
-import pic02 from '../assets/images/pic02.jpg'
-import pic03 from '../assets/images/pic03.jpg'
-import pic04 from '../assets/images/pic04.jpg'
-import pic05 from '../assets/images/pic05.jpg'
-import pic06 from '../assets/images/pic06.jpg'
+import Layout from '../components/layout';
+import ArtistsSlider from '../components/ArtistsSlider';
+import LogoGrid from '../components/LogoGrid';
+import SplitSection from '../components/SplitSection';
+import Button from '../components/Button';
+import { useHasBeenVisible } from '../hooks/useVisibility';
+import FullWidthSection from '../components/FullWidthSection';
+import { TextWrapper } from '../components/Prefooter';
 
-class HomeIndex extends React.Component {
-    render() {
+import CTAGrid from '../components/CTAGrid';
+import Quote from '../components/ContentBody/Quote';
+import heroImage from '../images/artists/bosphilharmonic.jpg';
+import heroImageMobile from '../images/bostonHeroMobile.png';
 
-        return (
-            <Layout>
-                <Helmet
-                    title="Gatsby Starter - Forty"
-                    meta={[
-                        { name: 'description', content: 'Sample' },
-                        { name: 'keywords', content: 'sample, something' },
-                    ]}
-                >
-                </Helmet>
+import {
+  colors,
+  fonts,
+  weights,
+  container,
+  mediaQueries,
+  contValues,
+  pLight,
+} from '../styles';
+import CapabilitiesSlider from '../components/CapabilitiesSlider';
+import { useIntl } from 'react-intl';
 
-                <Banner />
+// eslint-disable-next-line react/prop-types
+export default ({ data }) => {
+  const intl = useIntl();
+  const halfPage = useRef();
+  const preload = useRef();
+  const hasScrolled = useHasBeenVisible(halfPage);
+  const isScrolling = useHasBeenVisible(preload);
 
-                <div id="main">
-                    <section id="one" className="tiles">
-                        <article style={{backgroundImage: `url(${pic01})`}}>
-                            <header className="major">
-                                <h3>Aliquam</h3>
-                                <p>Ipsum dolor sit amet</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                        <article style={{backgroundImage: `url(${pic02})`}}>
-                            <header className="major">
-                                <h3>Tempus</h3>
-                                <p>feugiat amet tempus</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                        <article style={{backgroundImage: `url(${pic03})`}}>
-                            <header className="major">
-                                <h3>Magna</h3>
-                                <p>Lorem etiam nullam</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                        <article style={{backgroundImage: `url(${pic04})`}}>
-                            <header className="major">
-                                <h3>Ipsum</h3>
-                                <p>Nisl sed aliquam</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                        <article style={{backgroundImage: `url(${pic05})`}}>
-                            <header className="major">
-                                <h3>Consequat</h3>
-                                <p>Ipsum dolor sit amet</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                        <article style={{backgroundImage: `url(${pic06})`}}>
-                            <header className="major">
-                                <h3>Etiam</h3>
-                                <p>Feugiat amet tempus</p>
-                            </header>
-                            <Link to="/landing" className="link primary"></Link>
-                        </article>
-                    </section>
-                    <section id="two">
-                        <div className="inner">
-                            <header className="major">
-                                <h2>Massa libero</h2>
-                            </header>
-                            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.</p>
-                            <ul className="actions">
-                                <li><Link to="/landing" className="button next">Get Started</Link></li>
-                            </ul>
-                        </div>
-                    </section>
-                </div>
+  return (
+    <Layout
+      headerData={{
+        metaTitle: intl.formatMessage({ id: 'Motto' }),
+        title: 'LocksBridge Artists',
+        subTitle:
+          "Turkey's first and leading international classical artist management company!",
+        description:
+          "Turkey's first and leading international classical artist management company!",
+        mobileMinHeight: '100vh',
+        height: '100vh',
+        color: colors.darkgray,
+        heroImage,
+        heroImageMobile,
+      }}
+    >
+      <ArtistsSlider data={data} backgroundColor={colors.lightgreen} />
+      <CapabilitiesSlider
+        title='What We Do'
+        backgroundColor={colors.lightblue}
+      />
+      <Quote
+        center
+        altStyle
+        size='large'
+        padding='100px 0 100px 0'
+        backgroundColor={colors.yellow}
+        quoteColor={colors.white}
+        data={{
+          field_quote:
+            'I wanted to let you know how much I have enjoyed working with the amazing team at Third and Grove. You guys go above and beyond!',
+          field_footer_text:
+            'Brittany Juliano, Digital Content Specialist, Draper Labs',
+        }}
+      />{' '}
+      {hasScrolled || isScrolling ? (
+        <>
+          <CTAGrid
+            header='Why brands work with Third and Grove for Drupal support, maintenance, and optimization:'
+            items={data.allDrupalSupportCtaGridTwoJson.edges}
+            images={data.icons.edges}
+            backgroundColor={colors.lightblue}
+            altStyle
+          />
 
-            </Layout>
-        )
+          <LogoGrid title='A Few of Our Friends' />
+
+          <SplitSection>
+            <TextWrapper backgroundColor={colors.yellow}>
+              <h3>Catch up over coffee?</h3>
+              <Button onClick={() => navigate(`/contact/`)}>
+                Get in Touch
+              </Button>
+            </TextWrapper>
+            <TextWrapper backgroundColor={colors.lightblue}>
+              <h3>Join the best in Boston.</h3>
+              <Button onClick={() => navigate(`/careers/`)}>Work at TAG</Button>
+            </TextWrapper>
+          </SplitSection>
+        </>
+      ) : (
+        <FullWidthSection ref={halfPage} height='2286px' minHeight='3448px' />
+      )}
+    </Layout>
+  );
+};
+
+export const query = graphql`
+  fragment IconSRCS on File {
+    name
+    publicURL
+    absolutePath
+  }
+  fragment IconsSet1 on DrupalSupportCtaGridOneJson {
+    icon
+    title
+    description
+  }
+  fragment IconsSet2 on DrupalSupportCtaGridTwoJson {
+    icon
+    title
+    description
+  }
+  fragment AllArtistImagesTemplate on MdxFrontmatter {
+    hero {
+      imageMobile: childImageSharp {
+        fluid(maxHeight: 250) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+      imageDesktop: childImageSharp {
+        fluid(
+          maxWidth: 980
+          maxHeight: 500
+          srcSetBreakpoints: [480, 900, 1200]
+        ) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+      childImageSharp {
+        fluid(maxWidth: 980, maxHeight: 500) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
     }
-}
-
-export default HomeIndex
+  }
+  query($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "artistsPages" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
+      edges {
+        node {
+          childMdx {
+            ...AllArtistContent
+            frontmatter {
+              ...AllArtistFrontMatters
+              ...AllArtistImagesTemplate
+            }
+          }
+        }
+      }
+    }
+    allImageSharp(
+      filter: { fluid: { originalName: { regex: "/boston-page-dtc-art/" } } }
+    ) {
+      nodes {
+        fluid(maxWidth: 1920, maxHeight: 1080) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    allDrupalSupportCtaGridOneJson {
+      edges {
+        node {
+          ...IconsSet1
+        }
+      }
+    }
+    allDrupalSupportCtaGridTwoJson {
+      edges {
+        node {
+          ...IconsSet2
+        }
+      }
+    }
+    icons: allFile(filter: { absolutePath: { regex: "/drupal-support/" } }) {
+      edges {
+        node {
+          ...IconSRCS
+        }
+      }
+    }
+  }
+`;
