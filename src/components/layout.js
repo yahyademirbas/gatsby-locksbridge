@@ -7,8 +7,6 @@ import { globalStyles } from '../styles';
 import { headerPropTypes } from './Header/Header';
 import Header from './Header';
 import Footer from './Footer';
-import SideItemsLeft from './sideItemsLeft';
-import SideItemsRight from './sideItemsRight';
 
 import '../styles/layout.css';
 

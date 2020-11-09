@@ -1,15 +1,10 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { css } from "@emotion/core";
 import { graphql, navigate } from "gatsby";
-import { MDXProvider } from "@mdx-js/react";
-import { MdxLink } from "gatsby-theme-i18n";
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { mediaQueries, colors, jsBreakpoints, weights, container, contentH2, contentHeadings } from "../styles";
+import { colors } from "../styles";
 import { useHasBeenVisible } from "../hooks/useVisibility";
 
 import Layout from "../components/layout";
-import Img from "gatsby-image";
 import { PopUp } from "../components/PopUp";
 import FullWidthSection from "../components/FullWidthSection";
 import SplitSection from "../components/SplitSection";
@@ -18,19 +13,11 @@ import { TextWrapper } from "../components/Prefooter";
 import Button from "../components/Button";
 import ArtistsSlider from "../components/ArtistsSlider";
 import ArtistPageSlider from "./ArtistPageSlider";
-
-import Image from "../components/ContentBody/Image";
-import Quote from "../components/ContentBody/Quote";
-import TextImage from "../components/ContentBody/TextImage";
-import VideoSection from "../components/VideoSection";
 import heroImage from "../images/main03.jpg";
 import heroImageMobile from "../images/main03.jpg";
 
 import { useIntl } from "react-intl";
-import Fade from "react-reveal/Fade";
 import { Link } from "react-scroll";
-import Down from './svg/down';
-
 
 
 export default function ArtistsTemplate({ data }) {
@@ -41,7 +28,7 @@ export default function ArtistsTemplate({ data }) {
   const isScrolling = useHasBeenVisible(preload);
 
   const artist = data.file;
-
+/*
   const pageLayout = css`
   
         ${mediaQueries.phoneLarge} {
@@ -107,7 +94,7 @@ export default function ArtistsTemplate({ data }) {
           ${contentHeadings}
         }
       `;
-
+  */
   return (
     <Layout
       headerData={{

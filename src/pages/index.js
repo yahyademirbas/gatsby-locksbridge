@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef } from 'react';
 import { navigate, graphql } from 'gatsby';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 
 import Layout from '../components/layout';
 import ArtistsSlider from '../components/ArtistsSlider';
@@ -19,13 +17,7 @@ import heroImage from '../images/artists/bosphilharmonic.jpg';
 import heroImageMobile from '../images/bostonHeroMobile.png';
 
 import {
-  colors,
-  fonts,
-  weights,
-  container,
-  mediaQueries,
-  contValues,
-  pLight,
+  colors
 } from '../styles';
 import CapabilitiesSlider from '../components/CapabilitiesSlider';
 import { useIntl } from 'react-intl';
