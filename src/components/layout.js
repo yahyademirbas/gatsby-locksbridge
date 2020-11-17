@@ -9,6 +9,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 import '../styles/layout.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Layout = ({ children, headerData }) => (
   <>

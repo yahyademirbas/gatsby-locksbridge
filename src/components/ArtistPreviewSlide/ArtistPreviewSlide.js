@@ -1,21 +1,26 @@
-import React from 'react';
+import React from "react";
 import { LocalizedLink as Link } from "gatsby-theme-i18n";
-import Img from 'gatsby-image';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
-import { ensureTrailingSlash } from '../../util';
+import Img from "gatsby-image";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+import { useSpring, animated } from "react-spring";
+import PropTypes from "prop-types";
+import { ensureTrailingSlash } from "../../util";
 
 import {
   fonts,
   weights,
   mediaQueries,
   jsBreakpoints,
-  container,
-} from '../../styles';
+  container
+} from "../../styles";
 import { graphql } from "gatsby";
 
-export default function ArtistPreviewSlide( { frontmatter } ) {
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1];
+const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
+export default function ArtistPreviewSlide({ frontmatter }) {
+  const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }));
   console.log(frontmatter);
   const Card = styled.div`
     opacity: 1 !important;
@@ -78,12 +83,12 @@ export default function ArtistPreviewSlide( { frontmatter } ) {
                 padding: 0;
               }
             }
-          `,
+          `
         ]}
       >
           {frontmatter && (
-          <div
-            css={css`
+            <animated.div
+              css={css`
               flex: 0 0 38%;
 
               .gatsby-image-wrapper > div {
@@ -96,7 +101,10 @@ export default function ArtistPreviewSlide( { frontmatter } ) {
                 }
               }
             `}
-          >
+              onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+              onMouseLeave={() => set({ xys: [0, 0, 1] })}
+              style={{ transform: props.xys.interpolate(trans) }}
+            >
               <Img
                 fluid={[
                   frontmatter.hero
@@ -104,12 +112,12 @@ export default function ArtistPreviewSlide( { frontmatter } ) {
                   {
                     ...frontmatter.hero
                       .imageDesktop.fluid,
-                    media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-                  },
+                    media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+                  }
                 ]}
                 alt={frontmatter.title}
               />
-          </div>
+            </animated.div>
           )}
         <div
           css={css`
@@ -133,7 +141,7 @@ export default function ArtistPreviewSlide( { frontmatter } ) {
 };
 
 ArtistPreviewSlide.propTypes = {
-  frontmatter: PropTypes.object.isRequired,
+  frontmatter: PropTypes.object.isRequired
 };
 
 export const query = graphql`
@@ -156,5 +164,5 @@ export const query = graphql`
             }
         }
     }
-`
+`;
 

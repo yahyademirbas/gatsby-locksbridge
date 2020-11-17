@@ -115,7 +115,7 @@ export const query = graphql`
     query($locale: String!) {
         allFile(
             filter: {
-                sourceInstanceName: { eq: "artistsPages" }
+                sourceInstanceName: { eq: "lb-artists" }
                 childMdx: { fields: { locale: { eq: $locale } } }
             }
         ) {

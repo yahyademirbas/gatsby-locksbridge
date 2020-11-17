@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 
+
 import Button from "../../components/Button";
+import ArtistImages from "./ArtistImages"
 import { colors, mediaQueries, container } from "../../styles";
 
 import img from "./icons/data.png";
@@ -14,7 +16,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 
 
-export default function ArtistPageSlide({ title, description, icon, link, data }) {
+export default function ArtistPageSlide({ title, icon, data }) {
   const ref = useRef();
   const [width, setWidth] = useState(0);
 
@@ -158,13 +160,14 @@ export default function ArtistPageSlide({ title, description, icon, link, data }
         {title === "Images" && <img />}
         {title === "Videos" && <Button />}
         {title === "Recordings" && <img />}
+
         {title === "About" &&
         <MDXProvider>
           <P className='animate-opacity'><MDXRenderer>{data.file.childMdx.body}</MDXRenderer></P>
         </MDXProvider>
         }
         {title === "Images" &&
-          <div>a</div>
+        <ArtistImages data={data}/>
         }
         {title === "Videos" &&
         <MDXProvider>
@@ -176,7 +179,7 @@ export default function ArtistPageSlide({ title, description, icon, link, data }
           <P className='animate-opacity'><MDXRenderer>{data.file.childMdx.body}</MDXRenderer></P>
         </MDXProvider>
         }
-      </span>
+          </span>
     </Card>
   );
 }

@@ -17,7 +17,6 @@ import heroImage from "../images/main03.jpg";
 import heroImageMobile from "../images/main03.jpg";
 
 import { useIntl } from "react-intl";
-import { Link } from "react-scroll";
 
 
 export default function ArtistsTemplate({ data }) {
@@ -28,98 +27,93 @@ export default function ArtistsTemplate({ data }) {
   const isScrolling = useHasBeenVisible(preload);
 
   const artist = data.file;
-/*
-  const pageLayout = css`
-  
-        ${mediaQueries.phoneLarge} {
-          margin-bottom: 90px;
-        }
-        
-        .stats-container,
-        .stat-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-        }
+  /*
+    const pageLayout = css`
 
-        .stats-container {
-          flex-direction: column;
-        }
-
-        .stat-container {
-          flex: auto;
-          flex-direction: column;
-          margin-bottom: 24px;
-
-          :last-of-type {
-            margin-bottom: 0;
+          ${mediaQueries.phoneLarge} {
+            margin-bottom: 90px;
           }
 
-          h4 {
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: -0.2px;
-            line-height: 54px;
-            margin-bottom: 0;
-          }
-
-          p {
-            font-size: 16px;
-            font-weight: bold;
-            letter-spacing: 0.21px;
-            line-height: 27px;
-          }
-        }
-
-        ${container.min} ${mediaQueries.phoneLarge} {
-          .stats-container {
-            flex-direction: row;
-          }
+          .stats-container,
           .stat-container {
-            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
           }
-          padding: 0;
-        }
 
-        a {
-          text-decoration: underline;
-        }
+          .stats-container {
+            flex-direction: column;
+          }
 
-        h2 {
-          ${contentH2}
-        }
+          .stat-container {
+            flex: auto;
+            flex-direction: column;
+            margin-bottom: 24px;
 
-        h3 {
-          ${contentHeadings}
-        }
-      `;
-  */
+            :last-of-type {
+              margin-bottom: 0;
+            }
+
+            h4 {
+              font-size: 48px;
+              font-weight: bold;
+              letter-spacing: -0.2px;
+              line-height: 54px;
+              margin-bottom: 0;
+            }
+
+            p {
+              font-size: 16px;
+              font-weight: bold;
+              letter-spacing: 0.21px;
+              line-height: 27px;
+            }
+          }
+
+          ${container.min} ${mediaQueries.phoneLarge} {
+            .stats-container {
+              flex-direction: row;
+            }
+            .stat-container {
+              margin-bottom: 0;
+            }
+            padding: 0;
+          }
+
+          a {
+            text-decoration: underline;
+          }
+
+          h2 {
+            ${contentH2}
+          }
+
+          h3 {
+            ${contentHeadings}
+          }
+        `;
+    */
   return (
     <Layout
       headerData={{
         metaTitle: intl.formatMessage({ id: "Motto" }),
         title: (
           <>
-
             {artist.childMdx.frontmatter.title}
-            <br/>
-            <Link to="mainPage" smooth duration={1000}>
-              down
-            </Link>
           </>
         ),
         subTitle: "You won't find a better Drupal agency in Boston.",
         description: "You won't find a better Drupal agency in Boston.",
-        mobileMinHeight: "100vh",
-        height: "100vh",
+        mobileMinHeight: "50vh",
+        height: "50vh",
         color: colors.darkgray,
         heroImage,
         heroImageMobile
       }}>
 
       <ArtistPageSlider
-        title= {artist.childMdx.frontmatter.title}
+        title=""
         backgroundColor={colors.lightgray}
         data={data}
       />
@@ -163,6 +157,12 @@ export const query = graphql`
         body
         id
     }
+    fragment ArtistImagesforSlider on ImageSharp {
+        id
+        fixed {
+            ...GatsbyImageSharpFixed
+        }
+    }
     query($slug: String!, $locale: String!) {
         file (
             childMdx: {
@@ -178,10 +178,9 @@ export const query = graphql`
                 }
             }
         }
-
         allFile(
             filter: {
-                sourceInstanceName: { eq: "artistsPages" }
+                sourceInstanceName: { eq: "lb-artists" }
                 childMdx: { fields: { locale: { eq: $locale } } }
             }
         ) {
@@ -194,6 +193,13 @@ export const query = graphql`
                             ...AllArtistImagesTemplate
                         }
                     }
+                }
+            }
+        }
+        allImageSharp(filter: {fluid: {originalName: {regex: "/tutu-aydinoglu/"}}}) {
+            edges {
+                node {
+                    ...ArtistImagesforSlider
                 }
             }
         }

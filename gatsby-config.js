@@ -10,6 +10,24 @@ module.exports = {
     siteUrl: `https://locksbridge.net`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-fixhash`,
+      options: { offsetY: 20 },
+    },
+    {
+      resolve: 'gatsby-plugin-react-axe',
+      options: {
+        // Options to pass to axe-core.
+        // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
+      },
+    },
+    `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaultQuality: 50,
+      },
+    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
@@ -31,8 +49,6 @@ module.exports = {
         defaultLocale: `./i18n/react-intl/en.json`,
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -75,18 +91,12 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `artistsPages`,
-        path: `${__dirname}/src/artistsPages`,
+        name: `lb-artists`,
+        path: `${__dirname}/src/lb-artists`,
       },
     },
     'gatsby-plugin-optimize-svgs',
     `gatsby-plugin-sitemap`,
-    {
-      resolve: 'gatsby-plugin-react-axe',
-      options: {
-        showInProduction: true,
-      },
-    },
     'gatsby-plugin-react-helmet',
     `gatsby-transformer-json`,
     {

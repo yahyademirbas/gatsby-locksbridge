@@ -80,7 +80,7 @@ const Header = ({
   const headerTitle = css`
     @keyframes headerSlide {
       0% {
-        transform: translateY(50%);
+        transform: translateY(100%);
       }
       100% {
         transform: translateY(0);
@@ -105,7 +105,7 @@ const Header = ({
     letter-spacing: -0.45px;
     text-align: center;
     color: ${fontColor};
-    transform: translateY(50%);
+    transform: translateY(100%);
     animation-name: headerSlide;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
@@ -120,7 +120,7 @@ const Header = ({
       left: 0;
       height: 100%;
       width: 100%;
-      background: ${color};
+      background: transparent;
       animation-name: afterReveal;
       animation-duration: inherit;
       animation-timing-function: inherit;

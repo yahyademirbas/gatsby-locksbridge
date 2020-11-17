@@ -46,11 +46,6 @@ export default ({ data }) => {
         heroImageMobile,
       }}
     >
-      <ArtistsSlider data={data} backgroundColor={colors.lightgreen} />
-      <CapabilitiesSlider
-        title='What We Do'
-        backgroundColor={colors.lightblue}
-      />
       <Quote
         center
         altStyle
@@ -64,7 +59,9 @@ export default ({ data }) => {
           field_footer_text:
             'Brittany Juliano, Digital Content Specialist, Draper Labs',
         }}
-      />{' '}
+      />
+      <ArtistsSlider data={data} backgroundColor={colors.lightgreen} />
+      {' '}
       {hasScrolled || isScrolling ? (
         <>
           <CTAGrid
@@ -139,7 +136,7 @@ export const query = graphql`
   query($locale: String!) {
     allFile(
       filter: {
-        sourceInstanceName: { eq: "artistsPages" }
+        sourceInstanceName: { eq: "lb-artists" }
         childMdx: { fields: { locale: { eq: $locale } } }
       }
     ) {
