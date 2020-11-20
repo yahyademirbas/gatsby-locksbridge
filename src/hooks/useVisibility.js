@@ -77,13 +77,15 @@ export function useHasBeenVisible(nodeRef) {
   return isVisible;
 }
 
+// The `threshold` variable sets what portion of the element needs to be
+// visible before it fires. 0 = none, 1 = the entire thing. See
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 export function useHasBeenPartlyVisible(nodeRef, threshold = 0.5) {
   const [isVisible, setVisible] = useState(false);
 
   function handleVisibilityChange({ isIntersecting }) {
     if (isIntersecting === true) {
       setVisible(isIntersecting);
-      console.log("Problem HERE!!!")
     }
   }
 

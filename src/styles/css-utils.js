@@ -53,4 +53,5 @@ export const colors = {
   shopifyGreen: '#80AB42',
   bigCommerceBlue: '#0D52FF',
   red: 'red',
+  lbColor: `rgba(16, 18, 22,0.2)`,
 };

@@ -46,13 +46,15 @@ export default ({ data }) => {
         heroImageMobile,
       }}
     >
+
       <Quote
         center
         altStyle
         size='large'
         padding='100px 0 100px 0'
-        backgroundColor={colors.yellow}
+        backgroundColor={colors.lbColor}
         quoteColor={colors.white}
+        color={colors.white}
         data={{
           field_quote:
             'I wanted to let you know how much I have enjoyed working with the amazing team at Third and Grove. You guys go above and beyond!',
@@ -60,7 +62,7 @@ export default ({ data }) => {
             'Brittany Juliano, Digital Content Specialist, Draper Labs',
         }}
       />
-      <ArtistsSlider data={data} backgroundColor={colors.lightgreen} />
+      <ArtistsSlider data={data} backgroundColor={colors.lbColor} />
       {' '}
       {hasScrolled || isScrolling ? (
         <>
@@ -68,7 +70,7 @@ export default ({ data }) => {
             header='Why brands work with Third and Grove for Drupal support, maintenance, and optimization:'
             items={data.allDrupalSupportCtaGridTwoJson.edges}
             images={data.icons.edges}
-            backgroundColor={colors.lightblue}
+            backgroundColor={colors.lbColor}
             altStyle
           />
 
