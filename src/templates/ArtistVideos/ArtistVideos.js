@@ -19,6 +19,7 @@ export default function ArtistVideos({ url }) {
     > div {
       position: absolute;
       top: 0;
+
     }
 
     ${mediaQueries.phoneLarge} {
@@ -77,19 +78,14 @@ export default function ArtistVideos({ url }) {
             url={url}
             playing={false}
             volume={0}
-            autoplay={true}
-            loop={true}
             controls={false}
             ref={refMovie}
             progressInterval={3000}
-            playsinline={true}
-            pip={true}
             stopOnUnmount={false}
             width='50vw'
             height='50vh'
             config={{
               youtube: {
-                preload: true,
                 playerVars: {
                   showinfo: 0,
                   controls: 0,

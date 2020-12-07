@@ -181,6 +181,7 @@ export default function ArtistPageSlide({ title, data }) {
                 imageUrl={item.imageUrl}
                 link={item.link}
                 title={item.title}
+                subTitle={item.title}
               />
             ))}
           </div>

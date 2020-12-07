@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 
 import { useHasBeenPartlyVisible } from '../../hooks/useVisibility';
-import { fonts, weights, mediaQueries, jsBreakpoints } from '../../styles';
+import { fonts, weights, mediaQueries, jsBreakpoints, colors } from '../../styles';
 
-export default function ArtistPreview({ imageUrl, title, link }) {
+export default function ArtistPreview({ imageUrl, title, link, subTitle }) {
   const nodeRef = useRef();
   const isVisible = useHasBeenPartlyVisible(nodeRef, 0.4);
 
@@ -19,32 +19,39 @@ export default function ArtistPreview({ imageUrl, title, link }) {
     transition-duration: 0.4s;
     transition-timing-function: ease-out;
     ${mediaQueries.phoneLarge} {
-      margin-bottom: 90px;
-    }
-    h2 {
-      margin: 32px 0 14px;
-      font-weight: ${weights.bold};
-      font-size: 27px;
-      line-height: 1.44;
-      ${mediaQueries.phoneLarge} {
-        width: 80%;
-        margin: 50px auto 30px;
-        font-size: 33px;
-        line-height: 1.58;
-      }
-    }
-    footer {
-      font-family: ${fonts.sans};
-      font-weight: ${weights.light};
-      font-size: 15px;
-      line-height: 2.4;
-      ${mediaQueries.phoneLarge} {
-        width: 80%;
-        margin: 0 auto;
-      }
+      margin-bottom: 75px;
     }
   `;
 
+  const TitleNews = styled.h2`
+    margin: 32px 0 14px;
+    font-weight: ${weights.bold};
+    font-size: 27px;
+    line-height: 1.44;
+    ${mediaQueries.phoneLarge} {
+      min-width: 50%;
+      width: max-content;
+      color: ${colors.lbWhite};
+      padding: 4px 10px 4px 10px;
+      border-radius: 0 0 10px 10px;
+      margin: 32px 0 14px;
+      font-size: 33px;
+      background-color: ${colors.darkgray};
+      line-height: 1.58;
+    }
+  `;
+
+  const SubTitleNews = styled.h4`
+    font-family: ${fonts.sans};
+    font-weight: ${weights.light};
+    font-size: 15px;
+    line-height: 2.4;
+    ${mediaQueries.phoneLarge} {
+      min-width: 50%;
+      width: max-content;
+      margin: 0 25px;
+    }
+  `;
   return (
     <Spring
       delay={0}
@@ -70,9 +77,11 @@ export default function ArtistPreview({ imageUrl, title, link }) {
                 },
               ]}
               alt={title}
+              css={css`border-radius: 25px 25px 0 0;`}
             />
 
-            <h2>{title}</h2>
+            <TitleNews>{title}</TitleNews>
+            <SubTitleNews>{subTitle}</SubTitleNews>
           </Link>
         </Card>
       )}
