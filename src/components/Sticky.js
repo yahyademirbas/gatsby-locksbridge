@@ -19,7 +19,7 @@ import { colors } from "../styles";
     />
 */
 
-function Sticky({ cover, height, render, top, disableOnMobile }) {
+function Sticky({ cover, height, render, top, disableOnMobile, bgColor }) {
   const [position, setPosition] = useState(0);
   const [progress, setProgress] = useState(0);
   const element = useRef();
@@ -60,7 +60,7 @@ function Sticky({ cover, height, render, top, disableOnMobile }) {
   return (
     <div ref={element}>
       <StickyDuration height={height} isDisabled={disableOnMobile}>
-        <StickyItemContainer>
+        <StickyItemContainer bgColor={bgColor}>
           <StickyItem top={top} cover={cover} isDisabled={disableOnMobile}>
             {render({ progress, position })}
           </StickyItem>
@@ -81,6 +81,7 @@ const StickyDuration = styled.div`
 
 const StickyItemContainer = styled.div`
   background: ${colors.lightgray};
+  background-color: ${props => props.bgColor || colors.lightgray};
   height: 100%;
 `;
 

@@ -23,12 +23,16 @@ const Index = ({ data }) => {
     <Layout
       headerData={{
         metaTitle: intl.formatMessage({ id: "Motto" }),
+        title: "LocksBridge Artists",
+        subTitle: "XXX",
         description:
           "Turkey's first and leading international classical artist management company!",
         mobileMinHeight: "100vh",
-        height: "100vh",
         color: colors.darkgray,
-        newsSlider: true
+        height: "100vh",
+        newsSlider: false,
+        bgUrl: data.bgimage.childImageSharp.fluid,
+        bgColor: colors.lbColor
       }}
     >
 
@@ -75,7 +79,7 @@ export const query = graphql`
         description
     }
     query($locale: String!) {
-        allFile(
+        allFile (
             filter: {
                 sourceInstanceName: { eq: "lb-artists" }
                 childMdx: { fields: { locale: { eq: $locale } } }
@@ -106,6 +110,13 @@ export const query = graphql`
                 }
             }
         }
+        bgimage: file (relativePath: { eq: "boston.png" }) {
+                    childImageSharp {
+                        fluid(maxWidth: 900) {
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
         icons: allFile(filter: { absolutePath: { regex: "/drupal-support/" } }) {
             edges {
                 node {

@@ -8,12 +8,11 @@ import { motion } from "framer-motion";
 
 import ScrollAnimation from "../ScrollAnimation";
 import { scale } from "../../util/utils";
-
 import TopNav from "../TopNav";
 import SEO from "../seo";
 import { colors, fonts, mediaQueries, weights } from "../../styles";
 import Sticky from "../Sticky";
-import FullWidthSection from "../FullWidthSection/FullWidthSection";
+import FullWidthSection from "../FullWidthSection";
 
 /**
  * HeaderTemplate used on every page.
@@ -34,6 +33,11 @@ import FullWidthSection from "../FullWidthSection/FullWidthSection";
  * @param {string} titlePadding - passed to title
  * @param {string} image - passed to SEO
  * @param {node} bgUrl - bg image
+ * @param {string} bgColor
+ * @param {string} Instagram
+ * @param {string} Facebook
+ * @param {string} Youtube
+ * @param {string} Website
  */
 
 const HeaderTemplate = ({
@@ -52,7 +56,12 @@ const HeaderTemplate = ({
                           image,
                           subTitle,
                           hideNav,
-                          bgUrl
+                          bgUrl,
+                          bgColor,
+                          Instagram,
+                          Facebook,
+                          Youtube,
+                          Website
                         }) => {
   const isLightBackground = value => {
     let r;
@@ -230,6 +239,51 @@ const HeaderTemplate = ({
     padding: 0;
   `;
 
+  const contactItem = css`
+    min-height: 120px;
+
+    ${mediaQueries.phoneLarge} {
+      width: calc(50% - 20px);
+    }
+  `;
+
+  const contactItemWide = css`
+    ${mediaQueries.phoneLarge} {
+      width: 100%;
+      padding-top: 40px;
+    }
+  `;
+
+  const socialList = css`
+    list-style-type: none;
+    color: ${fontColor};
+    margin: 0;
+    padding: 0;
+
+    ${mediaQueries.phoneLarge} {
+      margin-top: 11px;
+      display: flex;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    li {
+      margin-bottom: 0;
+      padding: 0;
+
+      ${mediaQueries.phoneLarge} {
+        padding: 0 30px;
+
+        & + li {
+          border-left: solid 1px ${fontColor};
+        }
+        a {
+          color: ${fontColor};
+          opacity: 0.7;
+        }
+      }
+    }
+  `;
   return (
     <>
       <SEO title={metaTitle || title} description={description} image={image} />
@@ -240,11 +294,13 @@ const HeaderTemplate = ({
         render={({ progress }) => {
           let zoom = scale(progress, 1, 1.2);
           let zoom2 = scale(progress, 1, 1.1);
+          let zoom3 = scale(progress, 1, 0.8);
           return (
             <Sticky
               height="1920px"
               top="0"
               cover
+              bgColor={bgColor}
               disableOnMobile
               render={({ progress }) => {
                 let fade = scale(progress, 1, 0);
@@ -272,6 +328,58 @@ const HeaderTemplate = ({
                           {subTitle}
                         </span>
                       )}
+                      <motion.div css={[contactItem, contactItemWide]}
+                           style={{
+                             scale: zoom3
+                           }}>
+                        <ul css={socialList}>
+
+                          <li>
+                            {Instagram && (
+                              <a
+                                href={Instagram}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                              >
+                                Instagram
+                              </a>
+                            )}
+                          </li>
+                          <li>
+                            {Facebook && (
+                              <a
+                                href={Facebook}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                              >
+                                Facebook
+                              </a>
+                            )}
+                          </li>
+                          <li>
+                            {Youtube && (
+                              <a
+                                href={Youtube}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                              >
+                                YouTube
+                              </a>
+                            )}
+                          </li>
+                          <li>
+                            {Website && (
+                              <a
+                                href={Website}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                              >
+                                Website
+                              </a>
+                            )}
+                          </li>
+                        </ul>
+                      </motion.div>
                     </Height>
                     <Cover
                       style={{
@@ -292,8 +400,6 @@ const HeaderTemplate = ({
           );
         }}
       />
-
-
     </>
   );
 };
@@ -317,7 +423,12 @@ export const headerPropTypes = {
   heroImage: PropTypes.string,
   heroImageMobile: PropTypes.string,
   hideNav: PropTypes.bool,
-  bgUrl: PropTypes.node
+  bgUrl: PropTypes.node,
+  bgColor: PropTypes.string,
+  Instagram: PropTypes.string,
+  Facebook: PropTypes.string,
+  Youtube: PropTypes.string,
+  Website: PropTypes.string
 };
 
 HeaderTemplate.propTypes = headerPropTypes;
@@ -340,7 +451,12 @@ HeaderTemplate.defaultProps = {
   heroImage: null,
   heroImageMobile: null,
   hideNav: false,
-  bgUrl: null
+  bgUrl: null,
+  bgColor: null,
+  Instagram: null,
+  Facebook: null,
+  Youtube: null,
+  Website: null
 };
 
 export default HeaderTemplate;

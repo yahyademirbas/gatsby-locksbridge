@@ -32,10 +32,12 @@ import FeaturesSlider from "../FeaturesSlider";
  * @param {string} titleMarginBottom - passed to title
  * @param {string} titlePadding - passed to title
  * @param {string} image - passed to SEO
- * @param {boolean} newsSlider - used for main page
  * @param {node} bgUrl - bg image
+ * @param {boolean} newsSlider - slider shows if true
+ * @param {string} bgColor - bg color while scrolling
  */
-function Header({
+
+const Header = ({
                   title,
                   label,
                   labelMobileOnly,
@@ -51,9 +53,10 @@ function Header({
                   image,
                   subTitle,
                   hideNav,
+                  bgUrl,
                   newsSlider,
-                  bgUrl
-                }) {
+                  bgColor
+                }) => {
   const isLightBackground = value => {
     let r;
     let g;
@@ -81,7 +84,7 @@ function Header({
   };
 
   const fontColor =
-    isLightBackground(color) && !invert ? colors.darkgray : colors.lightgray;
+    isLightBackground(color) && !invert ? colors.lightgray : colors.lightgray;
 
   const headerTitle = css`
     @keyframes headerSlide {
@@ -103,6 +106,7 @@ function Header({
     }
 
     position: relative;
+    z-index: 2;
     margin-bottom: ${titleMarginBottom};
     padding: 0 20px;
     line-height: 1.23;
@@ -124,7 +128,7 @@ function Header({
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 100%;
+      height: ${height};
       width: 100%;
       background: transparent;
       animation-name: afterReveal;
@@ -146,12 +150,10 @@ function Header({
       width: 60%;
     }
   `;
-  const sectionCSS = css`
-    padding: 88px 0;
-    background-color: ${color};
-  `;
+
   const headerSubTitle = css`
     margin-top: 32px;
+    z-index: 2;
     font-family: ${fonts.sans};
     font-size: 15px;
     font-weight: ${weights.regular};
@@ -175,10 +177,12 @@ function Header({
       ${labelMobileOnly && `display: none`};
     }
   `;
+
   const headerlabel = css`
     margin-bottom: 32px;
     font-family: ${fonts.sans};
     font-size: 15px;
+    z-index: 2;
     font-weight: ${weights.light};
     line-height: 2.4;
     text-transform: capitalize;
@@ -189,6 +193,7 @@ function Header({
 
     ${mediaQueries.desktop} {
       margin-bottom: 42px;
+      z-index: 3;
       ${labelMobileOnly && `display: none`};
     }
   `;
@@ -206,7 +211,7 @@ function Header({
   const BgImg = styled(Img)`
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: ${height};
 
     & > img {
       object-fit: cover !important;
@@ -215,9 +220,9 @@ function Header({
   `;
 
   const Height = styled(motion.div)`
-    height: 100vh;
+    height: ${height};
     width: 100vw;
-    background-color: transparent;
+    background-color: ${bgColor};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -231,14 +236,15 @@ function Header({
   return (
     <>
       <SEO title={metaTitle || title} description={description} image={image} />
+
       <TopNav fill={fontColor} hideNav={hideNav} />
+
       <ScrollAnimation
         render={({ progress }) => {
           let zoom = scale(progress, 1, 1.2);
           let zoom2 = scale(progress, 1, 1.1);
           return (
             <FullWidthSection
-              css={sectionCSS}
               height={height}
               minHeight={mobileMinHeight}
             >
@@ -250,8 +256,8 @@ function Header({
                 )}
                 {label && (
                   <span data-cy='labelText' css={headerlabel}>
-                    {label}
-                  </span>
+                          {label}
+                        </span>
                 )}
                 {title && (
                   <h1 data-cy='titleText' css={headerTitle}>
@@ -260,29 +266,28 @@ function Header({
                 )}
                 {subTitle && (
                   <span data-cy='labelText' css={headerSubTitle}>
-                    {subTitle}
-                  </span>
+                          {subTitle}
+                        </span>
                 )}
               </Height>
               {children && children}
-              {bgUrl && (
               <Cover
                 style={{
                   scale: zoom
                 }}
               >
+                {bgUrl && (
                 <BgImg
-                  fluid={bgUrl.fluid}
-                  alt=""
+                  fluid={bgUrl}
+                  alt="LocksBridge Artists"
                 />
+                )}
               </Cover>
-              )}
+
             </FullWidthSection>
           );
         }}
-
       />
-
     </>
   );
 };
@@ -303,8 +308,12 @@ export const headerPropTypes = {
   titleMarginBottom: PropTypes.string,
   titlePadding: PropTypes.string,
   image: PropTypes.string,
+  heroImage: PropTypes.string,
+  heroImageMobile: PropTypes.string,
   hideNav: PropTypes.bool,
-  bgUrl: PropTypes.node
+  bgUrl: PropTypes.node,
+  newsSlider: PropTypes.bool,
+  bgColor: PropTypes.object
 };
 
 Header.propTypes = headerPropTypes;
@@ -324,9 +333,12 @@ Header.defaultProps = {
   titleMarginBottom: "0",
   titlePadding: "0 20px",
   image: null,
+  heroImage: null,
+  heroImageMobile: null,
   hideNav: false,
+  bgUrl: null,
   newsSlider: false,
-  bgUrl: null
+  bgColor: colors.lbColor
 };
 
 export default Header;

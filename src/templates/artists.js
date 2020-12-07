@@ -121,19 +121,21 @@ export default function ArtistsTemplate({ data }) {
         description: artistDetails.description,
         mobileMinHeight: "100vh",
         height: "100vh",
-        bgUrl: artistDetails
+        bgUrl: artistDetails,
+        bgColor: colors.lbWhite,
+        Instagram: "https://instagram.com/locksbridgenet",
+        Facebook: "https://instagram.com/locksbridgenet",
+        Youtube: "https://instagram.com/locksbridgenet",
+        Website: "https://instagram.com/locksbridgenet"
       }}
     >
 
-      <ArtistPageSlider backgroundColor={colors.lightgray} data={data} />
+      <ArtistPageSlider backgroundColor={colors.lbWhite} data={data} />
 
       {" "}
       {hasScrolled || isScrolling ? (
 
         <>
-
-
-
           <FullWidthSection
             css={css`
               padding: 44px 0 0;

@@ -4,72 +4,22 @@ import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import CTA from '../components/CTA';
 
-import { h1L, mediaQueries, container, colors } from '../styles';
+import { mediaQueries, container, colors } from '../styles';
 import ArtistPreview from '../components/ArtistPreview';
 import Layout from '../components/layout';
 import FullWidthSection from '../components/FullWidthSection';
 
 export default function Artists({ data }) {
   const artists = data.allFile.edges;
-  const headerStyles = css`
-    @keyframes headerSlide {
-      0% {
-        transform: translateY(50%);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-    @keyframes afterReveal {
-      0% {
-        height: 100%;
-      }
-      100% {
-        height: 0;
-      }
-    }
-    padding: 0 20px;
-    margin: 30px 0 60px;
-    text-align: center;
-    transform: translateY(50%);
-    animation-name: headerSlide;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: ${colors.yellow};
-      animation-name: afterReveal;
-      animation-duration: inherit;
-      animation-timing-function: inherit;
-      animation-iteration-count: inherit;
-      animation-fill-mode: inherit;
-    }
-    ${mediaQueries.phoneLarge} {
-      width: 70%;
-      margin: 40px auto 50px;
-    }
-  `;
   return (
     <Layout
       headerData={{
         metaTitle: `LB Artists – Full Roster`,
         mobileMinHeight: '50vh',
+        title: "LB Artists",
+        subTitle: "All Talents are Here",
         height: '50vh',
-        children: (
-          <>
-            <h1 data-cy='insightTitle' css={[h1L, headerStyles]}>
-              LB Artists – Full Roster
-            </h1>
-          </>
-        ),
+        bgColor: colors.lbRed
       }}
     >
       <FullWidthSection padding='0'>

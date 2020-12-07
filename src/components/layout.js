@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 import { headerPropTypes } from "./Header/Header";
 import Header from "./Header";
-import { motion } from "framer-motion";
+
+import "../styles/layout.css";
 
 const Layout = ({ headerData, children }) => {
-
 
   function handleFirstTab(e) {
     if (e.keyCode === 9) {
@@ -18,13 +19,17 @@ const Layout = ({ headerData, children }) => {
 
   return (
     <motion.div>
+
       <Header {...headerData} />
-        <div>{children}</div>
+
+      <main>{children}</main>
+
     </motion.div>
   );
 };
 
 Layout.propTypes = {
+  children: PropTypes.node.isRequired,
   headerData: PropTypes.shape(headerPropTypes)
 };
 

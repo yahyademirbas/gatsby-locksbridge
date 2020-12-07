@@ -31,7 +31,7 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     arrows: false,
     autoplay: false,
     infinite: true,
-    lazyLoad: true,
+    lazyLoad: false,
     speed: 500,
     centerMode: true,
     centerPadding: '60px',

@@ -6,12 +6,8 @@ import { headerPropTypes } from "./HeaderTemplate/HeaderTemplate";
 import HeaderTemplate from "./HeaderTemplate";
 
 import "../styles/layout.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 
 const Layout = ({ children, headerData }) => {
-
 
   function handleFirstTab(e) {
     if (e.keyCode === 9) {

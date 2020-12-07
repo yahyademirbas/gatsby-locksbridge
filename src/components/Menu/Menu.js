@@ -22,7 +22,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
       left: 0;
       height: 100%;
       width: 100%;
-      background: rgb(229, 33, 61);
+      background: ${colors.lbRed};
       transition: inherit;
       height: ${menuOpen ? '0' : '100%'};
     }
@@ -174,7 +174,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
         width: 100%;
         display: flex;
         align-items: center;
-        background-color: rgb(229, 33, 61);
+        background-color: ${colors.lbRed};
         transition: 0.3s ease all;
         overflow: hidden;
         z-index: 3;

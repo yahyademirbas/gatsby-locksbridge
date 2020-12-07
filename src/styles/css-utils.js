@@ -52,6 +52,7 @@ export const colors = {
   drupal9Blue: '#009DE4',
   shopifyGreen: '#80AB42',
   bigCommerceBlue: '#0D52FF',
-  red: 'red',
+  lbRed: 'rgb(229, 33, 61)',
   lbColor: `rgba(16, 18, 22,0.2)`,
+  lbWhite: '#f5f5f5'
 };
