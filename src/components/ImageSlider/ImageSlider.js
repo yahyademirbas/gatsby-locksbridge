@@ -1,18 +1,18 @@
-import React from "react";
-import Slider from "react-slick";
-import PropTypes from "prop-types";
-import Img from "gatsby-image";
-import { css } from "@emotion/core";
+import React from 'react';
+import Slider from 'react-slick';
+import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
+import { css } from '@emotion/core';
 
-import { mediaQueries } from "../../styles";
-import FullWidthSection from "../FullWidthSection";
+import { mediaQueries } from '../../styles';
+import FullWidthSection from '../FullWidthSection';
 
 export default function ImageSlider({ data }) {
   const settings = {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 7500,
-    cssEase: "cubic-bezier(0.86, 0, 0.07, 1)",
+    cssEase: 'cubic-bezier(0.86, 0, 0.07, 1)',
     infinite: true,
     speed: 1000,
     slidesToShow: 3.25,
@@ -20,16 +20,16 @@ export default function ImageSlider({ data }) {
       {
         breakpoint: 1220,
         settings: {
-          slidesToShow: 2.25
-        }
+          slidesToShow: 2.25,
+        },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1.2
-        }
-      }
-    ]
+          slidesToShow: 1.2,
+        },
+      },
+    ],
   };
   return (
     <FullWidthSection
@@ -68,17 +68,17 @@ export default function ImageSlider({ data }) {
         `}
       >
         {data.allFile.edges.map(({ node }) => (
-            <Img
-              fluid={node.childMdx.frontmatter.hero.childImageSharp.fluid}
-              key={node.childMdx.frontmatter.title}
-              alt='Boston'
-            />
+          <Img
+            fluid={node.childMdx.frontmatter.hero.childImageSharp.fluid}
+            key={node.childMdx.frontmatter.title}
+            alt='Boston'
+          />
         ))}
       </Slider>
     </FullWidthSection>
   );
-};
+}
 
 ImageSlider.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };

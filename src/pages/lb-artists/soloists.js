@@ -5,12 +5,7 @@ import { css } from '@emotion/core';
 //import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 import CTA from '../../components/CTA';
 
-import {
-  h1L,
-  mediaQueries,
-  container,
-  colors,
-} from '../../styles';
+import { h1L, mediaQueries, container, colors } from '../../styles';
 import ArtistPreview from '../../components/ArtistPreview';
 import Layout from '../../components/layout';
 import FullWidthSection from '../../components/FullWidthSection';
@@ -98,38 +93,41 @@ export default function Soloists({ data }) {
           ]}
         >
           {artists.map(({ node }) => (
-            <ArtistPreview key={node.childMdx.frontmatter.title} frontmatter={node.childMdx.frontmatter} />
+            <ArtistPreview
+              key={node.childMdx.frontmatter.title}
+              frontmatter={node.childMdx.frontmatter}
+            />
           ))}
         </div>
       </FullWidthSection>
       <CTA />
     </Layout>
   );
-};
+}
 
 Soloists.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    query($locale: String!) {
-        allFile(
-            filter: {
-                sourceInstanceName: { eq: "lb-artists" }
-                childMdx: { fields: { locale: { eq: $locale } } }
+  query($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "lb-artists" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
+      edges {
+        node {
+          childMdx {
+            ...AllArtistContent
+            frontmatter {
+              ...AllArtistFrontMatters
+              ...AllArtistImages
             }
-        ) {
-            edges {
-                node {
-                    childMdx {
-                        ...AllArtistContent
-                        frontmatter {
-                            ...AllArtistFrontMatters
-                            ...AllArtistImages
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 `;

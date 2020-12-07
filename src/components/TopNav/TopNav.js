@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { LocalizedLink as Link} from 'gatsby-theme-i18n';
-import { css } from '@emotion/core';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { LocalizedLink as Link } from "gatsby-theme-i18n";
+import { css } from "@emotion/core";
 
-import useWindow from '../../hooks/useWindow';
-import Menu from '../Menu';
-import { colors, mediaQueries, jsBreakpoints, container } from '../../styles';
+import useWindow from "../../hooks/useWindow";
+import Menu from "../Menu";
+import { colors, mediaQueries, jsBreakpoints, container } from "../../styles";
 
-import LBLogo from './svg/LBLogo';
-import LocksBridge from './svg/LocksBridge';
-import Hamburger from './svg/hamburger';
+import LBLogo from "./svg/LBLogo";
+import LocksBridge from "./svg/LocksBridge";
+import Hamburger from "./svg/hamburger";
+import styled from "@emotion/styled";
 
 const TopNav = ({ fill, hideNav }) => {
   const [isOpen, setOpen] = useState(false);
   const toggleOpen = () => setOpen(!isOpen);
 
+  const LocaleSwitcher = styled.div`
+    position: absolute;
+    right: 5%;
+    padding: 1rem;
+    z-index:5;
+    
+  `;
+
+  const LocaleColor = css`
+  color: ${fill};
+  }
+`;
+
+
   const { width } = useWindow();
+
+
   return (
     <>
       {hideNav ? (
@@ -23,7 +40,7 @@ const TopNav = ({ fill, hideNav }) => {
           css={[
             container.max,
             css`
-              position: ${isOpen ? 'fixed' : 'absolute'};
+              position: ${isOpen ? "fixed" : "absolute"};
               top: 0;
               padding-top: 20px;
               padding-bottom: 10px;
@@ -37,7 +54,7 @@ const TopNav = ({ fill, hideNav }) => {
               ${mediaQueries.phoneLarge} {
                 padding-top: 30px;
               }
-            `,
+            `
           ]}
         >
           <LocksBridge
@@ -49,12 +66,12 @@ const TopNav = ({ fill, hideNav }) => {
         </div>
       ) : (
         <>
-          {' '}
+          {" "}
           <div
             css={[
               container.max,
               css`
-                position: ${isOpen ? 'fixed' : 'absolute'};
+                position: ${isOpen ? "fixed" : "absolute"};
                 top: 0;
                 padding-top: 20px;
                 padding-bottom: 10px;
@@ -68,12 +85,12 @@ const TopNav = ({ fill, hideNav }) => {
                 ${mediaQueries.phoneLarge} {
                   padding-top: 30px;
                 }
-              `,
+              `
             ]}
           >
             <Link to='/' aria-label='return to homepage' data-cy='homeButton'>
               {/* This guard keeps the Gatsby build from breaking by ensuring this code isn't run at build time. */}
-              {typeof window !== 'undefined' &&
+              {typeof window !== "undefined" &&
               (width > jsBreakpoints.phoneLarge ? (
                 <LocksBridge
                   css={css`
@@ -91,6 +108,17 @@ const TopNav = ({ fill, hideNav }) => {
                 />
               ))}
             </Link>
+
+            <LocaleSwitcher data-name='locale-switcher' css={LocaleColor}>
+              <Link hrefLang='en-us' to='/' css={LocaleColor}>
+                EN
+              </Link>{" "}
+              /{" "}
+              <Link hrefLang='tr' to='/tr' css={LocaleColor}>
+                TR
+              </Link>
+            </LocaleSwitcher>
+
             <button
               css={css`
                 background-color: transparent;
@@ -114,7 +142,8 @@ const TopNav = ({ fill, hideNav }) => {
               />
             </button>
           </div>
-          <Menu toggleOpen={toggleOpen} menuOpen={isOpen} />{' '}
+
+          <Menu toggleOpen={toggleOpen} menuOpen={isOpen} />{" "}
         </>
       )}
     </>
@@ -123,12 +152,12 @@ const TopNav = ({ fill, hideNav }) => {
 
 TopNav.propTypes = {
   fill: PropTypes.string,
-  hideNav: PropTypes.bool,
+  hideNav: PropTypes.bool
 };
 
 TopNav.defaultProps = {
   fill: colors.lightgray,
-  hideNav: false,
+  hideNav: false
 };
 
 export default TopNav;

@@ -9,8 +9,17 @@ import ArtistPageSlide from './ArtistPageSlide';
 import ArtistPageSlideNav from './ArtistPageSlideNav';
 import slides from './ArtistPageSlide.json';
 
-
 export default function ArtistPageSlider({ backgroundColor, title, data }) {
+  const sliderRef = React.useRef(null);
+  React.useEffect(() => {
+    const track = sliderRef.current.innerSlider.list.querySelector('.slick-track');
+    const focusSlider = setTimeout(() => {
+      const slide = track.querySelector('.slick-slide');
+      slide.focus();
+    }, 0);
+    return () => clearTimeout(focusSlider);
+  }, []);
+
   const settingsMain = {
     customPaging(i) {
       return (
@@ -21,40 +30,48 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     },
     arrows: false,
     autoplay: false,
-    autoplaySpeed: 3000,
-    cssEase: 'cubic-bezier(0.86, 0, 0.07, 1)',
     infinite: true,
-    speed: 1000,
+    lazyLoad: true,
+    speed: 500,
     centerMode: true,
-    centerPadding: '0',
+    centerPadding: '60px',
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
+    swipeToSlide: true,
     variableWidth: true,
     dots: true,
-    focusOnSelect: true,
+    focusOnSelect: false,
     dotsClass: 'slick-pager slick-dots',
   };
 
   const SliderSectionStyles = css`
-    padding-top: 25px;
-    padding-bottom: 60px;
+    padding-bottom: 0;
+    padding-top: 0;
     padding-left: 0;
     padding-right: 0;
     background-color: ${backgroundColor};
-
+    min-width: 100vw;
+    max-height: auto;
     ${mediaQueries.phoneLarge} {
-      padding-bottom: 115px;
-      padding-top: 90px;
+      padding-bottom: 0;
+      padding-top: 0;
+      padding-left: 0;
+      padding-right: 0;
+      min-width: 100vw;
+      max-height: auto;
     }
 
     .slick-list {
-      cursor: pointer;
+      cursor: default;
       width: 100vw;
     }
 
     .slick-slider {
-      margin-top: 24px;
+      margin-top: 0;
       width: 100vw;
+      display: flex;
+      flex-direction: column-reverse;
 
       ${mediaQueries.phoneLarge} {
         margin-top: 0;
@@ -69,16 +86,16 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
       justify-content: space-between;
       flex-direction: row;
       list-style: none;
-      max-width: 150px;
-      width: calc(100% - 24px);
+      max-width: 100%;
+      width: calc(80%);
       margin: auto;
       padding: 0;
-      margin-bottom: 12px;
+      margin-bottom: 100px;
       position: relative;
 
       ${mediaQueries.phoneLarge} {
-        max-width: 450px;
-        margin-bottom: 136px;
+        max-width: 550px;
+        margin-bottom: 100px;
       }
     }
 
@@ -93,8 +110,7 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
       justify-content: center;
       align-items: center;
       ${mediaQueries.phoneLarge} {
-        width: initial;
-        margin: 0;
+        width: 20px;
       }
     }
 
@@ -108,18 +124,7 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     }
 
     .slick-dots li button:before {
-      content: '';
-      border: 1px solid ${colors.tagGray};
-      border-radius: 50%;
-      width: 10px;
-      height: 10px;
-      opacity: 1;
-      top: 50%;
-      transform: translateY(-50%);
-      display: block;
-      ${mediaQueries.phoneLarge} {
-        display: none;
-      }
+      display: none;
     }
 
     .slick-dots li.slick-active button:before {
@@ -136,11 +141,11 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     }
 
     .slick-center h3 {
-      color: ${colors.tagGray};
+      color: ${colors.lbColor};
       text-stroke: ${colors.tagGray};
       -webkit-text-stroke: ${colors.tagGray};
-      text-stroke-width: 1px;
-      -webkit-text-stroke-width: 1px;
+      text-stroke-width: 1.3px;
+      -webkit-text-stroke-width: 1.3px;
       -webkit-font-smoothing: antialiased;
       transition: color 1s ease;
     }
@@ -150,41 +155,29 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     .slick-center .animate-opacity {
       opacity: 1;
       transition: opacity 1s ease;
-      transition-delay: 1s;
+      transition-delay: 0s;
     }
 
     .slick-slide:not(.slick-center):hover h3 {
-      color: rgba(40, 40, 41, 0.1);
+      color: rgba(40, 40, 41, 0.3);
       transition: color 1s ease;
-    }
-
-    .slick-list {
-      ${mediaQueries.desktop} {
-        padding: 0 90px;
-      }
     }
   `;
 
   return (
-    <FullWidthSection height='0' css={SliderSectionStyles}>
+    <FullWidthSection css={SliderSectionStyles}>
       <h2 css={smSectionHead}>{title}</h2>
 
-      <Slider {...settingsMain}>
+      <Slider {...settingsMain} ref={sliderRef}>
         {slides.map(node => {
           return (
-            <ArtistPageSlide
-              key={node.title}
-              title={node.title}
-              data={data}
-              icon={node.icon}
-              link={node.link}
-            />
+            <ArtistPageSlide key={node.title} title={node.title} data={data} />
           );
         })}
       </Slider>
     </FullWidthSection>
   );
-};
+}
 
 ArtistPageSlider.propTypes = {
   backgroundColor: PropTypes.string,
@@ -193,5 +186,4 @@ ArtistPageSlider.propTypes = {
 
 ArtistPageSlider.defaultProps = {
   backgroundColor: colors.white,
-  title: `What We Do`,
 };

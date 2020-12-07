@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 // Global CSS Styles
-import { css } from '@emotion/core';
+import { css } from "@emotion/core";
 
-import { colors, fonts, weights, mediaQueries } from './css-utils';
+import { colors, fonts, weights, mediaQueries } from "./css-utils";
 
 export const globalStyles = css`
   /*
@@ -13,8 +13,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-Thin'),
-      url('/Fonts/Canela/Canela-Thin.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Thin.woff') format('woff');
+    url('/Fonts/Canela/Canela-Thin.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Thin.woff') format('woff');
     font-weight: 100;
   }
 
@@ -22,27 +22,35 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-ThinItalic'),
-      url('/Fonts/Canela/Canela-ThinItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-ThinItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-ThinItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-ThinItalic.woff') format('woff');
     font-weight: 100;
     font-style: italic;
   }
 
   @font-face {
-    font-family: 'Canela';
+    font-family: 'DunbarLow';
     font-display: fallback;
     src: local('Canela-Light'),
-      url('/Fonts/Canela/Canela-Light.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Light.woff') format('woff');
-    font-weight: 300;
+    url('/Fonts/DunbarLow/DunbarLow.woff2') format('woff2'),
+    url('/Fonts/DunbarLow/DunbarLow.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Canela';
+    font-display: fallback;
+    src: local('Canela-Thin'),
+    url('/Fonts/Canela/Canela-Thin.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Thin.woff') format('woff');
+    font-weight: 100;
   }
 
   @font-face {
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-LightItalic'),
-      url('/Fonts/Canela/Canela-LightItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-LightItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-LightItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-LightItalic.woff') format('woff');
     font-weight: 300;
     font-style: italic;
   }
@@ -51,8 +59,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-Regular'),
-      url('/Fonts/Canela/Canela-Regular.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Regular.woff2') format('woff2');
+    url('/Fonts/Canela/Canela-Regular.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Regular.woff2') format('woff2');
     font-weight: 400;
   }
 
@@ -60,8 +68,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-RegularItalic'),
-      url('/Fonts/Canela/Canela-RegularItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-RegularItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-RegularItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-RegularItalic.woff') format('woff');
     font-weight: 400;
     font-style: italic;
   }
@@ -70,8 +78,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-Medium'),
-      url('/Fonts/Canela/Canela-Medium.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Medium.woff') format('woff');
+    url('/Fonts/Canela/Canela-Medium.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Medium.woff') format('woff');
     font-weight: 500;
   }
 
@@ -79,8 +87,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-MediumItalic'),
-      url('/Fonts/Canela/Canela-MediumItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-MediumItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-MediumItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-MediumItalic.woff') format('woff');
     font-weight: 500;
     font-style: italic;
   }
@@ -89,8 +97,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-Bold'),
-      url('/Fonts/Canela/Canela-Bold.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Bold.woff') format('woff');
+    url('/Fonts/Canela/Canela-Bold.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Bold.woff') format('woff');
     font-weight: 700;
   }
 
@@ -98,8 +106,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-BoldItalic'),
-      url('/Fonts/Canela/Canela-BoldItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-BoldItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-BoldItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-BoldItalic.woff') format('woff');
     font-weight: 700;
     font-style: italic;
   }
@@ -108,8 +116,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-Black'),
-      url('/Fonts/Canela/Canela-Black.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-Black.woff') format('woff');
+    url('/Fonts/Canela/Canela-Black.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-Black.woff') format('woff');
     font-weight: 900;
   }
 
@@ -117,8 +125,8 @@ export const globalStyles = css`
     font-family: 'Canela';
     font-display: fallback;
     src: local('Canela-BlackItalic'),
-      url('/Fonts/Canela/Canela-BlackItalic.woff2') format('woff2'),
-      url('/Fonts/Canela/Canela-BlackItalic.woff') format('woff');
+    url('/Fonts/Canela/Canela-BlackItalic.woff2') format('woff2'),
+    url('/Fonts/Canela/Canela-BlackItalic.woff') format('woff');
     font-weight: 900;
     font-style: italic;
   }
@@ -127,8 +135,7 @@ export const globalStyles = css`
     font-family: 'NB International Pro';
     font-display: fallback;
     src: local('NBInternationalProLight'),
-      url('/Fonts/NBInternationalPro/NBInternationalProLight.woff2')
-        /* no woff for this font */ format('woff2');
+    url('/Fonts/NBInternationalPro/NBInternationalProLight.woff2') /* no woff for this font */ format('woff2');
     font-weight: 100;
   }
 
@@ -136,10 +143,8 @@ export const globalStyles = css`
     font-family: 'NB International Pro';
     font-display: fallback;
     src: local('NBInternationalProRegular'),
-      url('/Fonts/NBInternationalPro/NBInternationalProRegular.woff2')
-        format('woff2'),
-      url('/Fonts/NBInternationalPro/NBInternationalProRegular.woff')
-        format('woff');
+    url('/Fonts/NBInternationalPro/NBInternationalProRegular.woff2') format('woff2'),
+    url('/Fonts/NBInternationalPro/NBInternationalProRegular.woff') format('woff');
     font-weight: 400;
   }
 
@@ -147,10 +152,8 @@ export const globalStyles = css`
     font-family: 'NB International Pro';
     font-display: fallback;
     src: local('NBInternationalProItalic'),
-      url('/Fonts/NBInternationalPro/NBInternationalProItalic.woff2')
-        format('woff2'),
-      url('/Fonts/NBInternationalPro/NBInternationalProItalic.woff')
-        format('woff');
+    url('/Fonts/NBInternationalPro/NBInternationalProItalic.woff2') format('woff2'),
+    url('/Fonts/NBInternationalPro/NBInternationalProItalic.woff') format('woff');
     font-weight: 400;
     font-style: italic;
   }
@@ -159,10 +162,8 @@ export const globalStyles = css`
     font-family: 'NB International Pro';
     font-display: fallback;
     src: local('NBInternationalProBold'),
-      url('/Fonts/NBInternationalPro/NBInternationalProBold.woff2')
-        format('woff2'),
-      url('/Fonts/NBInternationalPro/NBInternationalProBold.woff')
-        format('woff');
+    url('/Fonts/NBInternationalPro/NBInternationalProBold.woff2') format('woff2'),
+    url('/Fonts/NBInternationalPro/NBInternationalProBold.woff') format('woff');
     font-weight: 700;
   }
 
@@ -170,10 +171,8 @@ export const globalStyles = css`
     font-family: 'NB International Pro';
     font-display: fallback;
     src: local('NBInternationalProBoldItalic'),
-      url('/Fonts/NBInternationalPro/NBInternationalProBoldItalic.woff2')
-        format('woff2'),
-      url('/Fonts/NBInternationalPro/NBInternationalProBoldItalic.woff')
-        format('woff');
+    url('/Fonts/NBInternationalPro/NBInternationalProBoldItalic.woff2') format('woff2'),
+    url('/Fonts/NBInternationalPro/NBInternationalProBoldItalic.woff') format('woff');
     font-weight: 700;
     font-style: italic;
   }
@@ -182,10 +181,8 @@ export const globalStyles = css`
     font-family: 'NB International Pro Mono';
     font-display: fallback;
     src: local('NBInternationalProMono'),
-      url('/Fonts/NBInternationalPro/NBInternationalProMono.woff2')
-        format('woff2'),
-      url('/Fonts/NBInternationalPro/NBInternationalProMono.woff')
-        format('woff');
+    url('/Fonts/NBInternationalPro/NBInternationalProMono.woff2') format('woff2'),
+    url('/Fonts/NBInternationalPro/NBInternationalProMono.woff') format('woff');
     font-weight: 400;
   }
 
@@ -649,5 +646,13 @@ export const globalStyles = css`
   ::-webkit-file-upload-button {
     -webkit-appearance: button;
     font: inherit;
+  }
+
+  body:not(.user-is-tabbing) button:focus,
+  body:not(.user-is-tabbing) input:focus,
+  body:not(.user-is-tabbing) select:focus,
+  body:not(.user-is-tabbing) textarea:focus,
+  body:not(.user-is-tabbing) a:focus {
+    outline: none;
   }
 `;

@@ -1,40 +1,44 @@
-import * as React from 'react'
-import { Global } from '@emotion/core';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
-import { globalStyles } from '../styles';
+import { headerPropTypes } from "./HeaderTemplate/HeaderTemplate";
+import HeaderTemplate from "./HeaderTemplate";
 
-import { headerPropTypes } from './mdxHeader/mdxHeader';
-import mdxHeader from './mdxHeader';
-import Footer from './Footer';
-import { MDXProvider } from "@mdx-js/react"
-import { MdxLink } from "gatsby-theme-i18n"
+import "../styles/layout.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
-import '../styles/layout.css';
+const Layout = ({ children, headerData }) => {
 
-const components = {
-    a: MdxLink,
-}
 
-export default function Layout({ children, headerData }) {
-  return(
-  <>
-      <Global styles={globalStyles} />
-      <mdxHeader {...headerData} />
-      <main>
-        <MDXProvider components={components}>{children}</MDXProvider>
-      </main>
-      <Footer />
-  </>
-)};
+  function handleFirstTab(e) {
+    if (e.keyCode === 9) {
+      document.body.classList.add("user-is-tabbing");
+    }
+  }
+
+  useEffect(() => window.addEventListener("keydown", handleFirstTab), []);
+
+  return (
+    <motion.div>
+
+      <HeaderTemplate {...headerData} />
+
+      <main>{children}</main>
+
+    </motion.div>
+  );
+};
 
 Layout.propTypes = {
-    children: PropTypes.node.isRequired,
-    headerData: PropTypes.shape(headerPropTypes),
+  children: PropTypes.node.isRequired,
+  headerData: PropTypes.shape(headerPropTypes)
 };
 
 Layout.defaultProps = {
-    headerData: {},
+  headerData: {}
 };
 
+export default Layout;

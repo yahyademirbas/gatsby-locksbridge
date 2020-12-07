@@ -10,12 +10,15 @@ import {
   mediaQueries,
   jsBreakpoints,
   container,
-  weights,
-} from '../styles';
+  weights, partnersProjects
+} from "../styles";
 import Layout from '../components/layout';
 import FullWidthSection from '../components/FullWidthSection';
 import { useHasBeenVisible } from '../hooks/useVisibility';
 import CTA from '../components/CTA';
+import SplitSection from "../components/SplitSection";
+import { list } from "../styles/custom-css";
+import EliteSRC from "../../static/images/Partner_Wordmark-Elite_1col.svg";
 
 const Capability = ({ imageSrc, imageAlt, content, index, id }) => {
   const nodeRef = useRef();
@@ -100,8 +103,8 @@ const Capability = ({ imageSrc, imageAlt, content, index, id }) => {
                     > div {
                       padding-bottom: ${index % 2 ? '76% !important' : '100%'};
                       padding-bottom: ${index % 4 === 2
-                  ? '131% !important'
-                  : '100%'};
+                        ? '131% !important'
+                        : '100%'};
                     }
                   }
                 `}
@@ -144,6 +147,84 @@ const CapabilitiesPage = ({ data }) => {
         height: '400px',
       }}
     >
+      <SplitSection gridColumnGap='16px' css={partnersProjects}>
+        <article>
+          <h2>Conquer complexity</h2>
+          <p>
+            BigCommerce is not complex, but your integration may be. We’ve
+            pioneered robust integrations for both back and front-end
+            experiences.
+          </p>
+        </article>
+        <article>
+          <h2>Maximize your budget</h2>
+          <p>
+            Minimize your build investment and reinvest into initiatives that
+            move the needle. (We can help with that too).
+          </p>
+        </article>
+        <article>
+          <h2>Global first</h2>
+          <p>
+            Companies need to think globally to compete. We’ll help you lay the
+            foundation from day one.
+          </p>
+        </article>
+        <article>
+          <h2>Automate all the things</h2>
+          <p>
+            Automation is about more than just saving time. We leverage
+            automation to create processes that create raving fans and big
+            spenders.
+          </p>
+        </article>
+      </SplitSection>
+
+      <FullWidthSection height='400px' align='left' css={list}>
+        <h4>Scale your sales potential with BigCommerce</h4>
+        <p>
+          We work directly with incredible organizations to build complex
+          systems and innovative digital experiences; working with mid-market
+          and enterprise clients to develop web experiences in Drupal and
+          BigCommerce.
+        </p>
+        <div>
+          <ul>
+            <li>
+              BigCommerce API integration, custom development, and platform
+              migration.
+            </li>
+            <li>
+              BigCommerce responsive theme design, user experience, and UI
+              design.
+            </li>
+            <li>
+              BigCommerce on-page search engine optimization, website migration,
+              analytics tracking, conversion rate option, and structured data
+              implementation.
+            </li>
+          </ul>
+        </div>
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+          `}
+        >
+          <a
+            href='https://partners.bigcommerce.com/directory/partner/501032/third-grove'
+            title='BigCommerce Elite Partner'
+            css={css`
+              width: 100%;
+              max-width: 200px;
+              margin: 30px auto 0 auto;
+            `}
+          >
+            <img src={EliteSRC} alt='BigCommerce Elite Partner' />
+          </a>
+        </div>
+      </FullWidthSection>
+
       <Capability
         id='technology'
         imageSrc={data.technologyImageDesktop.childImageSharp.fluid}
@@ -230,29 +311,29 @@ const CapabilitiesPage = ({ data }) => {
 };
 
 export const query = graphql`
-    query CapabilitiesQuery {
-        technologyImageDesktop: file(relativePath: { eq: "technology.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-            }
+  query CapabilitiesQuery {
+    technologyImageDesktop: file(relativePath: { eq: "technology.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
         }
-        strategyImageDesktop: file(relativePath: { eq: "strategy.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-            }
-        }
-        creativeImageDesktop: file(relativePath: { eq: "creative.png" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid_withWebp
-                }
-            }
-        }
+      }
     }
+    strategyImageDesktop: file(relativePath: { eq: "strategy.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    creativeImageDesktop: file(relativePath: { eq: "creative.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
 `;
 
 export default CapabilitiesPage;

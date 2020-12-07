@@ -4,7 +4,6 @@ import { Global, css } from '@emotion/core';
 import FullWidthSection from '../FullWidthSection';
 import { mediaQueries, colors, fonts } from '../../styles';
 
-
 export default () => {
   const [isActive, setIsActive] = useState(false);
   const toggle = () => setIsActive(!isActive);

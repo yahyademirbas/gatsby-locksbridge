@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {
-  colors,
-  mediaQueries,
-} from '../../styles';
+import { colors } from '../../styles';
 
 export default function ArtistPageSlideNav({ title }) {
   const NavItem = styled.p`
@@ -17,13 +14,6 @@ export default function ArtistPageSlideNav({ title }) {
     text-align: center;
     text-transform: uppercase;
     padding-bottom: 10px;
-
-    span {
-      display: none;
-      ${mediaQueries.phoneLarge} {
-        display: flex;
-      }
-    }
   `;
 
   return (

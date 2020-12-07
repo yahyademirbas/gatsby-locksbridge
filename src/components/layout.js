@@ -1,33 +1,35 @@
-import React from 'react';
-import { Global } from '@emotion/core';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 
-import { globalStyles } from '../styles';
+import { headerPropTypes } from "./Header/Header";
+import Header from "./Header";
+import { motion } from "framer-motion";
 
-import { headerPropTypes } from './Header/Header';
-import Header from './Header';
-import Footer from './Footer';
+const Layout = ({ headerData, children }) => {
 
-import '../styles/layout.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-const Layout = ({ children, headerData }) => (
-  <>
-    <Global styles={globalStyles} />
-    <Header {...headerData} />
-    <main>{children}</main>
-    <Footer />
-  </>
-);
+  function handleFirstTab(e) {
+    if (e.keyCode === 9) {
+      document.body.classList.add("user-is-tabbing");
+    }
+  }
+
+  useEffect(() => window.addEventListener("keydown", handleFirstTab), []);
+
+  return (
+    <motion.div>
+      <Header {...headerData} />
+        <div>{children}</div>
+    </motion.div>
+  );
+};
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  headerData: PropTypes.shape(headerPropTypes),
+  headerData: PropTypes.shape(headerPropTypes)
 };
 
 Layout.defaultProps = {
-  headerData: {},
+  headerData: {}
 };
 
 export default Layout;

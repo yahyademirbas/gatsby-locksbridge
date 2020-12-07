@@ -4,12 +4,7 @@ import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import CTA from '../components/CTA';
 
-import {
-  h1L,
-  mediaQueries,
-  container,
-  colors,
-} from '../styles';
+import { h1L, mediaQueries, container, colors } from '../styles';
 import ArtistPreview from '../components/ArtistPreview';
 import Layout from '../components/layout';
 import FullWidthSection from '../components/FullWidthSection';
@@ -97,38 +92,40 @@ export default function Artists({ data }) {
           ]}
         >
           {artists.map(({ node }) => (
-            <ArtistPreview key={node.childMdx.frontmatter.title} frontmatter={node.childMdx.frontmatter} />
+            <ArtistPreview
+              key={node.childMdx.frontmatter.title}
+              frontmatter={node.childMdx.frontmatter}
+            />
           ))}
         </div>
       </FullWidthSection>
       <CTA />
     </Layout>
   );
-};
+}
 
 Artists.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    query($locale: String!) {
-        allFile(
-            filter: {
-                sourceInstanceName: { eq: "lb-artists" }
-                childMdx: { fields: { locale: { eq: $locale } } }
+  query($locale: String!) {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "lb-artists" }
+        childMdx: { fields: { locale: { eq: $locale } } }
+      }
+    ) {
+      edges {
+        node {
+          childMdx {
+            ...AllArtistContent
+            frontmatter {
+              ...AllArtistFrontMatters
             }
-        ) {
-            edges {
-                node {
-                    childMdx {
-                        ...AllArtistContent
-                        frontmatter {
-                            ...AllArtistFrontMatters
-                            ...AllArtistImagesTemplate
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 `;

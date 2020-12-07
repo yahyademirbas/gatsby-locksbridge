@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 let intersectionObserver;
 let intersectionObserverOptions = {};
@@ -48,7 +48,7 @@ const VO = {
   getSubscribers,
   setIntersectionObserverOptions,
   unwatch,
-  watch,
+  watch
 };
 
 export function useIsVisible(nodeRef) {

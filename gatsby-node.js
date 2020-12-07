@@ -1,13 +1,13 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable array-callback-return */
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
+const express = require("express");
 
-const { ensureTrailingSlash } = require('./src/util');
+const { ensureTrailingSlash } = require("./src/util");
 
 exports.onCreateDevServer = ({ app }) => {
-  app.use(express.static('static'));
+  app.use(express.static("static"));
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -22,6 +22,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             frontmatter {
               slug
               class
+              relDirectory
             }
           }
         }
@@ -29,7 +30,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
   if (result.errors) {
-    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
+    reporter.panicOnBuild("🚨  ERROR: Loading \"createPages\" query");
   }
   const artists = result.data.allMdx.edges;
   artists.forEach(({ node }) => {
@@ -39,7 +40,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: {
         artistId: node.id,
         slug: node.frontmatter.slug,
-      },
+        relDirectory: node.frontmatter.relDirectory
+      }
     });
   });
 };

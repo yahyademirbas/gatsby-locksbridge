@@ -1,18 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 
-import Layout from '../components/layout';
-import FullWidthSection from '../components/FullWidthSection';
-import SplitSection from '../components/SplitSection';
-import LogoGrid from '../components/LogoGrid';
-import EliteSRC from '../../static/images/Partner_Wordmark-Elite_1col.svg';
-import { partnersProjects, list } from '../styles/custom-css';
-import Quote from '../components/ContentBody/Quote';
-import WhatWeDo from '../components/WhatWeDo';
+import Layout from "../components/layout";
+import FullWidthSection from "../components/FullWidthSection";
+import SplitSection from "../components/SplitSection";
+import LogoGrid from "../components/LogoGrid";
+import WhatWeDo from "../components/WhatWeDo";
 
 import {
   colors,
@@ -24,9 +21,8 @@ import {
   mediaQueries,
   jsBreakpoints,
   contValues,
-  pLight,
-} from '../styles';
-//import Button from '../components/Button';
+  pLight
+} from "../styles";
 
 const About = ({ data }) => {
   const leadersCss = css`
@@ -124,6 +120,7 @@ const About = ({ data }) => {
       }
     }
   `;
+
   const Location = styled.section`
     display: flex;
     flex-direction: column;
@@ -184,165 +181,40 @@ const About = ({ data }) => {
       }
     }
   `;
+
   const images = data.allFile.nodes;
 
   // returns the correct image source needed to render
   const getSrc = (name, media) => {
-    if (media === 'leader') {
+    if (media === "leader") {
       return [
         images.find(images => images.name === name).mobileImage.fluid,
         {
           ...images.find(images => images.name === name).desktopImage.fluid,
-          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-        },
+          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+        }
       ];
     }
-    if (media === 'location') {
+    if (media === "location") {
       return [
         images.find(images => images.name === name).mobileImage.fluid,
         {
           ...images.find(images => images.name === name).desktopImage.fluid,
-          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-        },
+          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+        }
       ];
     }
     return images.find(images => images.name === name).childImageSharp.fluid;
   };
+
   return (
     <Layout
       headerData={{
-        title: 'A relentless pursuit of perfection.',
-        mobileMinHeight: '93vh',
-        height: '400px',
+        title: "A relentless pursuit of perfection.",
+        mobileMinHeight: "93vh",
+        height: "60vh"
       }}
     >
-      <WhatWeDo />
-
-      <Quote
-        size='small'
-        data={{
-          field_quote: `The most important decision an organization can make when leveraging Acquia and BigCommerce is whether to go side-by-side or headless.`,
-          field_footer_text: 'Justin Emond',
-        }}
-      />
-
-      <SplitSection gridColumnGap='16px' css={partnersProjects}>
-        <article>
-          <h2>Conquer complexity</h2>
-          <p>
-            BigCommerce is not complex, but your integration may be. We’ve
-            pioneered robust integrations for both back and front-end
-            experiences.
-          </p>
-        </article>
-        <article>
-          <h2>Maximize your budget</h2>
-          <p>
-            Minimize your build investment and reinvest into initiatives that
-            move the needle. (We can help with that too).
-          </p>
-        </article>
-        <article>
-          <h2>Global first</h2>
-          <p>
-            Companies need to think globally to compete. We’ll help you lay the
-            foundation from day one.
-          </p>
-        </article>
-        <article>
-          <h2>Automate all the things</h2>
-          <p>
-            Automation is about more than just saving time. We leverage
-            automation to create processes that create raving fans and big
-            spenders.
-          </p>
-        </article>
-      </SplitSection>
-
-      <FullWidthSection height='400px' align='left' css={list}>
-        <h4>Scale your sales potential with BigCommerce</h4>
-        <p>
-          We work directly with incredible organizations to build complex
-          systems and innovative digital experiences; working with mid-market
-          and enterprise clients to develop web experiences in Drupal and
-          BigCommerce.
-        </p>
-        <div>
-          <ul>
-            <li>
-              BigCommerce API integration, custom development, and platform
-              migration.
-            </li>
-            <li>
-              BigCommerce responsive theme design, user experience, and UI
-              design.
-            </li>
-            <li>
-              BigCommerce on-page search engine optimization, website migration,
-              analytics tracking, conversion rate option, and structured data
-              implementation.
-            </li>
-          </ul>
-        </div>
-        <div
-          css={css`
-            display: flex;
-            justify-content: center;
-          `}
-        >
-          <a
-            href='https://partners.bigcommerce.com/directory/partner/501032/third-grove'
-            title='BigCommerce Elite Partner'
-            css={css`
-              width: 100%;
-              max-width: 200px;
-              margin: 30px auto 0 auto;
-            `}
-          >
-            <img src={EliteSRC} alt='BigCommerce Elite Partner' />
-          </a>
-        </div>
-      </FullWidthSection>
-
-      <FullWidthSection
-        textAlign='center'
-        height='100%'
-        css={css`
-          ${container.medium};
-          padding-top: 20px;
-
-          ${mediaQueries.phoneLarge} {
-            padding-top: 150px;
-            margin-bottom: 58px;
-          }
-        `}
-      >
-        <Img
-          fluid={getSrc('emond')}
-          alt='LB Team'
-          css={css`
-            width: 100%;
-          `}
-        />
-        <Row>
-          <div>
-            <h2>2013</h2>
-            <h3>Founded</h3>
-          </div>
-          <div>
-            <h2>17</h2>
-            <h3>States</h3>
-          </div>
-          <div>
-            <h2>2</h2>
-            <h3>Offices</h3>
-          </div>
-          <div>
-            <h2>140+</h2>
-            <h3>Clients</h3>
-          </div>
-        </Row>
-      </FullWidthSection>
       <FullWidthSection
         height='550px'
         css={css`
@@ -365,7 +237,7 @@ const About = ({ data }) => {
               ${mediaQueries.phoneLarge} {
                 width: ${contValues.min};
               }
-            `,
+            `
           ]}
         >
           We work with brands we love and can’t wait to help grow. That means we
@@ -373,6 +245,17 @@ const About = ({ data }) => {
           tell you what you need to hear.
         </p>
       </FullWidthSection>
+
+      <WhatWeDo />
+
+      <LogoGrid
+        logoset='awards'
+        title='Trophy Case'
+        subtitle='We’ve won a few awards'
+        backgroundColor={colors.yellow}
+        minHeight='0'
+      />
+
       <FullWidthSection
         css={css`
           padding: 44px 0 0;
@@ -386,60 +269,73 @@ const About = ({ data }) => {
 
         <div css={[leadersCss, container.medium]}>
           <div>
-            <Img alt='Duygu Esenkar' fluid={getSrc('duygu-esenkar', 'leader')} />
+            <Img
+              alt='Duygu Esenkar'
+              fluid={getSrc("duygu-esenkar", "leader")}
+            />
             <h2>Duygu Esenkar</h2>
             <p>Director of Strategy</p>
           </div>
           <div>
-            <Img alt='Onur Tahmaz' fluid={getSrc('onur-tahmaz', 'leader')} />
+            <Img alt='Onur Tahmaz' fluid={getSrc("onur-tahmaz", "leader")} />
             <h2>Onur Tahmaz</h2>
             <p>Co-Founder, Chief Executive Officer</p>
           </div>
           <div>
-            <Img alt='Kerim Sipahiler' fluid={getSrc('kerim-sipahiler', 'leader')} />
+            <Img
+              alt='Kerim Sipahiler'
+              fluid={getSrc("kerim-sipahiler", "leader")}
+            />
             <h2>Kerim Sipahiler</h2>
             <p>Director of Operations</p>
           </div>
           <div>
-            <Img alt='Yunus Mercan' fluid={getSrc('yunus-mercan', 'leader')} />
+            <Img alt='Yunus Mercan' fluid={getSrc("yunus-mercan", "leader")} />
             <h2>Yunus Mercan</h2>
             <p>Creative Director</p>
           </div>
           <div>
-            <Img alt='Baran Sakallioglu' fluid={getSrc('baran-sakallioglu', 'leader')} />
+            <Img
+              alt='Baran Sakallioglu'
+              fluid={getSrc("baran-sakallioglu", "leader")}
+            />
             <h2>Baran Sakallıoglu</h2>
             <p>Director of Project Management</p>
           </div>
           <div>
-            <Img alt='Tugce Temel' fluid={getSrc('tugce-temel', 'leader')} />
+            <Img alt='Tugce Temel' fluid={getSrc("tugce-temel", "leader")} />
             <h2>Tugce Temel</h2>
             <p>Director of Ecommerce Solutions</p>
           </div>
           <div>
-            <Img alt='Zekeriya Türkmen' fluid={getSrc('zekeriya-turkmen', 'leader')} />
+            <Img
+              alt='Zekeriya Türkmen'
+              fluid={getSrc("zekeriya-turkmen", "leader")}
+            />
             <h2>Zekeriya Türkmen</h2>
             <p>Director of Ecommerce Solutions</p>
           </div>
           <div>
-            <Img alt='Babürşah Tugrul' fluid={getSrc('babursah-tugrul', 'leader')} />
+            <Img
+              alt='Babürşah Tugrul'
+              fluid={getSrc("babursah-tugrul", "leader")}
+            />
             <h2>Babürşah Tugrul</h2>
             <p>Director of Ecommerce Solutions</p>
           </div>
           <div>
-            <Img alt='Mark Stickney' fluid={getSrc('mark-stickney', 'leader')} />
+            <Img
+              alt='Mark Stickney'
+              fluid={getSrc("mark-stickney", "leader")}
+            />
             <h2>Mark Stickney</h2>
             <p>Director of Ecommerce Solutions</p>
           </div>
         </div>
       </FullWidthSection>
-      <LogoGrid
-        logoset='awards'
-        title='Trophy Case'
-        subtitle='We’ve won a few awards'
-        backgroundColor={colors.yellow}
-        minHeight='0'
-      />
+
       <FullWidthSection
+        backgroundColor={colors.lightblue}
         css={css`
           padding: 44px 0 0;
 
@@ -452,7 +348,7 @@ const About = ({ data }) => {
         <SplitSection css={container.large} gridColumnGap='20px'>
           <Location>
             <h2 css={h1L}>Boston</h2>
-            <Img fluid={getSrc('emond', 'location')} alt='Boston' />
+            <Img fluid={getSrc("emond", "location")} alt='Boston' />
             <h3>1st One’s on Us</h3>
             <div>
               <p>Wink &amp; Nod</p>
@@ -462,7 +358,7 @@ const About = ({ data }) => {
           </Location>
           <Location>
             <h2 css={h1L}>San Francisco</h2>
-            <Img fluid={getSrc('emond', 'location')} alt='Oakland' />
+            <Img fluid={getSrc("emond", "location")} alt='Oakland' />
             <h3>If it’s Done, We’re Probably Here</h3>
             <div>
               <p>Cafe Van Kleef</p>
@@ -475,7 +371,7 @@ const About = ({ data }) => {
       <FullWidthSection
         minHeight='500px'
         height='400px'
-        backgroundColor={colors.lightblue}
+        backgroundColor={colors.yellow}
         padding='0 0 30px'
         css={css`
           z-index: 1;
@@ -506,37 +402,40 @@ const About = ({ data }) => {
 };
 
 About.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default About;
 
 export const query = graphql`
-  {
-    allFile(filter: {relativePath: {regex: "/team/"}}) {
-      nodes {
+    fragment TeamImages on File {
         name
         childImageSharp {
-          fluid(maxWidth: 980, maxHeight: 480) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+            fluid(maxWidth: 490, maxHeight: 240) {
+                ...GatsbyImageSharpFluid_withWebp
+            }
         }
         mobileImage: childImageSharp {
-          fluid(cropFocus: NORTH, maxHeight: 335, maxWidth: 335) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+            fluid(cropFocus: NORTH, maxHeight: 335, maxWidth: 335) {
+                ...GatsbyImageSharpFluid_withWebp
+            }
         }
         desktopImage: childImageSharp {
-          fluid(maxWidth: 530, srcSetBreakpoints: [480, 900, 1200]) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+            fluid(maxWidth: 530, srcSetBreakpoints: [480, 900, 1200]) {
+                ...GatsbyImageSharpFluid_withWebp
+            }
         }
         leaderDesktop: childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+            fluid {
+                ...GatsbyImageSharpFluid_withWebp
+            }
         }
-      }
     }
-  }
+    query {
+        allFile(filter: { relativeDirectory: { eq: "team" } }) {
+            nodes {
+                ...TeamImages
+            }
+        }
+    }
 `;

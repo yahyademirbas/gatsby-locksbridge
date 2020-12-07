@@ -18,6 +18,8 @@ module.exports = {
       resolve: 'gatsby-plugin-react-axe',
       options: {
         // Options to pass to axe-core.
+        showInProduction: false,
+        debounce: 1000,
         // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
       },
     },
@@ -25,7 +27,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        defaultQuality: 50,
+        defaultQuality: 10,
+        failOnError: false
       },
     },
     `gatsby-plugin-emotion`,
@@ -76,7 +79,7 @@ module.exports = {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'noopener noreferrer', // eslint-disable-line unicorn/prevent-abbreviations
+              rel: 'noopener noreferrer',
             },
           },
           {
@@ -85,6 +88,7 @@ module.exports = {
               dashes: 'oldschool',
             },
           },
+          'gatsby-remark-prismjs',
         ],
       },
     },
@@ -125,5 +129,5 @@ module.exports = {
       },
     },
     'gatsby-plugin-mdx-embed',
-  ],
+  ]
 };

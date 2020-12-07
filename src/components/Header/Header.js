@@ -1,12 +1,18 @@
 /* eslint-disable no-bitwise */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import React from "react";
+import PropTypes from "prop-types";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import Img from "gatsby-image";
+import { motion } from "framer-motion";
 
-import TopNav from '../TopNav';
-import SEO from '../seo';
-import { colors, fonts, mediaQueries, weights } from '../../styles';
-import FullWidthSection from '../FullWidthSection';
+import ScrollAnimation from "../ScrollAnimation";
+import { scale } from "../../util/utils";
+import TopNav from "../TopNav";
+import SEO from "../seo";
+import { colors, fonts, mediaQueries, weights } from "../../styles";
+import FullWidthSection from "../FullWidthSection";
+import FeaturesSlider from "../FeaturesSlider";
 
 /**
  * Header used on every page.
@@ -26,28 +32,28 @@ import FullWidthSection from '../FullWidthSection';
  * @param {string} titleMarginBottom - passed to title
  * @param {string} titlePadding - passed to title
  * @param {string} image - passed to SEO
- * @param {string} heroImage - used as background on desktop
- * @param {string} heroImageMobile - used as background on mobile
+ * @param {boolean} newsSlider - used for main page
+ * @param {node} bgUrl - bg image
  */
-const Header = ({
-  title,
-  label,
-  labelMobileOnly,
-  metaTitle,
-  description,
-  height,
-  mobileMinHeight,
-  children,
-  color,
-  invert,
-  titleMarginBottom,
-  titlePadding,
-  image,
-  heroImage,
-  heroImageMobile,
-  subTitle,
-  hideNav,
-}) => {
+function Header({
+                  title,
+                  label,
+                  labelMobileOnly,
+                  metaTitle,
+                  description,
+                  height,
+                  mobileMinHeight,
+                  children,
+                  color,
+                  invert,
+                  titleMarginBottom,
+                  titlePadding,
+                  image,
+                  subTitle,
+                  hideNav,
+                  newsSlider,
+                  bgUrl
+                }) {
   const isLightBackground = value => {
     let r;
     let g;
@@ -63,7 +69,7 @@ const Header = ({
       // @see: http://gist.github.com/983661
       const rgbVal = +`0x${value
         .slice(1)
-        .replace(value.length < 5 && /./g, '$&$&')}`;
+        .replace(value.length < 5 && /./g, "$&$&")}`;
 
       r = rgbVal >> 16;
       g = rgbVal & 255;
@@ -143,13 +149,6 @@ const Header = ({
   const sectionCSS = css`
     padding: 88px 0;
     background-color: ${color};
-    background-image: url(${heroImageMobile});
-    ${mediaQueries.desktop} {
-      background-image: url(${heroImage});
-    }
-    ${mediaQueries.phoneLarge} {
-      background-image: url(${heroImage});
-    }
   `;
   const headerSubTitle = css`
     margin-top: 32px;
@@ -193,32 +192,97 @@ const Header = ({
       ${labelMobileOnly && `display: none`};
     }
   `;
+
+  const Cover = styled(motion.div)`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: -3;
+    transform-origin: center bottom;
+  `;
+
+  const BgImg = styled(Img)`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    & > img {
+      object-fit: cover !important;
+      object-position: 50% 50% !important;
+    }
+  `;
+
+  const Height = styled(motion.div)`
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  `;
+
   return (
     <>
       <SEO title={metaTitle || title} description={description} image={image} />
       <TopNav fill={fontColor} hideNav={hideNav} />
-      <FullWidthSection
-        css={sectionCSS}
-        height={height}
-        minHeight={mobileMinHeight}
-      >
-        {label && (
-          <span data-cy='labelText' css={headerlabel}>
-            {label}
-          </span>
-        )}
-        {title && (
-          <h1 data-cy='titleText' css={headerTitle}>
-            {title}
-          </h1>
-        )}
-        {subTitle && (
-          <span data-cy='labelText' css={headerSubTitle}>
-            {subTitle}
-          </span>
-        )}
-        {children && children}
-      </FullWidthSection>
+      <ScrollAnimation
+        render={({ progress }) => {
+          let zoom = scale(progress, 1, 1.2);
+          let zoom2 = scale(progress, 1, 1.1);
+          return (
+            <FullWidthSection
+              css={sectionCSS}
+              height={height}
+              minHeight={mobileMinHeight}
+            >
+              <Height style={{
+                scale: zoom2
+              }}>
+                {newsSlider && (
+                  <FeaturesSlider />
+                )}
+                {label && (
+                  <span data-cy='labelText' css={headerlabel}>
+                    {label}
+                  </span>
+                )}
+                {title && (
+                  <h1 data-cy='titleText' css={headerTitle}>
+                    {title}
+                  </h1>
+                )}
+                {subTitle && (
+                  <span data-cy='labelText' css={headerSubTitle}>
+                    {subTitle}
+                  </span>
+                )}
+              </Height>
+              {children && children}
+              {bgUrl && (
+              <Cover
+                style={{
+                  scale: zoom
+                }}
+              >
+                <BgImg
+                  fluid={bgUrl.fluid}
+                  alt=""
+                />
+              </Cover>
+              )}
+            </FullWidthSection>
+          );
+        }}
+
+      />
+
     </>
   );
 };
@@ -239,9 +303,8 @@ export const headerPropTypes = {
   titleMarginBottom: PropTypes.string,
   titlePadding: PropTypes.string,
   image: PropTypes.string,
-  heroImage: PropTypes.string,
-  heroImageMobile: PropTypes.string,
   hideNav: PropTypes.bool,
+  bgUrl: PropTypes.node
 };
 
 Header.propTypes = headerPropTypes;
@@ -253,17 +316,17 @@ Header.defaultProps = {
   labelMobileOnly: false,
   metaTitle: null,
   description: null,
-  height: '100vh',
-  mobileMinHeight: '100vh',
+  height: "100vh",
+  mobileMinHeight: "100vh",
   children: null,
   invert: false,
   color: colors.yellow,
-  titleMarginBottom: '0',
-  titlePadding: '0 20px',
+  titleMarginBottom: "0",
+  titlePadding: "0 20px",
   image: null,
-  heroImage: null,
-  heroImageMobile: null,
   hideNav: false,
+  newsSlider: false,
+  bgUrl: null
 };
 
 export default Header;

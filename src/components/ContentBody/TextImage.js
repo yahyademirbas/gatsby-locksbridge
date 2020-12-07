@@ -24,7 +24,7 @@ const TextImage = ({ data, text }) => {
     ${mediaQueries.phoneLarge} {
       padding: 0;
     }
-    
+
     a {
       text-decoration: underline;
     }
@@ -53,9 +53,7 @@ const TextImage = ({ data, text }) => {
           `}
         />
       </section>
-      <section
-        dangerouslySetInnerHTML={{ __html: text }}
-      />
+      <section dangerouslySetInnerHTML={{ __html: text }} />
     </SplitSection>
   );
 };

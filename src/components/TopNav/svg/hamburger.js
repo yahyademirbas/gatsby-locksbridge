@@ -12,8 +12,8 @@ const Hamburger = ({ fill, isOpen }) => {
 
   const rect1 = css`
     transform: ${isOpen
-    ? 'rotate(-45deg) translateY(10px)'
-    : 'rotate(0) translateY(0)'};
+      ? 'rotate(-45deg) translateY(10px)'
+      : 'rotate(0) translateY(0)'};
   `;
 
   const rect2 = css`
@@ -22,8 +22,8 @@ const Hamburger = ({ fill, isOpen }) => {
 
   const rect3 = css`
     transform: ${isOpen
-    ? 'rotate(45deg) translateY(-10px)'
-    : 'rotate(0deg) translateY(0)'};
+      ? 'rotate(45deg) translateY(-10px)'
+      : 'rotate(0deg) translateY(0)'};
   `;
 
   return (

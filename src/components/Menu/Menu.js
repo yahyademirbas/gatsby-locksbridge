@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LocalizedLink as Link} from 'gatsby-theme-i18n';
+import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 import { css } from '@emotion/core';
 
 import { colors, mediaQueries, weights, container } from '../../styles';
@@ -22,7 +22,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
       left: 0;
       height: 100%;
       width: 100%;
-      background: ${colors.darkgray};
+      background: rgb(229, 33, 61);
       transition: inherit;
       height: ${menuOpen ? '0' : '100%'};
     }
@@ -64,6 +64,18 @@ const Menu = ({ menuOpen, toggleOpen }) => {
     transition-delay: 0s, 0.9s, 0.9s;
   `;
 
+  const mobileDelay10 = css`
+    transition-delay: 0s, 1s, 1s;
+  `;
+
+  const mobileDelay11 = css`
+    transition-delay: 0s, 1.1s, 1.1s;
+  `;
+
+  const mobileDelay12 = css`
+    transition-delay: 0s, 1.2s, 1.2s;
+  `;
+
   const desktopDelay1 = css`
     ${mediaQueries.phoneLarge} {
       transition-delay: 0s, 0.2s, 0.2s;
@@ -88,44 +100,17 @@ const Menu = ({ menuOpen, toggleOpen }) => {
     }
   `;
 
-  const desktopDelay5 = css`
-    ${mediaQueries.phoneLarge} {
-      transition-delay: 0s, 1s, 1s;
-    }
-  `;
-
   const linkBaseStyles = css`
     display: block;
     color: ${colors.whiteFaded};
     font-weight: ${weights.medium};
     letter-spacing: -0.2px;
-    text-align: center;
 
     &:hover,
     &:focus {
       color: ${colors.white};
     }
   `;
-
- // const noHover = css`
- //   &:hover,
- //   &:focus {
- //     color: ${colors.whiteFaded};
- //   }
- // `;
-
-  //const linkGroupStyles = css`
-  //  display: inline-block;
-  //  color: ${colors.whiteFaded};
-  //  font-weight: ${weights.medium};
-  //  letter-spacing: -0.2px;
-  //  text-align: center;
-  //
-  //  &:hover,
-  //  &:focus {
-  //    color: ${colors.white};
-  //  }
-  //`;
 
   const linkPrimaryStyle = css`
     font-size: 36px;
@@ -137,19 +122,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
     }
   `;
 
-  const linkSecondaryStyle = css`
-    line-height: 42px;
-    font-size: 20px;
-
-    ${mediaQueries.phoneLarge} {
-      font-size: 30px;
-      line-height: 60px;
-    }
-  `;
-
   const sectionStyle = css`
     ${mediaQueries.phoneLarge} {
-      padding: 0 40px;
+      padding: 0;
     }
   `;
 
@@ -163,15 +138,10 @@ const Menu = ({ menuOpen, toggleOpen }) => {
     }
   `;
 
-  const sectionSecondaryStyle = css`
-    padding-top: 40px;
-  `;
-
   const sectionHeaderStyle = css`
     font-weight: ${weights.thin};
     color: ${colors.white};
     letter-spacing: -0.1px;
-    text-align: center;
     line-height: 15px;
     font-size: 15px;
     margin-bottom: 10px;
@@ -204,7 +174,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
         width: 100%;
         display: flex;
         align-items: center;
-        background-color: ${colors.darkgray};
+        background-color: rgb(229, 33, 61);
         transition: 0.3s ease all;
         overflow: hidden;
         z-index: 3;
@@ -229,19 +199,18 @@ const Menu = ({ menuOpen, toggleOpen }) => {
             padding-bottom: 60px;
             ${mediaQueries.phoneLarge} {
               display: flex;
-              justify-content: space-between;
+              justify-content: space-around;
               padding-top: 0;
               padding-bottom: 0;
             }
           `,
         ]}
       >
-        <section css={[sectionStyle, sectionPrimaryStyle]}>
-          <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1]}>
-            Contents
+        <section css={[sectionStyle, sectionPrimaryStyle, css`justify-self: flex-start; text-align: left`]}>
+          <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1, css`text-align: left`]}>
+            What We Do
           </h5>
           <Link
-            onClick={() => toggleOpen()}
             css={[
               linkPrimaryStyle,
               textFadeIn,
@@ -249,12 +218,13 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               mobileDelay1,
               desktopDelay1,
             ]}
-            to='/work'
-            
+            onClick={() => toggleOpen()}
+            to='/capabilities'
           >
             Work
           </Link>
           <Link
+            onClick={() => toggleOpen()}
             css={[
               linkPrimaryStyle,
               textFadeIn,
@@ -262,11 +232,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               mobileDelay2,
               desktopDelay2,
             ]}
-            onClick={() => toggleOpen()}
-            to='/capabilities'
-            
+            to='/work'
           >
-            Capabilities
+            Events
           </Link>
           <Link
             css={[
@@ -278,41 +246,40 @@ const Menu = ({ menuOpen, toggleOpen }) => {
             ]}
             onClick={() => toggleOpen()}
             to='/insights'
-            
           >
-            Insights
+            Creative
           </Link>
-        </section>
-
-        <section css={[sectionStyle, sectionPrimaryStyle]}>
-          <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1]}>LB Artists</h5>
           <Link
             css={[
               linkPrimaryStyle,
               textFadeIn,
               linkBaseStyles,
               mobileDelay4,
-              desktopDelay1,
+              desktopDelay4,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/'
-            
+            to='/capabilities'
           >
-            Full Roster
+            Capabilities
           </Link>
+        </section>
+
+        <section css={[sectionStyle, sectionPrimaryStyle, css`justify-self: center; text-align: center`]}>
+          <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1, css`text-align: center`]}>
+            Artist Management
+          </h5>
           <Link
             css={[
               linkPrimaryStyle,
               textFadeIn,
               linkBaseStyles,
               mobileDelay5,
-              desktopDelay2,
+              desktopDelay1,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/soloists/'
-            
+            to='/lb-artists/'
           >
-            Soloists
+            News
           </Link>
           <Link
             css={[
@@ -320,61 +287,84 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               textFadeIn,
               linkBaseStyles,
               mobileDelay6,
+              desktopDelay2,
+            ]}
+            onClick={() => toggleOpen()}
+            to='/lb-artists/soloists/'
+          >
+            Tours
+          </Link>
+          <Link
+            css={[
+              linkPrimaryStyle,
+              textFadeIn,
+              linkBaseStyles,
+              mobileDelay7,
               desktopDelay3,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/ensembles/'
-            
+            to='/lb-artists/soloists/'
           >
-            Ensembles
+            Projects
+          </Link>
+          <Link
+            css={[
+              linkPrimaryStyle,
+              textFadeIn,
+              linkBaseStyles,
+              mobileDelay8,
+              desktopDelay4,
+            ]}
+            onClick={() => toggleOpen()}
+            to='/lb-artists/'
+          >
+            LB Artists
           </Link>
         </section>
-        <section css={[sectionStyle, sectionSecondaryStyle]}>
+
+        <section css={[sectionStyle, sectionPrimaryStyle, css`justify-self: flex-end; text-align: right`]}>
           <h5
-            css={[sectionHeaderStyle, textFadeIn, mobileDelay7, desktopDelay1]}
+            css={[sectionHeaderStyle, textFadeIn, mobileDelay7, desktopDelay1, css`text-align: right`]}
           >
-            Company
+            Who We Are
           </h5>
           <div css={linksWrapper}>
             <Link
               css={[
-                linkSecondaryStyle,
+                linkPrimaryStyle,
                 textFadeIn,
                 linkBaseStyles,
-                mobileDelay8,
+                mobileDelay9,
                 desktopDelay1,
               ]}
               onClick={() => toggleOpen()}
+              to='/team'
+              >
+              Team
+            </Link>
+            <Link
+              css={[
+                linkPrimaryStyle,
+                textFadeIn,
+                linkBaseStyles,
+                mobileDelay10,
+                desktopDelay2,
+              ]}
+              onClick={() => toggleOpen()}
               to='/about'
-              
             >
               About
             </Link>
             <Link
               css={[
-                linkSecondaryStyle,
+                linkPrimaryStyle,
                 textFadeIn,
                 linkBaseStyles,
-                mobileDelay8,
-                desktopDelay2,
-              ]}
-              onClick={() => toggleOpen()}
-              to='/team'
-              
-            >
-              Team
-            </Link>
-            <Link
-              css={[
-                linkSecondaryStyle,
-                textFadeIn,
-                linkBaseStyles,
-                mobileDelay9,
-                desktopDelay4,
+                mobileDelay11,
+                desktopDelay3,
               ]}
               onClick={() => toggleOpen()}
               to='/work'
-              
             >
               Careers
             </Link>
@@ -382,20 +372,20 @@ const Menu = ({ menuOpen, toggleOpen }) => {
           <div>
             <Link
               css={[
-                linkSecondaryStyle,
+                linkPrimaryStyle,
                 textFadeIn,
                 linkBaseStyles,
-                mobileDelay8,
-                desktopDelay5,
+                mobileDelay12,
+                desktopDelay4,
               ]}
               onClick={() => toggleOpen()}
               to='/contact'
-              
             >
-              Contact Contacts
+              Partners
             </Link>
           </div>
         </section>
+
       </div>
     </nav>
   );

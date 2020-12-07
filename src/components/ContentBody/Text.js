@@ -3,11 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import FullWidthSection from '../FullWidthSection';
 
-import { contentH2, contentHeadings, weights, container, mediaQueries  } from '../../styles';
+import {
+  contentH2,
+  contentHeadings,
+  weights,
+  container,
+  mediaQueries,
+} from '../../styles';
 
 export default function Text({ data }) {
   return (
@@ -83,7 +89,7 @@ export default function Text({ data }) {
       <MDXRenderer>{data.body}</MDXRenderer>
     </FullWidthSection>
   );
-};
+}
 
 Text.propTypes = {
   data: PropTypes.object.isRequired,

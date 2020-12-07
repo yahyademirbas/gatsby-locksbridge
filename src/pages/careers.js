@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 
-import Layout from '../components/layout';
-import FullWidthSection from '../components/FullWidthSection';
-import SplitSection from '../components/SplitSection';
-import LogoGrid from '../components/LogoGrid';
+import Layout from "../components/layout";
+import FullWidthSection from "../components/FullWidthSection";
+import SplitSection from "../components/SplitSection";
+import LogoGrid from "../components/LogoGrid";
 import {
   colors,
   fonts,
@@ -19,8 +19,8 @@ import {
   mediaQueries,
   jsBreakpoints,
   contValues,
-  pLight,
-} from '../styles';
+  pLight
+} from "../styles";
 //import Button from '../components/Button';
 
 const About = ({ data }) => {
@@ -183,22 +183,22 @@ const About = ({ data }) => {
 
   // returns the correct image source needed to render
   const getSrc = (name, media) => {
-    if (media === 'leader') {
+    if (media === "leader") {
       return [
         images.find(images => images.name === name).mobileImage.fluid,
         {
           ...images.find(images => images.name === name).desktopImage.fluid,
-          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-        },
+          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+        }
       ];
     }
-    if (media === 'location') {
+    if (media === "location") {
       return [
         images.find(images => images.name === name).mobileImage.fluid,
         {
           ...images.find(images => images.name === name).desktopImage.fluid,
-          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-        },
+          media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+        }
       ];
     }
     return images.find(images => images.name === name).childImageSharp.fluid;
@@ -206,9 +206,9 @@ const About = ({ data }) => {
   return (
     <Layout
       headerData={{
-        title: 'A relentless pursuit of perfection.',
-        mobileMinHeight: '93vh',
-        height: '400px',
+        title: "A relentless pursuit of perfection.",
+        mobileMinHeight: "93vh",
+        height: "400px"
       }}
     >
       <FullWidthSection
@@ -225,7 +225,7 @@ const About = ({ data }) => {
         `}
       >
         <Img
-          fluid={getSrc('emond')}
+          fluid={getSrc("emond")}
           alt='LB Team'
           css={css`
             width: 100%;
@@ -272,7 +272,7 @@ const About = ({ data }) => {
               ${mediaQueries.phoneLarge} {
                 width: ${contValues.min};
               }
-            `,
+            `
           ]}
         >
           We work with brands we love and can’t wait to help grow. That means we
@@ -293,32 +293,32 @@ const About = ({ data }) => {
 
         <div css={[leadersCss, container.medium]}>
           <div>
-            <Img alt='Justin Emond' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Justin Emond' fluid={getSrc("emond", "leader")} />
             <h2>Justin Emond</h2>
             <p>Co-Founder, Chief Executive Officer</p>
           </div>
           <div>
-            <Img alt='Jen Slemp' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Jen Slemp' fluid={getSrc("emond", "leader")} />
             <h2>Jen Slemp</h2>
             <p>Director of Strategy</p>
           </div>
           <div>
-            <Img alt='Christina Andrade' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Christina Andrade' fluid={getSrc("emond", "leader")} />
             <h2>Christina Andrade</h2>
             <p>Director of Operations</p>
           </div>
           <div>
-            <Img alt='Adam Strom' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Adam Strom' fluid={getSrc("emond", "leader")} />
             <h2>Adam Strom</h2>
             <p>Creative Director</p>
           </div>
           <div>
-            <Img alt='Jen May' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Jen May' fluid={getSrc("emond", "leader")} />
             <h2>Jen May</h2>
             <p>Director of Project Management</p>
           </div>
           <div>
-            <Img alt='Linda Topp' fluid={getSrc('emond', 'leader')} />
+            <Img alt='Linda Topp' fluid={getSrc("emond", "leader")} />
             <h2>Linda Topp</h2>
             <p>Director of Ecommerce Solutions</p>
           </div>
@@ -344,7 +344,7 @@ const About = ({ data }) => {
         <SplitSection css={container.large} gridColumnGap='20px'>
           <Location>
             <h2 css={h1L}>Boston</h2>
-            <Img fluid={getSrc('emond', 'location')} alt='Boston' />
+            <Img fluid={getSrc("emond", "location")} alt='Boston' />
             <h3>1st One’s on Us</h3>
             <div>
               <p>Wink &amp; Nod</p>
@@ -354,7 +354,7 @@ const About = ({ data }) => {
           </Location>
           <Location>
             <h2 css={h1L}>San Francisco</h2>
-            <Img fluid={getSrc('emond', 'location')} alt='Oakland' />
+            <Img fluid={getSrc("emond", "location")} alt='Oakland' />
             <h3>If it’s Done, We’re Probably Here</h3>
             <div>
               <p>Cafe Van Kleef</p>
@@ -398,37 +398,17 @@ const About = ({ data }) => {
 };
 
 About.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default About;
 
 export const query = graphql`
-  {
-    allFile(filter: { relativePath: { regex: "/team/" } }) {
-      nodes {
-        name
-        childImageSharp {
-          fluid(maxWidth: 980, maxHeight: 480) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+    {
+        allFile(filter: { relativeDirectory: { eq: "team" } }) {
+            nodes {
+                ...TeamImages
+            }
         }
-        mobileImage: childImageSharp {
-          fluid(cropFocus: NORTH, maxHeight: 335, maxWidth: 335) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-        desktopImage: childImageSharp {
-          fluid(maxWidth: 530, srcSetBreakpoints: [480, 900, 1200]) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-        leaderDesktop: childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
     }
-  }
 `;

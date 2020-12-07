@@ -7,15 +7,15 @@ import FullWidthSection from '../FullWidthSection';
 import { weights, mediaQueries, colors, contValues } from '../../styles';
 
 const Quote = ({
-                 data,
-                 size,
-                 padding,
-                 color,
-                 backgroundColor,
-                 quoteColor,
-                 center,
-                 altStyle,
-               }) => {
+  data,
+  size,
+  padding,
+  color,
+  backgroundColor,
+  quoteColor,
+  center,
+  altStyle,
+}) => {
   const isSmall = size === 'small';
 
   const quoteText = css`
@@ -84,7 +84,7 @@ const Quote = ({
     padding: ${isSmall ? '0 10px' : '0 20px'};
     ${mediaQueries.phoneLarge} {
       ${isSmall &&
-  `margin: 0 0 130px;
+      `margin: 0 0 130px;
         padding: 13px 8px 0;
       `};
     }
@@ -126,7 +126,7 @@ Quote.defaultProps = {
   size: 'large',
   padding: '0',
   color: colors.black,
-  backgroundColor: colors.white,
+  backgroundColor: null,
   quoteColor: colors.yellow,
   center: false,
   altStyle: false,

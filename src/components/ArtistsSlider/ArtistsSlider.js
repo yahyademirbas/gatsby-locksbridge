@@ -3,19 +3,19 @@ import { navigate } from "gatsby";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import { css } from "@emotion/core";
-import { graphql } from "gatsby";
 
 import { colors, mediaQueries, smSectionHead } from "../../styles";
 import ArtistPreviewSlide from "../ArtistPreviewSlide";
 import FullWidthSection from "../FullWidthSection";
 import Button from "../Button";
 
+
 export default function ArtistsSlider({ showButton, backgroundColor, title, data }) {
   const settings = {
     arrows: true,
-    autoplay: true,
-    autoplaySpeed: 3500,
+    autoplay: false,
     dots: false,
+    lazyLoad: true,
     cssEase: "cubic-bezier(0.86, 0, 0.07, 1)",
     centerPadding: 90,
     infinite: true,
@@ -143,13 +143,3 @@ ArtistsSlider.defaultProps = {
   backgroundColor: colors.white,
   title: `LB Artists`
 };
-
-export const query = graphql`
-    fragment AllArtistFrontMatters on MdxFrontmatter {
-        area
-        class
-        excerpt
-        title
-        slug
-    }
-`;

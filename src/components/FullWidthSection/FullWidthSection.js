@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
 import { weights, mediaQueries } from '../../styles';
+import { motion } from "framer-motion";
 
-export default styled.section`
+export default styled(motion.section)`
   width: ${props => props.width || '100%'};
   min-height: ${props => props.minHeight || '300px'};
   display: flex;

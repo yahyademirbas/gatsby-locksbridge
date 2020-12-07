@@ -38,7 +38,7 @@ const WhatWeDo = forwardRef((props, ref) => {
   return (
     <FullWidthSection
       ref={ref}
-      backgroundColor={colors.lightblue}
+      backgroundColor={colors.whiteFaded}
       height='750px'
       minHeight='550px'
       css={css`

@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import {
-  colors,
-  mediaQueries,
-} from '../../styles';
+import { colors, mediaQueries } from '../../styles';
 
 export default function CapabilitiesSlideNav({ title }) {
   const NavItem = styled.p`
