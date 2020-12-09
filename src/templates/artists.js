@@ -163,6 +163,7 @@ export default function ArtistsTemplate({ data }) {
                   </a>
                 </p>
               </div>
+              {artistDetails.assistantName && (
               <div>
                 <Img
                   alt={artistDetails.assistantName}
@@ -177,6 +178,7 @@ export default function ArtistsTemplate({ data }) {
                   </a>
                 </p>
               </div>
+              )}
             </div>
           </FullWidthSection>
 
