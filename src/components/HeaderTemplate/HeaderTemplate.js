@@ -469,7 +469,7 @@ const HeaderTemplate = ({
                             .childImageSharp.fluid,
                           {
                             ...bgUrl.hero
-                              .image.fluid,
+                              .childImageSharp.fluid,
                             media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
                           }
                         ]}
