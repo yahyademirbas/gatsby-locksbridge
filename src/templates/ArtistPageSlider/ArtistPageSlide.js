@@ -18,6 +18,7 @@ export default function ArtistPageSlide({ title, data }) {
   const ref = useRef();
   const [width, setWidth] = useState(0);
 
+  console.log(title + "a")
   function debounce(fn, ms) {
     let timer;
     return (...args) => {
@@ -155,7 +156,8 @@ export default function ArtistPageSlide({ title, data }) {
           </MDXProvider>
         )}
 
-        {title === 'News' && (
+        {title === 'News' &&
+         data.file.childMdx.frontmatter.news[0].title != null && (
           <div
             className='animate-opacity'
             css={[
@@ -187,7 +189,8 @@ export default function ArtistPageSlide({ title, data }) {
           </div>
         )}
 
-        {title === 'Reviews' && (
+        {title === 'Reviews' &&
+         data.file.childMdx.frontmatter.reviews[0].title != null && (
           <div className='animate-opacity'>
             {data.file.childMdx.frontmatter.reviews.map((item, index) => (
               <Quote
@@ -202,7 +205,8 @@ export default function ArtistPageSlide({ title, data }) {
           </div>
         )}
 
-        {title === 'Videos' && (
+        {title === 'Videos' &&
+        ( data.file.childMdx.frontmatter.videos[0].videoUrl != null &&
           <div
             className='animate-opacity'
             css={[
@@ -231,7 +235,8 @@ export default function ArtistPageSlide({ title, data }) {
           </div>
         )}
 
-        {title === 'Discography' && (
+        {title === 'Discography' &&
+    data.file.childMdx.frontmatter.albums[0].title != null &&      (
           <div className='animate-opacity'>
             {data.file.childMdx.frontmatter.albums.map((item, index) => (
               <ArtistAlbums

@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { clamp, getOffsetTop } from "../util/utils";
 import { colors } from "../styles";
+import LocksBridge from "./TopNav/svg/LocksBridge";
+import { css } from "@emotion/core";
+
 /*
   NOTES:
     This component is adapted from Narative's codebase. Full credit to them for the idea.
@@ -62,6 +65,7 @@ function Sticky({ cover, height, render, top, disableOnMobile, bgColor }) {
       <StickyDuration height={height} isDisabled={disableOnMobile}>
         <StickyItemContainer bgColor={bgColor}>
           <StickyItem top={top} cover={cover} isDisabled={disableOnMobile}>
+
             {render({ progress, position })}
           </StickyItem>
         </StickyItemContainer>

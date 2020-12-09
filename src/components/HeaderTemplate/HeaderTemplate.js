@@ -17,7 +17,7 @@ import IconInstagram from "../../../static/instagram.png";
 import IconFacebook from "../../../static/facebook.png";
 import IconYoutube from "../../../static/youtube.png";
 import IconWebsite from "../../../static/www.png";
-import Discover from "../../../static/discover.png"
+
 /**
  * HeaderTemplate used on every page.
  *
@@ -220,8 +220,8 @@ const HeaderTemplate = ({
 
   const BgImg = styled(Img)`
     position: absolute;
-    width: 100%;
-    height: 100%;
+    min-width: 100vw;
+    height: 100vh;
 
     & > img {
       object-fit: cover !important;

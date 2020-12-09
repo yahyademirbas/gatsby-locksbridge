@@ -7,16 +7,28 @@ import { colors, mediaQueries, smSectionHead } from '../../styles';
 import FullWidthSection from '../../components/FullWidthSection';
 import ArtistPageSlide from './ArtistPageSlide';
 import ArtistPageSlideNav from './ArtistPageSlideNav';
-import slides from './ArtistPageSlide.json';
 
 export default function ArtistPageSlider({ backgroundColor, title, data }) {
-  
+
+  const checkIfTrueNews = data.file.childMdx.frontmatter.news[0].title != null;
+  const checkIfTrueReviews = data.file.childMdx.frontmatter.reviews[0].title != null;
+  const checkIfTrueVideos = data.file.childMdx.frontmatter.videos[0].videoUrl != null;
+  const checkIfTrueDiscography = data.file.childMdx.frontmatter.albums[0].title != null;
+
+  const sliderTitlesArray = [
+    { title: "About" },
+    ...(checkIfTrueNews ? [{ title: "News" }] : []),
+    ...(checkIfTrueReviews ? [{ title: "Reviews" }] : []),
+    ...(checkIfTrueVideos ? [{ title: "Videos" }] : []),
+    ...(checkIfTrueDiscography ? [{ title: "Discography" }] : [])
+  ];
+  console.log(sliderTitlesArray);
 
   const settingsMain = {
     customPaging(i) {
       return (
         <button type='button'>
-          <ArtistPageSlideNav title={slides[i].title} />
+          <ArtistPageSlideNav title={sliderTitlesArray[i].title} />
         </button>
       );
     },
@@ -161,9 +173,9 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
       <h2 css={smSectionHead}>{title}</h2>
 
       <Slider {...settingsMain}>
-        {slides.map(node => {
+        {sliderTitlesArray.map((node, index) => {
           return (
-            <ArtistPageSlide key={node.title} title={node.title} data={data} />
+            <ArtistPageSlide key={index} title={node.title} data={data} />
           );
         })}
       </Slider>
