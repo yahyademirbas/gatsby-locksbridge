@@ -11,7 +11,7 @@ export default styled(motion.section)`
   flex-direction: ${props => props.flexDirection || 'column'};
   align-items: ${props => props.align || 'center'};
   justify-content: ${props => props.justify || 'center'};
-  background-color: ${props => props.bgColor};
+  background-color: ${props => props.bgColor || props.backgroundColor};
   background-image: url(${props => props.backgroundImage});
   background-size: cover;
   overflow: hidden;

@@ -7,7 +7,7 @@ import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 
-import { fonts, weights, mediaQueries, jsBreakpoints } from '../../styles';
+import { fonts, weights, mediaQueries, jsBreakpoints, colors } from "../../styles";
 
 export default function ArtistPreview({
                                         frontmatter,
@@ -19,33 +19,20 @@ export default function ArtistPreview({
                                         ...rest
                                       }) {
   const Card = styled(motion.div)`
-    width: 100%;
     margin-bottom: 116px;
     transition-duration: 0.4s;
     transition-timing-function: ease-out;
     ${mediaQueries.phoneLarge} {
-      margin-bottom: 90px;
+      margin-bottom: 70px;
     }
     h2 {
-      margin: 32px 0 14px;
       font-weight: ${weights.bold};
-      font-size: 27px;
-      line-height: 1.44;
+      font-size: 1.296em;
+      margin: 1rem 0 0 0;
+      line-height: 1.15;
       ${mediaQueries.phoneLarge} {
         width: 80%;
-        margin: 50px auto 30px;
-        font-size: 33px;
-        line-height: 1.58;
-      }
-    }
-    footer {
-      font-family: ${fonts.sans};
-      font-weight: ${weights.light};
-      font-size: 15px;
-      line-height: 2.4;
-      ${mediaQueries.phoneLarge} {
-        width: 80%;
-        margin: 0 auto;
+        font-size: 1.5em;
       }
     }
   `;
@@ -98,10 +85,20 @@ export default function ArtistPreview({
     "anticipate"
   );
 
+  const Description = styled.p`
+  transition: 0.3s opacity;
+  margin: 1em 0 0 0;
+`
 
+  const Category = styled.span`
+  display: block;
+  margin: 1rem 0 0 0;
+  font-size: 0.9em;
+  opacity: 0.5;
+`
   return (
 
-        <Card ref={ref} initial={{ y: 0 }} style={{ y, opacity }} {...rest}>
+        <Card ref={ref} initial={{ y: 0 }} style={{ y, opacity }} {...rest} css={css`padding: 0 1.5em;`}>
           <Link
             css={css`
               display: block;
@@ -117,11 +114,13 @@ export default function ArtistPreview({
                 },
               ]}
               alt={frontmatter.title}
+              css={css`max-width: 25em; max-height: 25em; border-radius: 25px 25px 0 0 `}
             />
 
             <h2>{frontmatter.title}</h2>
 
-            <footer>{`${frontmatter.area}`}</footer>
+            <Description>{`${frontmatter.description}`}</Description>
+            <Category>{`${frontmatter.area}`}</Category>
           </Link>
         </Card>
   );

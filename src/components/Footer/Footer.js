@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 import { css } from '@emotion/core';
 
 import { colors, fonts, weights, mediaQueries, container } from '../../styles';

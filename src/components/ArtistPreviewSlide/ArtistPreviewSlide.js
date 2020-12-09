@@ -21,7 +21,7 @@ const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg)
 
 export default function ArtistPreviewSlide({ frontmatter }) {
   const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }));
-  console.log(frontmatter);
+
   const Card = styled.div`
     opacity: 1 !important;
     padding: 0;

@@ -123,10 +123,10 @@ export default function ArtistsTemplate({ data }) {
         height: "100vh",
         bgUrl: artistDetails,
         bgColor: colors.lbWhite,
-        Instagram: "https://instagram.com/locksbridgenet",
-        Facebook: "https://instagram.com/locksbridgenet",
-        Youtube: "https://instagram.com/locksbridgenet",
-        Website: "https://instagram.com/locksbridgenet"
+        Instagram: artistDetails.Instagram,
+        Facebook: artistDetails.Facebook,
+        Youtube: artistDetails.Youtube,
+        Website: artistDetails.Website
       }}
     >
 
@@ -226,9 +226,6 @@ export const query = graphql`
         meta
         description
         representation
-        artistvideoUrl
-        artistVideoStartTime
-        artistVideoEndTime
         managerName
         managerTitle
         managerMail
@@ -239,6 +236,10 @@ export const query = graphql`
         assistantMail
         assistantMailTo
         assistantSRC
+        Instagram
+        Facebook
+        Website
+        Youtube
         reviews {
             title
             description
@@ -298,17 +299,24 @@ export const query = graphql`
         }
         hero {
             imageMobile: childImageSharp {
-                fluid(maxHeight: 530, maxWidth: 400) {
+                fluid(maxHeight: 600, maxWidth: 600) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
             imageDesktop: childImageSharp {
-                fluid(maxHeight: 530, maxWidth: 400) {
+                fluid(maxHeight: 1000, maxWidth: 1000) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }
             image: childImageSharp {
-                fluid(maxHeight: 530, maxWidth: 400) {
+                fluid(maxHeight: 1080, maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                }
+            }
+        }
+        heroMobile {
+            childImageSharp {
+                fluid(maxHeight: 1920, maxWidth: 1080) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }

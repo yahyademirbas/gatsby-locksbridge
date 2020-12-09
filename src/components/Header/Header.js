@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -13,6 +13,7 @@ import SEO from "../seo";
 import { colors, fonts, mediaQueries, weights } from "../../styles";
 import FullWidthSection from "../FullWidthSection";
 import FeaturesSlider from "../FeaturesSlider";
+import { useHasBeenVisible } from "../../hooks/useVisibility";
 
 /**
  * Header used on every page.
@@ -204,7 +205,7 @@ const Header = ({
     left: 0;
     right: 0;
     width: 100%;
-    z-index: -3;
+    z-index: -2;
     transform-origin: center bottom;
   `;
 
@@ -222,7 +223,7 @@ const Header = ({
   const Height = styled(motion.div)`
     height: ${height};
     width: 100vw;
-    background-color: ${bgColor};
+    background-color: ${BgImg ? 'rgba(0,0,0,0.2)' : bgColor};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -232,6 +233,12 @@ const Header = ({
     margin: 0;
     padding: 0;
   `;
+
+  const halfPage = useRef();
+  const preload = useRef();
+
+  const hasScrolled = useHasBeenVisible(halfPage);
+  const isScrolling = useHasBeenVisible(preload);
 
   return (
     <>
@@ -247,6 +254,7 @@ const Header = ({
             <FullWidthSection
               height={height}
               minHeight={mobileMinHeight}
+              backgroundColor={bgColor}
             >
               <Height style={{
                 scale: zoom2
@@ -266,8 +274,8 @@ const Header = ({
                 )}
                 {subTitle && (
                   <span data-cy='labelText' css={headerSubTitle}>
-                          {subTitle}
-                        </span>
+                    {subTitle}
+                  </span>
                 )}
               </Height>
               {children && children}
@@ -277,10 +285,11 @@ const Header = ({
                 }}
               >
                 {bgUrl && (
-                <BgImg
-                  fluid={bgUrl}
-                  alt="LocksBridge Artists"
-                />
+                  <BgImg
+                    fluid={bgUrl}
+                    alt="LocksBridge Artists"
+                    css={css`opacity: ${hasScrolled || isScrolling ? '0' : '1'}`}
+                  />
                 )}
               </Cover>
 

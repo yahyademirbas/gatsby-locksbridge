@@ -196,6 +196,7 @@ export const globalStyles = css`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     font-size: 100%;
+    background-color: ${colors.lbMain};
 
     ${mediaQueries.xs} {
       font-size: 112.5%;

@@ -155,7 +155,7 @@ export default function ArtistPageSlide({ title, data }) {
           </MDXProvider>
         )}
 
-        {title === 'News' && (
+        {title === 'News' && data.file.childMdx.frontmatter.news (
           <div
             className='animate-opacity'
             css={[
@@ -187,7 +187,7 @@ export default function ArtistPageSlide({ title, data }) {
           </div>
         )}
 
-        {title === 'Reviews' && (
+        {title === 'Reviews' && data.file.childMdx.frontmatter.reviews (
           <div className='animate-opacity'>
             {data.file.childMdx.frontmatter.reviews.map((item, index) => (
               <Quote
@@ -231,7 +231,7 @@ export default function ArtistPageSlide({ title, data }) {
           </div>
         )}
 
-        {title === 'Discography' && (
+        {title === 'Discography' && data.file.childMdx.frontmatter.albums (
           <div className='animate-opacity'>
             {data.file.childMdx.frontmatter.albums.map((item, index) => (
               <ArtistAlbums

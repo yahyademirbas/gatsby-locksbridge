@@ -10,15 +10,7 @@ import ArtistPageSlideNav from './ArtistPageSlideNav';
 import slides from './ArtistPageSlide.json';
 
 export default function ArtistPageSlider({ backgroundColor, title, data }) {
-  const sliderRef = React.useRef(null);
-  React.useEffect(() => {
-    const track = sliderRef.current.innerSlider.list.querySelector('.slick-track');
-    const focusSlider = setTimeout(() => {
-      const slide = track.querySelector('.slick-slide');
-      slide.focus();
-    }, 0);
-    return () => clearTimeout(focusSlider);
-  }, []);
+  
 
   const settingsMain = {
     customPaging(i) {
@@ -168,7 +160,7 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     <FullWidthSection css={SliderSectionStyles}>
       <h2 css={smSectionHead}>{title}</h2>
 
-      <Slider {...settingsMain} ref={sliderRef}>
+      <Slider {...settingsMain}>
         {slides.map(node => {
           return (
             <ArtistPageSlide key={node.title} title={node.title} data={data} />

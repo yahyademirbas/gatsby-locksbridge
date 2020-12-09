@@ -33,8 +33,8 @@ export const weights = {
 
 /* Colors - Use a RGB to HEX converter */
 export const colors = {
-  white: `#fff`,
-  whiteFaded: `rgba(255, 255, 255, 0.7)`,
+  white: `#eef9fa`,
+  whiteFaded: `#e7e5e4`,
   black: `#000`,
   gray: `#e0e0e0`,
   tagGray: `#282829`,
@@ -42,10 +42,10 @@ export const colors = {
   darkgray: `#29292a`,
   darkgrayFaded: `rgba(41, 41, 42, 0.7)`,
   darkergrayFaded: `rgba(41, 41, 42, 0.9)`,
-  reallydarkgray: `#282829;`,
-  yellow: `#EBC900`,
-  lightblue: `#a5e6ec`,
-  acquiaBlue: `#0678BE`,
+  reallydarkgray: `#282829`,
+  yellow: `#e9b76d`,
+  lightblue: `#e7eff6`,
+  blue: `#63ace5`,
   lightgreen: `#cef5e2`,
   gatsbyPurple: '#663399',
   drupalBlue: '#29A8DF',
@@ -54,5 +54,12 @@ export const colors = {
   bigCommerceBlue: '#0D52FF',
   lbRed: 'rgb(229, 33, 61)',
   lbColor: `rgba(16, 18, 22,0.2)`,
-  lbWhite: '#f5f5f5'
+  lbPastelRed: '#98676b',
+  lbWhite: '#f4ebe2',
+  lbMain: '#3f3f3f',
+  lbBrown: '#bcb0a7',
+  lbGray: '#595959',
+  lbBurgundy: '#9b5555',
+  lbDarkBlue: '#616c6e',
+
 };

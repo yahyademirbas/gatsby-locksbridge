@@ -1,5 +1,5 @@
-require('dotenv').config({
-  path: '.env',
+require("dotenv").config({
+  path: ".env"
 });
 
 module.exports = {
@@ -7,107 +7,97 @@ module.exports = {
     title: `LocksBridge Artists | Classical Artist Management`,
     description: `LocksBridge is Turkey's first and leading international classical artist management company!`,
     author: `LocksBridge`,
-    siteUrl: `https://locksbridge.net`,
+    siteUrl: `https://locksbridge.net`
   },
   plugins: [
     {
       resolve: `gatsby-plugin-fixhash`,
-      options: { offsetY: 20 },
+      options: { offsetY: 20 }
     },
     {
-      resolve: 'gatsby-plugin-react-axe',
+      resolve: "gatsby-plugin-react-axe",
       options: {
         // Options to pass to axe-core.
         showInProduction: false,
-        debounce: 1000,
+        debounce: 1000
         // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
-      },
+      }
     },
     `gatsby-transformer-sharp`,
     {
-      resolve: 'gatsby-plugin-sharp',
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaultQuality: 10,
         failOnError: false
-      },
+      }
     },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: {
-        prefixes: [`/app/*`],
-      },
+        prefixes: [`/app/*`]
+      }
     },
     {
       resolve: `gatsby-theme-i18n`,
       options: {
         defaultLang: `en`,
         locales: process.env.LOCALES || `en tr`,
-        configPath: require.resolve(`./i18n/config.json`),
-      },
+        configPath: require.resolve(`./i18n/config.json`)
+      }
     },
     {
       resolve: `gatsby-theme-i18n-react-intl`,
       options: {
-        defaultLocale: `./i18n/react-intl/en.json`,
-      },
+        defaultLocale: `./i18n/react-intl/en.json`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images/`,
-      },
+        path: `${__dirname}/src/images/`
+      }
     },
     `gatsby-remark-images`,
-    `gatsby-plugin-instagram-embed`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
           `gatsby-remark-images`,
           {
-            resolve: `gatsby-remark-embedder`,
+            resolve: "gatsby-remark-external-links",
             options: {
-              customTransformers: [],
-              services: {
-                // The service-specific options by the name of the service
-              },
-            },
+              target: "_blank",
+              rel: "noopener noreferrer"
+            }
           },
           {
-            resolve: 'gatsby-remark-external-links',
+            resolve: "gatsby-remark-smartypants",
             options: {
-              target: '_blank',
-              rel: 'noopener noreferrer',
-            },
+              dashes: "oldschool"
+            }
           },
-          {
-            resolve: 'gatsby-remark-smartypants',
-            options: {
-              dashes: 'oldschool',
-            },
-          },
-          'gatsby-remark-prismjs',
-        ],
-      },
+          "gatsby-remark-prismjs"
+        ]
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `lb-artists`,
-        path: `${__dirname}/src/lb-artists`,
-      },
+        path: `${__dirname}/src/lb-artists`
+      }
     },
-    'gatsby-plugin-optimize-svgs',
+    "gatsby-plugin-optimize-svgs",
     `gatsby-plugin-sitemap`,
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/data/`,
-      },
+        path: `${__dirname}/src/data/`
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -118,16 +108,15 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#EBC900`,
         display: `minimal-ui`,
-        icon: 'src/images/website-icon.png',
-      },
+        icon: "src/images/website-icon.png"
+      }
     },
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
-        pixelId: 'pixel id here',
-      },
-    },
-    'gatsby-plugin-mdx-embed',
+        pixelId: "pixel id here"
+      }
+    }
   ]
 };

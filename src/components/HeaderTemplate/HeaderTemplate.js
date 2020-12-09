@@ -10,10 +10,14 @@ import ScrollAnimation from "../ScrollAnimation";
 import { scale } from "../../util/utils";
 import TopNav from "../TopNav";
 import SEO from "../seo";
-import { colors, fonts, mediaQueries, weights } from "../../styles";
+import { colors, fonts, jsBreakpoints, mediaQueries, weights } from "../../styles";
 import Sticky from "../Sticky";
 import FullWidthSection from "../FullWidthSection";
-
+import IconInstagram from "../../../static/instagram.png";
+import IconFacebook from "../../../static/facebook.png";
+import IconYoutube from "../../../static/youtube.png";
+import IconWebsite from "../../../static/www.png";
+import Discover from "../../../static/discover.png"
 /**
  * HeaderTemplate used on every page.
  *
@@ -277,12 +281,12 @@ const HeaderTemplate = ({
         & + li {
           border-left: solid 1px ${fontColor};
         }
+
         a {
           color: ${fontColor};
           opacity: 0.7;
         }
       }
-    }
   `;
   return (
     <>
@@ -329,9 +333,9 @@ const HeaderTemplate = ({
                         </span>
                       )}
                       <motion.div css={[contactItem, contactItemWide]}
-                           style={{
-                             scale: zoom3
-                           }}>
+                                  style={{
+                                    scale: zoom3
+                                  }}>
                         <ul css={socialList}>
 
                           <li>
@@ -340,6 +344,24 @@ const HeaderTemplate = ({
                                 href={Instagram}
                                 target='_blank'
                                 rel='noopener noreferrer'
+                                css={css`
+                                  &:hover,
+                                  &:focus {
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+                                    cursor: default;
+                                    cursor: url(${IconInstagram}) 39 39, auto;
+                                    opacity: 1;
+
+                                    &::before {
+                                      cursor: default;
+                                    }
+                                  }
+                                `}
                               >
                                 Instagram
                               </a>
@@ -351,6 +373,24 @@ const HeaderTemplate = ({
                                 href={Facebook}
                                 target='_blank'
                                 rel='noopener noreferrer'
+                                css={css`
+                                  &:hover,
+                                  &:focus {
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+                                    cursor: default;
+                                    cursor: url(${IconFacebook}) 39 39, auto;
+                                    opacity: 1;
+
+                                    &::before {
+                                      cursor: default;
+                                    }
+                                  }
+                                `}
                               >
                                 Facebook
                               </a>
@@ -362,6 +402,24 @@ const HeaderTemplate = ({
                                 href={Youtube}
                                 target='_blank'
                                 rel='noopener noreferrer'
+                                css={css`
+                                  &:hover,
+                                  &:focus {
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+                                    cursor: default;
+                                    cursor: url(${IconYoutube}) 39 39, auto;
+                                    opacity: 1;
+
+                                    &::before {
+                                      cursor: default;
+                                    }
+                                  }
+                                `}
                               >
                                 YouTube
                               </a>
@@ -373,6 +431,24 @@ const HeaderTemplate = ({
                                 href={Website}
                                 target='_blank'
                                 rel='noopener noreferrer'
+                                css={css`
+                                  &:hover,
+                                  &:focus {
+                                    -webkit-touch-callout: none;
+                                    -webkit-user-select: none;
+                                    -khtml-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+                                    cursor: default;
+                                    cursor: url(${IconWebsite}) 39 39, auto;
+                                    opacity: 1;
+
+                                    &::before {
+                                      cursor: default;
+                                    }
+                                  }
+                                `}
                               >
                                 Website
                               </a>
@@ -381,15 +457,22 @@ const HeaderTemplate = ({
                         </ul>
                       </motion.div>
                     </Height>
+                    {children && children}
                     <Cover
                       style={{
                         scale: zoom
                       }}
                     >
                       <BgImg
-                        fluid={{
-                          ...bgUrl.hero.image.fluid
-                        }}
+                        fluid={[
+                          bgUrl.heroMobile
+                            .childImageSharp.fluid,
+                          {
+                            ...bgUrl.hero
+                              .image.fluid,
+                            media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+                          }
+                        ]}
                         alt={bgUrl.title}
                       />
                     </Cover>

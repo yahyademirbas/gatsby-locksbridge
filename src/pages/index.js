@@ -15,7 +15,6 @@ import { colors } from "../styles";
 
 import { useIntl } from "react-intl";
 
-
 const Index = ({ data }) => {
   const intl = useIntl();
 
@@ -31,12 +30,11 @@ const Index = ({ data }) => {
         color: colors.darkgray,
         height: "100vh",
         newsSlider: false,
-        bgUrl: data.bgimage.childImageSharp.fluid,
-        bgColor: colors.lbColor
+        bgUrl: data.bgimage.childImageSharp.fluid
       }}
     >
 
-      <ArtistsSlider data={data} backgroundColor={colors.lbColor} />
+      <ArtistsSlider data={data} backgroundColor={colors.lbWhite} />
 
       <CTAGrid
         header='Why brands work with Third and Grove for Drupal support, maintenance, and optimization:'
