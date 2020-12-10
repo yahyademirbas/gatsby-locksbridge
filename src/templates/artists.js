@@ -218,9 +218,10 @@ export const query = graphql`
     fragment AllArtistContent on Mdx {
         body
         id
+        excerpt(pruneLength: 200, truncate: true)
     }
     fragment AllArtistFrontMatters on MdxFrontmatter {
-        area
+        category: area
         class
         title
         subtitle
@@ -324,7 +325,7 @@ export const query = graphql`
             }
         }
     }
-    query($slug: String!, $locale: String!) {
+    query($contentID: String!, $slug: String!, $locale: String!) {
         file(
             childMdx: {
                 fields: { locale: { eq: $locale } }
@@ -338,10 +339,13 @@ export const query = graphql`
                 }
             }
         }
-        allFile ( filter: {
-            sourceInstanceName: { eq: "lb-artists" }
-            childMdx: { fields: { locale: { eq: $locale } } }
-        } ) {
+        allFile ( 
+            filter: {
+                absolutePath: {regex: "/lb-artists/"}
+                childMdx: { fields: { locale: { eq: $locale } } }
+                id: { ne: $contentID }
+            }
+        ) {
             edges {
                 node {
                     childMdx {

@@ -23,19 +23,37 @@ module.exports = {
         // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
       }
     },
-    `gatsby-transformer-sharp`,
-    {
-      resolve: "gatsby-plugin-sharp",
-      options: {
-        defaultQuality: 10,
-        failOnError: false
-      }
-    },
+    "gatsby-transformer-yaml",
+    "gatsby-plugin-lodash",
     `gatsby-plugin-emotion`,
     {
-      resolve: `gatsby-plugin-create-client-paths`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        prefixes: [`/app/*`]
+        name: `content`,
+        path: `${__dirname}/src/content/`
+      }
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-images`,
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+              rel: "noopener noreferrer"
+            }
+          },
+          {
+            resolve: "gatsby-remark-smartypants",
+            options: {
+              dashes: "oldschool"
+            }
+          },
+          "gatsby-remark-prismjs"
+        ]
       }
     },
     {
@@ -59,46 +77,18 @@ module.exports = {
         path: `${__dirname}/src/images/`
       }
     },
+    `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        defaultQuality: 10,
+        failOnError: false
+      }
+    },
     `gatsby-remark-images`,
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        gatsbyRemarkPlugins: [
-          `gatsby-remark-images`,
-          {
-            resolve: "gatsby-remark-external-links",
-            options: {
-              target: "_blank",
-              rel: "noopener noreferrer"
-            }
-          },
-          {
-            resolve: "gatsby-remark-smartypants",
-            options: {
-              dashes: "oldschool"
-            }
-          },
-          "gatsby-remark-prismjs"
-        ]
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `lb-artists`,
-        path: `${__dirname}/src/lb-artists`
-      }
-    },
     "gatsby-plugin-optimize-svgs",
     `gatsby-plugin-sitemap`,
     "gatsby-plugin-react-helmet",
-    `gatsby-transformer-json`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/data/`
-      }
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

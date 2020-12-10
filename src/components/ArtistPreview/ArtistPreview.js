@@ -1,16 +1,17 @@
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import { useViewportScroll, useTransform, motion } from "framer-motion";
 
-import Img from 'gatsby-image';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-import PropTypes from 'prop-types';
-import { LocalizedLink as Link } from 'gatsby-theme-i18n';
+import Img from "gatsby-image";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+import PropTypes from "prop-types";
+import { LocalizedLink as Link } from "gatsby-theme-i18n";
 
 import { fonts, weights, mediaQueries, jsBreakpoints, colors } from "../../styles";
 
 export default function ArtistPreview({
                                         frontmatter,
+                                        excerpt,
                                         yOffset = 200, // number > 0
                                         easing = [0.42, 0, 0.58, 1],
                                         // easing = "easeInOut", // [number, number, number, number] | "linear" | "easeIn" |
@@ -22,14 +23,17 @@ export default function ArtistPreview({
     margin-bottom: 116px;
     transition-duration: 0.4s;
     transition-timing-function: ease-out;
+
     ${mediaQueries.phoneLarge} {
       margin-bottom: 70px;
     }
+
     h2 {
       font-weight: ${weights.bold};
       font-size: 1.296em;
       margin: 1rem 0 0 0;
       line-height: 1.15;
+
       ${mediaQueries.phoneLarge} {
         width: 80%;
         font-size: 1.5em;
@@ -86,46 +90,48 @@ export default function ArtistPreview({
   );
 
   const Description = styled.p`
-  transition: 0.3s opacity;
-  margin: 1em 0 0 0;
-`
+    transition: 0.3s opacity;
+    margin: 1em 0 0 0;
+  `;
 
   const Category = styled.span`
-  display: block;
-  margin: 1rem 0 0 0;
-  font-size: 0.9em;
-  opacity: 0.5;
-`
+    display: block;
+    margin: 1rem 0 0 0;
+    font-size: 0.9em;
+    opacity: 0.5;
+  `;
   return (
 
-        <Card ref={ref} initial={{ y: 0 }} style={{ y, opacity }} {...rest} css={css`padding: 0 1.5em;`}>
-          <Link
-            css={css`
-              display: block;
-            `}
-            to={frontmatter.slug}
-          >
-            <Img
-              fluid={[
-                frontmatter.hero.imageMobile.fluid,
-                {
-                  ...frontmatter.hero.imageDesktop.fluid,
-                  media: `(min-width: ${jsBreakpoints.phoneLarge}px)`,
-                },
-              ]}
-              alt={frontmatter.title}
-              css={css`max-width: 25em; max-height: 25em; border-radius: 25px 25px 0 0 `}
-            />
+    <Card ref={ref} initial={{ y: 0 }} style={{ y, opacity }} {...rest} css={css`padding: 0 1.5em;`}>
+      <Link
+        css={css`
+          display: block;
+        `}
+        to={frontmatter.slug}
+      >
+        <Img
+          fluid={[
+            frontmatter.hero.imageMobile.fluid,
+            {
+              ...frontmatter.hero.imageDesktop.fluid,
+              media: `(min-width: ${jsBreakpoints.phoneLarge}px)`
+            }
+          ]}
+          alt={frontmatter.title}
+          css={css`max-width: 25em;
+            max-height: 25em;
+            border-radius: 25px 25px 0 0 `}
+        />
 
-            <h2>{frontmatter.title}</h2>
+        <h2>{frontmatter.title}</h2>
 
-            <Description>{`${frontmatter.description}`}</Description>
-            <Category>{`${frontmatter.area}`}</Category>
-          </Link>
-        </Card>
+        <Description>{`${excerpt}`}</Description>
+        <Category>{`${frontmatter.category}`}</Category>
+      </Link>
+    </Card>
   );
 }
 
 ArtistPreview.propTypes = {
-  frontmatter: PropTypes.object.isRequired,
+  frontmatter: PropTypes.object.isRequired
 };

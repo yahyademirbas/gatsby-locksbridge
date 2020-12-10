@@ -12,7 +12,7 @@ import TopNav from "../TopNav";
 import SEO from "../seo";
 import { colors, fonts, mediaQueries, weights } from "../../styles";
 import FullWidthSection from "../FullWidthSection";
-import FeaturesSlider from "../FeaturesSlider";
+import IndexSlider from "../IndexSlider";
 import { useHasBeenVisible } from "../../hooks/useVisibility";
 
 /**
@@ -246,6 +246,9 @@ const Header = ({
 
       <TopNav fill={fontColor} hideNav={hideNav} />
 
+      <IndexSlider fontColor={fontColor} />
+
+
       <ScrollAnimation
         render={({ progress }) => {
           let zoom = scale(progress, 1, 1.2);
@@ -259,9 +262,6 @@ const Header = ({
               <Height style={{
                 scale: zoom2
               }}>
-                {newsSlider && (
-                  <FeaturesSlider />
-                )}
                 {label && (
                   <span data-cy='labelText' css={headerlabel}>
                           {label}

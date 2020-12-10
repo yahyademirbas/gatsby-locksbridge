@@ -8,7 +8,6 @@ import Header from "./Header";
 import "../styles/layout.css";
 
 const Layout = ({ headerData, children }) => {
-
   function handleFirstTab(e) {
     if (e.keyCode === 9) {
       document.body.classList.add("user-is-tabbing");

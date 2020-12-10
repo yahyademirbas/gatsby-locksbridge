@@ -22,7 +22,7 @@ export default function ArtistPageSlider({ backgroundColor, title, data }) {
     ...(checkIfTrueVideos ? [{ title: "Videos" }] : []),
     ...(checkIfTrueDiscography ? [{ title: "Discography" }] : [])
   ];
-  console.log(sliderTitlesArray);
+
 
   const settingsMain = {
     customPaging(i) {

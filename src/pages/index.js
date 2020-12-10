@@ -9,10 +9,7 @@ import SplitSection from "../components/SplitSection";
 import Button from "../components/Button";
 import { TextWrapper } from "../components/Prefooter";
 
-import CTAGrid from "../components/CTAGrid";
-
 import { colors } from "../styles";
-
 import { useIntl } from "react-intl";
 
 const Index = ({ data }) => {
@@ -22,27 +19,18 @@ const Index = ({ data }) => {
     <Layout
       headerData={{
         metaTitle: intl.formatMessage({ id: "Motto" }),
-        title: "LocksBridge Artists",
-        subTitle: "XXX",
-        description:
-          "Turkey's first and leading international classical artist management company!",
+        title: "",
+        subTitle: "",
+        description: "Turkey's first and leading international classical artist management company!",
         mobileMinHeight: "100vh",
         color: colors.darkgray,
         height: "100vh",
-        newsSlider: false,
+        newsSlider: true,
         bgUrl: data.bgimage.childImageSharp.fluid
       }}
     >
 
       <ArtistsSlider data={data} backgroundColor={colors.lbWhite} />
-
-      <CTAGrid
-        header='Why brands work with Third and Grove for Drupal support, maintenance, and optimization:'
-        items={data.allDrupalSupportCtaGridTwoJson.edges}
-        images={data.icons.edges}
-        backgroundColor={colors.yellow}
-        altStyle
-      />
 
       <LogoGrid title='A Few of Our Friends' />
 
@@ -60,26 +48,11 @@ const Index = ({ data }) => {
   );
 };
 
-export const query = graphql`
-    fragment IconSRCS on File {
-        name
-        publicURL
-        absolutePath
-    }
-    fragment IconsSet1 on DrupalSupportCtaGridOneJson {
-        icon
-        title
-        description
-    }
-    fragment IconsSet2 on DrupalSupportCtaGridTwoJson {
-        icon
-        title
-        description
-    }
+export const query = graphql`    
     query($locale: String!) {
         allFile (
             filter: {
-                sourceInstanceName: { eq: "lb-artists" }
+                absolutePath: {regex: "/lb-artists/"}
                 childMdx: { fields: { locale: { eq: $locale } } }
             }
         ) {
@@ -94,31 +67,10 @@ export const query = graphql`
                 }
             }
         }
-        allDrupalSupportCtaGridOneJson {
-            edges {
-                node {
-                    ...IconsSet1
-                }
-            }
-        }
-        allDrupalSupportCtaGridTwoJson {
-            edges {
-                node {
-                    ...IconsSet2
-                }
-            }
-        }
         bgimage: file (relativePath: { eq: "boston.png" }) {
-                    childImageSharp {
-                        fluid(maxWidth: 900) {
-                            ...GatsbyImageSharpFluid_withWebp
-                        }
-                    }
-                }
-        icons: allFile(filter: { absolutePath: { regex: "/drupal-support/" } }) {
-            edges {
-                node {
-                    ...IconSRCS
+            childImageSharp {
+                fluid(maxWidth: 900) {
+                    ...GatsbyImageSharpFluid_withWebp
                 }
             }
         }
