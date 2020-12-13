@@ -21,8 +21,3 @@ function useInterval(callback, delay) {
 }
 
 export default useInterval;
-
-// example use
-// useInterval(() => {
-//     custom code here
-//   }, 1000);

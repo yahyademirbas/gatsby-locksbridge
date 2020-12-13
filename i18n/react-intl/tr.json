@@ -19,7 +19,7 @@
   "ArtEvents": "Sanatsal etkinlikler, devinim halinde olan dünyaya ayak uydurmak için değişen şartlarla beraber sürekli yeniye ve farklıya evrilmelidir. Hedeflerinize ve uzun vadeli, sürdürülebilir büyümeye ulaşmanızda yardımcı olacak güçlü, dinamik, akıllı ve verimli iş planlarımızda yanınızdayız.\n\nAyrıca organizasyon yapınız için de danışmanlık yapıyor; sizler için tavsiye ettiğimiz organizasyon yapısının kusursuz işleyeceğini garanti ediyoruz. Organizasyonunuzun sınırlarını yeniden çizmek ve bir sonraki çıtaya taşımak için yeni bir lidere ihtiyacınız varsa kültür endüstrisinde dünya çapında sahip olduğumuz özel ağımız sayesinde organizasyonunuza en uygun yeteneği seçmenize yardımcı olabiliriz.",
   "WebsitesHeader": "Kişisel & Kurumsal Websiteleri",
   "Websites": "\nWebsitesi genellikle bir markanın kitlesiyle ilk ve en güçlü etkileşim aracıdır. Güçlü ve etkili bir ilk izlenim yaratacak websiteleri geliştiriyoruz.",
-  "VideoHeader": "",
+  "VideoHeader": "Video Production",
   "Video": "Orkestra konserleri için doğru bir ortam yaratmak astrofizik kadar zor olabiliyor. Ne mutlu ki, LocksBridge canlı senfonik konserler üretebilir ve kusursuz bir akışla bütün organizasyonu yönetebilir. Bütçeye bağlı olarak; Aesthetic Lab, prodüksiyon ekibinin tamamı ile çalışabilir veya gerekli ekipmanlara sahip oldukları takdirde size daha yakın ve yerel ekipman sağlayıcısı ile işbirliği yapabilir.\n\nKlasik müzik alanında ustalaşmış ve özelleşmiş becerilerimiz ile senfonik konserleri notadan sahneye kadar bir bütün olarak algılarız. Proje ve bütçelerinizin sahip olduğunuz desteğe bağlı olduğunu biliyoruz.Bu yüzden sizler için özel olarak hazırlanan paketler organizasyonunuzun bütçe yapısına göre uyarlanır.",
   "ArtistRepresentationHeader": "Sanatçı Temsili",
   "ArtistRepresentation": "Menajerlerimiz sektörün en parlak, akıllı, donanımlı ve yeneteklileri. Bugünün efsanelerinden yarının yıldızlarına kadar sanatçıların, genç yeteneklerin, oda müziği gruplarının ve orkestraların menajerliğini;turne yönetimini yapar ve herbirine özel özgün projeler geliştiririz.\n\nLocksBridge Artist Lab; sanatçılarımızın her biri için farklı bir yönetim anlayışı inşaa eder; kariyer hedeflerini yükseltirken bu süreçte onlara analitik, dinamik ve yaratıcı perspektifi ile en iyi danışmanlığı sağlar.\n\nLB Artists bünyesindeki sanatçılar, dünyanın önde gelen orkestraları ve konser salonlarından uluslararası festivallere uzanan dünya çapındaki iletişim ağımızın avantajlarını paylaşmanın yanı sıra PR&Pazarlama hizmetlerimize özel erişime sahiptir.",
@@ -63,5 +63,8 @@
   "navFlr": "Floransa",
   "ourcaps": "Nasıl Yapıyoruz?",
   "follow": "Bizi takip edin:",
-  "mail": "Tüm konular için"
+  "mail": "Tüm konular için",
+  "toursHeader": "Uluslararası Turneler",
+  "toursCont": "Artist Lab has one of the most dynamic teams in the industry, organizing world-wide tours for orchestras, ensembles and soloists featuring most famous venues and festivals.",
+  "all": "Tümü"
 }

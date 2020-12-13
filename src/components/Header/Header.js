@@ -279,8 +279,8 @@ const Header = ({
                     {subTitle}
                   </span>
                 )}
-                {children && children}
               </Height>
+              {children && children}
               <Cover
                 style={{
                   scale: zoom

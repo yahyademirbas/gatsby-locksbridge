@@ -2,8 +2,10 @@ import React, { useCallback, useRef } from "react";
 import { Item } from "./item";
 import { css } from "@emotion/core";
 import { colors } from "../../styles";
+import { useIntl } from "react-intl";
 
 export function Category({ categories, category, selectCategory }) {
+  const intl = useIntl();
   const containerRef = useRef(null);
 
   const scrollToCenter = useCallback(tabRef => {
@@ -39,12 +41,6 @@ export function Category({ categories, category, selectCategory }) {
       border: 1px solid #ccc;
       border-radius: 4px;
       transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
-      box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-      0 12.5px 10px rgba(0, 0, 0, 0.06),
-      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-      0 100px 80px rgba(0, 0, 0, 0.12);
       &:hover {
         background-color: ${colors.lbWhite};
         color: ${colors.lbGray};
@@ -81,7 +77,7 @@ export function Category({ categories, category, selectCategory }) {
       id="category"
       css={Container}
     >
-      <Item title={"All"} selectedCategory={category} onClick={selectCategory} scrollToCenter={scrollToCenter} />
+      <Item title={intl.formatMessage({ id: "all" })} selectedCategory={category} onClick={selectCategory} scrollToCenter={scrollToCenter} />
       {categories.map((title, idx) => (
         <Item
           key={idx}

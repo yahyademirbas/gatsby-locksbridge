@@ -16,11 +16,10 @@ import { useScrollEvent } from "../hooks/useScrollEvent";
 import * as Dom from "../util/dom";
 import * as EventManager from "../util/event-manager";
 import { Category } from "../components/Category";
-import { CATEGORY_TYPE } from "../constants";
-
-
+import { useIntl } from "react-intl";
 
 export default function Artists({ data }) {
+  const intl = useIntl();
 
   const artists = data.allFile.edges;
 
@@ -29,6 +28,7 @@ export default function Artists({ data }) {
   function getDistance(currentPos) {
     return Dom.getDocumentHeight() - currentPos;
   }
+
   // starts filtering
   const [count, countRef, increaseCount] = useRenderedCount();
   const [category, selectCategory] = useCategory();
@@ -48,12 +48,11 @@ export default function Artists({ data }) {
     })();
   });
 
-
   const refinedPosts =
     artists
       .filter(
         ({ node }) =>
-          category === CATEGORY_TYPE.ALL ||
+          category === intl.formatMessage({ id: "all" }) ||
           node.childMdx.frontmatter.category === category
       )
       .slice(0, count * countOfInitialPost);
@@ -62,7 +61,7 @@ export default function Artists({ data }) {
   return (
     <Layout
       headerData={{
-        metaTitle: `LB Artists – Full Roster`,
+        metaTitle: `LB Artists`,
         mobileMinHeight: "50vh",
         title: "LB Artists",
         subTitle: "All Talents are Here",

@@ -8,7 +8,7 @@ function useSlider({
                      speed = 3000,
                      loop = true
                    }) {
-  // const offset = React.useRef(0);
+
   const [offset, setOffset] = React.useState(0);
   const [items, setItems] = React.useState([]);
 

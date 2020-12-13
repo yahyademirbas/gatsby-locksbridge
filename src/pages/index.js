@@ -25,7 +25,8 @@ const Index = ({ data }) => {
         height: "100vh",
         newsSlider: true,
         newsData: data.allFile.edges,
-        bgUrl: data.bgimage.childImageSharp.fluid
+        bgUrl: data.bgimage.childImageSharp.fluid,
+        bgColor: colors.lbColor
       }}
     >
 
@@ -66,9 +67,9 @@ export const query = graphql`
                 }
             }
         }
-        bgimage: file (relativePath: { eq: "boston.png" }) {
+        bgimage: file (relativePath: { eq: "cagatay-akyol.jpg" }) {
             childImageSharp {
-                fluid(maxWidth: 900) {
+                fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                 }
             }

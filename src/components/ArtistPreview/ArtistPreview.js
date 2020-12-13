@@ -7,7 +7,7 @@ import { css } from "@emotion/core";
 import PropTypes from "prop-types";
 import { LocalizedLink as Link } from "gatsby-theme-i18n";
 
-import { fonts, weights, mediaQueries, jsBreakpoints, colors } from "../../styles";
+import { weights, mediaQueries, jsBreakpoints } from "../../styles";
 
 export default function ArtistPreview({
                                         frontmatter,

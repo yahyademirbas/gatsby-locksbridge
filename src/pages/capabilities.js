@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Spring } from 'react-spring/renderprops';
 import { css } from '@emotion/core';
@@ -10,15 +10,12 @@ import {
   mediaQueries,
   colors,
   container,
-  weights, partnersProjects
+  weights
 } from "../styles";
 import Layout from '../components/layout';
 import FullWidthSection from '../components/FullWidthSection';
 import { useHasBeenVisible } from '../hooks/useVisibility';
 import CTA from '../components/CTA';
-import SplitSection from "../components/SplitSection";
-import { list } from "../styles/custom-css";
-import EliteSRC from "../../static/images/Partner_Wordmark-Elite_1col.svg";
 import { useIntl } from "react-intl";
 
 const Capability = ({ imageSrc, imageAlt, content, index, id, bgColor }) => {
@@ -148,7 +145,6 @@ const CapabilitiesPage = ({ data }) => {
         title: intl.formatMessage({ id: "ourcaps" }),
         mobileMinHeight: '93vh',
         height: '400px',
-        bgColor: colors.lbWhite
       }}
     >
       <Capability
