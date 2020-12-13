@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
@@ -18,25 +18,23 @@ import * as EventManager from "../util/event-manager";
 import { Category } from "../components/Category";
 import { CATEGORY_TYPE } from "../constants";
 
-const BASE_LINE = 80;
 
-function getDistance(currentPos) {
-  return Dom.getDocumentHeight() - currentPos;
-}
 
 export default function Artists({ data }) {
 
   const artists = data.allFile.edges;
 
+  const BASE_LINE = 80;
+
+  function getDistance(currentPos) {
+    return Dom.getDocumentHeight() - currentPos;
+  }
   // starts filtering
   const [count, countRef, increaseCount] = useRenderedCount();
   const [category, selectCategory] = useCategory();
   const countOfInitialPost = 10;
 
-  const categories = useMemo(
-    () => _.uniq(artists.map(({ node }) => node.childMdx.frontmatter.category)),
-    []
-  );
+  const categories = _.uniq(artists.map(({ node }) => node.childMdx.frontmatter.category));
 
   useIntersectionObserver();
   useScrollEvent(() => {
@@ -51,20 +49,15 @@ export default function Artists({ data }) {
   });
 
 
-  const refinedPosts = useMemo(() =>
+  const refinedPosts =
     artists
       .filter(
         ({ node }) =>
           category === CATEGORY_TYPE.ALL ||
           node.childMdx.frontmatter.category === category
       )
-      .slice(0, count * countOfInitialPost), [category, count]
-  );
+      .slice(0, count * countOfInitialPost);
   // ends filtering
-
-
-
-
 
   return (
     <Layout

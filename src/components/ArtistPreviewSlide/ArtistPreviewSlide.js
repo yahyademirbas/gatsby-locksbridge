@@ -131,7 +131,7 @@ export default function ArtistPreviewSlide({ frontmatter }) {
           <Link to={ensureTrailingSlash(frontmatter.slug)}>
             <h3>{frontmatter.title}</h3>
             <footer>
-              {`${frontmatter.area} - ${frontmatter.class}`}
+              {`${frontmatter.class} - ${frontmatter.category}`}
             </footer>
           </Link>
         </div>

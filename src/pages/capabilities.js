@@ -8,7 +8,7 @@ import Img from 'gatsby-image';
 import {
   fonts,
   mediaQueries,
-  jsBreakpoints,
+  colors,
   container,
   weights, partnersProjects
 } from "../styles";
@@ -19,13 +19,15 @@ import CTA from '../components/CTA';
 import SplitSection from "../components/SplitSection";
 import { list } from "../styles/custom-css";
 import EliteSRC from "../../static/images/Partner_Wordmark-Elite_1col.svg";
+import { useIntl } from "react-intl";
 
-const Capability = ({ imageSrc, imageAlt, content, index, id }) => {
+const Capability = ({ imageSrc, imageAlt, content, index, id, bgColor }) => {
   const nodeRef = useRef();
   const isVisible = useHasBeenVisible(nodeRef);
 
   return (
     <FullWidthSection
+      backgroundColor={bgColor}
       ref={nodeRef}
       height='0'
       padding='0'
@@ -139,168 +141,57 @@ Capability.propTypes = {
 };
 
 const CapabilitiesPage = ({ data }) => {
+  const intl = useIntl();
   return (
     <Layout
       headerData={{
-        title: `All the stuff we’re good at.`,
+        title: intl.formatMessage({ id: "ourcaps" }),
         mobileMinHeight: '93vh',
         height: '400px',
+        bgColor: colors.lbWhite
       }}
     >
-      <SplitSection gridColumnGap='16px' css={partnersProjects}>
-        <article>
-          <h2>Conquer complexity</h2>
-          <p>
-            BigCommerce is not complex, but your integration may be. We’ve
-            pioneered robust integrations for both back and front-end
-            experiences.
-          </p>
-        </article>
-        <article>
-          <h2>Maximize your budget</h2>
-          <p>
-            Minimize your build investment and reinvest into initiatives that
-            move the needle. (We can help with that too).
-          </p>
-        </article>
-        <article>
-          <h2>Global first</h2>
-          <p>
-            Companies need to think globally to compete. We’ll help you lay the
-            foundation from day one.
-          </p>
-        </article>
-        <article>
-          <h2>Automate all the things</h2>
-          <p>
-            Automation is about more than just saving time. We leverage
-            automation to create processes that create raving fans and big
-            spenders.
-          </p>
-        </article>
-      </SplitSection>
-
-      <FullWidthSection height='400px' align='left' css={list}>
-        <h4>Scale your sales potential with BigCommerce</h4>
-        <p>
-          We work directly with incredible organizations to build complex
-          systems and innovative digital experiences; working with mid-market
-          and enterprise clients to develop web experiences in Drupal and
-          BigCommerce.
-        </p>
-        <div>
-          <ul>
-            <li>
-              BigCommerce API integration, custom development, and platform
-              migration.
-            </li>
-            <li>
-              BigCommerce responsive theme design, user experience, and UI
-              design.
-            </li>
-            <li>
-              BigCommerce on-page search engine optimization, website migration,
-              analytics tracking, conversion rate option, and structured data
-              implementation.
-            </li>
-          </ul>
-        </div>
-        <div
-          css={css`
-            display: flex;
-            justify-content: center;
-          `}
-        >
-          <a
-            href='https://partners.bigcommerce.com/directory/partner/501032/third-grove'
-            title='BigCommerce Elite Partner'
-            css={css`
-              width: 100%;
-              max-width: 200px;
-              margin: 30px auto 0 auto;
-            `}
-          >
-            <img src={EliteSRC} alt='BigCommerce Elite Partner' />
-          </a>
-        </div>
-      </FullWidthSection>
-
       <Capability
-        id='technology'
+        bgColor={colors.lbWhite}
+        id='artistmanagement'
         imageSrc={data.technologyImageDesktop.childImageSharp.fluid}
         imageAlt='Laptop on desk with drink'
         content={
           <>
-            <h2>Technology</h2>
+            <h2>{intl.formatMessage({ id: "navmanagement" })}</h2>
             <p>
-              Work with the best engineers in the room—no matter what room
-              you’re in. Our engineers are writing and discovering the future of
-              digital excellence.
+              {intl.formatMessage({ id: "ArtistRepresentation" })}
             </p>
-            <ul>
-              <li>Front-End Development</li>
-              <li>Back-End Development</li>
-              <li>Content Management</li>
-              <li>
-                <Link to='/partners/drupal/'>Drupal</Link>
-              </li>
-              <li>
-                <Link to='/partners/acquia/'>Acquia</Link>
-              </li>
-              <li>
-                <Link to='/partners/shopify/'>Shopify</Link>
-              </li>
-              <li>
-                <Link to='/partners/gatsby/'>Gatsby</Link>
-              </li>
-            </ul>
           </>
         }
         index={0}
       />
       <Capability
-        id='strategy'
+        bgColor={colors.lbWhite}
+        id='creative'
         imageSrc={data.strategyImageDesktop.childImageSharp.fluid}
         imageAlt='Two office workers looking at a chart on a laptop'
         content={
           <>
-            <h2>Strategy</h2>
+            <h2>{intl.formatMessage({ id: "navcreative" })}</h2>
             <p>
-              The foundation for great work. Know your customer, your goals, and
-              how to reach them.
+              {intl.formatMessage({ id: "Video" })}
             </p>
-            <ul>
-              <li>Digital Strategy</li>
-              <li>Trends &amp; Insights</li>
-              <li>Customer Research</li>
-              <li>Industry Research</li>
-              <li>Analytics / Data / SEO</li>
-              <li>Omnichannel Strategy</li>
-            </ul>
           </>
         }
         index={1}
       />
       <Capability
-        id='creative'
+        bgColor={colors.lbWhite}
+        id='events'
         imageSrc={data.creativeImageDesktop.childImageSharp.fluid}
         imageAlt='Man drawing logos in a notebook'
         content={
           <>
-            <h2>Creative</h2>
+            <h2>{intl.formatMessage({ id: "navevents" })}</h2>
             <p>
-              Where data, culture, and good looks come together. Create the
-              strongest connection to the brand experience, and look good doing
-              it.
+              {intl.formatMessage({ id: "ArtEvents" })}
             </p>
-            <ul>
-              <li>Campaign Creation</li>
-              <li>Art Direction</li>
-              <li>UI/UX Design</li>
-              <li>Social Content</li>
-              <li>Content Development</li>
-              <li>Interaction / Motion</li>
-            </ul>
           </>
         }
         index={2}

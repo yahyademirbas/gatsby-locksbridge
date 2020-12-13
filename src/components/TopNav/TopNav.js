@@ -110,11 +110,11 @@ const TopNav = ({ fill, hideNav }) => {
             </Link>
 
             <LocaleSwitcher data-name='locale-switcher' css={LocaleColor}>
-              <Link hrefLang='en-us' to='/' css={LocaleColor}>
+              <Link hrefLang='en' language="en" to='/' css={LocaleColor}>
                 EN
               </Link>{" "}
               /{" "}
-              <Link hrefLang='tr' to='/tr' css={LocaleColor}>
+              <Link language="tr" to='/tr' css={LocaleColor}>
                 TR
               </Link>
             </LocaleSwitcher>

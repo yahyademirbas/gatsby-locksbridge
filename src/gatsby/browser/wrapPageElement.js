@@ -3,10 +3,8 @@ import Transition from "../../components/Transition";
 import { Global } from "@emotion/core";
 import { globalStyles } from "../../styles";
 import { Helmet } from "react-helmet";
-import Footer from "../../components/Footer";
 
 const CustomLayout = ({ element, props }) => {
-
   return (
     <>
       <Global styles={globalStyles} />
@@ -17,7 +15,6 @@ const CustomLayout = ({ element, props }) => {
       <Transition {...props}>
         {element}
       </Transition>
-      <Footer />
     </>
   );
 };

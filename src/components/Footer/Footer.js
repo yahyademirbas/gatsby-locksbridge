@@ -3,8 +3,11 @@ import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 import { css } from '@emotion/core';
 
 import { colors, fonts, weights, mediaQueries, container } from '../../styles';
+import { useIntl } from "react-intl";
 
 const Footer = () => {
+  const intl = useIntl();
+
   const linkStyle = css`
     display: block;
     color: ${colors.whiteFaded};
@@ -51,25 +54,25 @@ const Footer = () => {
     <div css={wrapperStyle}>
       <div css={[innerWrapperStyle, container.max]}>
         <Link css={linkStyle} to='/work/'>
-          Work
+          {intl.formatMessage({ id: "navwork" })}
         </Link>
         <Link css={linkStyle} to='/capabilities/'>
-          Capabilities
+          {intl.formatMessage({ id: "navcaps" })}
         </Link>
         <Link css={linkStyle} to='/insights/'>
-          Insights
+          {intl.formatMessage({ id: "navartists" })}
         </Link>
         <Link css={linkStyle} to='/about/'>
-          About
+          {intl.formatMessage({ id: "navabout" })}
         </Link>
         <Link css={linkStyle} to='/careers/'>
-          Careers
+          {intl.formatMessage({ id: "navcareer" })}
         </Link>
         <Link css={linkStyle} to='/contact/'>
-          Contact
+          {intl.formatMessage({ id: "navcontact" })}
         </Link>
         <Link css={linkStyle} to='/legal/'>
-          Legal
+          {intl.formatMessage({ id: "navlegal" })}
         </Link>
       </div>
     </div>

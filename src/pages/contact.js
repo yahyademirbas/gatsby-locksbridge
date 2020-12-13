@@ -4,8 +4,11 @@ import { css } from '@emotion/core';
 import Layout from '../components/layout';
 import ContactForm from '../components/ContactForm';
 import { mediaQueries, fonts, weights, container } from '../styles';
-
+import {useIntl} from "react-intl";
 const Contact = () => {
+
+  const intl = useIntl();
+
   const wrapperCss = css`
     padding-top: 80px;
     padding-bottom: 80px;
@@ -83,44 +86,30 @@ const Contact = () => {
   return (
     <Layout
       headerData={{
-        title: 'Contact us:',
+        title: intl.formatMessage({ id: "navcontact" }),
         height: '850px',
         children: <ContactForm />,
       }}
     >
       <div css={[container.textOnly, wrapperCss]}>
         <div css={contactItem}>
-          <h3 css={headingCss}>General Inquiries</h3>
-          <a href='mailto:hello@thirdandgrove.com'>hello@thirdandgrove.com</a>
+          <h3 css={headingCss}>{intl.formatMessage({ id: "mail" })}</h3>
+          <a href='mailto:info@locksbridge.net'>info@locksbridge.net</a>
         </div>
 
         <div css={contactItem}>
-          <h3 css={headingCss}>New Business</h3>
-          <a href='mailto:business@thirdandgrove.com'>
-            business@thirdandgrove.com
-          </a>
-        </div>
-
-        <div css={contactItem}>
-          <h3 css={headingCss}>Boston</h3>
+          <h3 css={headingCss}>{intl.formatMessage({ id: "navist" })}</h3>
           333 Washington St Suite 326
           <br />
           Boston, MA 02108
         </div>
 
-        <div css={contactItem}>
-          <h3 css={headingCss}>San Francisco</h3>
-          981 Mission St @ 6th Street
-          <br />
-          San Francisco, CA 94103
-        </div>
-
         <div css={[contactItem, contactItemWide]}>
-          <h3 css={headingCss}>Follow Us</h3>
+          <h3 css={headingCss}>{intl.formatMessage({ id: "follow" })}</h3>
           <ul css={socialList}>
             <li>
               <a
-                href='https://www.linkedin.com/company/third-and-grove/'
+                href='https://www.linkedin.com/company/locksbridgenet/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
@@ -129,7 +118,7 @@ const Contact = () => {
             </li>
             <li>
               <a
-                href='https://www.instagram.com/thirdandgrove/'
+                href='https://www.instagram.com/locksbridgenet/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
@@ -138,20 +127,20 @@ const Contact = () => {
             </li>
             <li>
               <a
-                href='https://github.com/thirdandgrove'
+                href='https://facebook.com/locksbridgenet'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                GitHub
+                Facebook
               </a>
             </li>
             <li>
               <a
-                href='https://twitter.com/thirdandgrove'
+                href='https://www.youtube.com/channel/UC7r5NCAhHgqO-15PK2uaRdQ'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                Twitter
+                YouTube
               </a>
             </li>
           </ul>

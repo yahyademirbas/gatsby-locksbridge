@@ -196,7 +196,7 @@ export const globalStyles = css`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     font-size: 100%;
-    background-color: ${colors.lbMain};
+    background-color: ${colors.lbWhite};
 
     ${mediaQueries.xs} {
       font-size: 112.5%;
@@ -418,7 +418,6 @@ export const globalStyles = css`
 
   ol li,
   ul li {
-    padding-left: 0.45rem;
     margin-bottom: calc(1.45rem / 2);
   }
 

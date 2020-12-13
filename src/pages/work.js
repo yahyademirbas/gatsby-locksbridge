@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { css } from "@emotion/core";
@@ -32,10 +32,7 @@ export default function WorkPage({ data }) {
   const [category, selectCategory] = useCategory();
   const countOfInitialPost = 6;
 
-  const categories = useMemo(
-    () => _.uniq(posts.map(({ node }) => node.childMdx.frontmatter.category)),
-    []
-  );
+  const categories = _.uniq(posts.map(({ node }) => node.childMdx.frontmatter.category));
 
   useIntersectionObserver();
   useScrollEvent(() => {
@@ -49,24 +46,23 @@ export default function WorkPage({ data }) {
     })();
   });
 
-  const refinedPosts = useMemo(() =>
+  const refinedPosts =
     posts
       .filter(
         ({ node }) =>
           category === CATEGORY_TYPE.ALL ||
           node.childMdx.frontmatter.category === category
       )
-      .slice(0, count * countOfInitialPost), [category, count]
-  );
+      .slice(0, count * countOfInitialPost);
   // ends filtering
 
   return (
     <Layout
       headerData={{
-        metaTitle: `LB posts – Full Roster`,
+        metaTitle: `Our Work`,
         mobileMinHeight: "50vh",
-        title: "LB posts",
-        subTitle: "All Talents are Here",
+        title: "Our Work",
+        subTitle: "",
         height: "50vh",
         bgColor: colors.yellow
       }}

@@ -12,9 +12,9 @@ import TopNav from "../TopNav";
 import SEO from "../seo";
 import { colors, fonts, mediaQueries, weights } from "../../styles";
 import FullWidthSection from "../FullWidthSection";
-import IndexSlider from "../IndexSlider";
 import { useHasBeenVisible } from "../../hooks/useVisibility";
-
+import IndexSlider from "../IndexSlider";
+import Index from "../../pages";
 /**
  * Header used on every page.
  *
@@ -36,11 +36,13 @@ import { useHasBeenVisible } from "../../hooks/useVisibility";
  * @param {node} bgUrl - bg image
  * @param {boolean} newsSlider - slider shows if true
  * @param {string} bgColor - bg color while scrolling
+ * @param {node} newsData
  */
 
 const Header = ({
                   title,
                   label,
+                  newsData,
                   labelMobileOnly,
                   metaTitle,
                   description,
@@ -246,9 +248,6 @@ const Header = ({
 
       <TopNav fill={fontColor} hideNav={hideNav} />
 
-      <IndexSlider fontColor={fontColor} />
-
-
       <ScrollAnimation
         render={({ progress }) => {
           let zoom = scale(progress, 1, 1.2);
@@ -262,6 +261,9 @@ const Header = ({
               <Height style={{
                 scale: zoom2
               }}>
+                {newsSlider &&  (
+                  <IndexSlider fill={fontColor} data={newsData}/>
+                )}
                 {label && (
                   <span data-cy='labelText' css={headerlabel}>
                           {label}
@@ -277,8 +279,8 @@ const Header = ({
                     {subTitle}
                   </span>
                 )}
+                {children && children}
               </Height>
-              {children && children}
               <Cover
                 style={{
                   scale: zoom
@@ -347,7 +349,7 @@ Header.defaultProps = {
   hideNav: false,
   bgUrl: null,
   newsSlider: false,
-  bgColor: colors.lbColor
+  bgColor: colors.yellow
 };
 
 export default Header;

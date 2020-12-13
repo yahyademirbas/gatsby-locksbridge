@@ -8,9 +8,10 @@ import { colors, mediaQueries, smSectionHead } from "../../styles";
 import ArtistPreviewSlide from "../ArtistPreviewSlide";
 import FullWidthSection from "../FullWidthSection";
 import Button from "../Button";
-
+import { useIntl } from "react-intl";
 
 export default function ArtistsSlider({ showButton, backgroundColor, title, data }) {
+  const intl = useIntl();
   const settings = {
     arrows: true,
     autoplay: false,
@@ -125,7 +126,7 @@ export default function ArtistsSlider({ showButton, backgroundColor, title, data
         ))}
       </Slider>
       {showButton && (
-        <Button onClick={() => navigate(`/lb-artists/`)}>Our Artists</Button>
+        <Button onClick={() => navigate(`/lb-artists/`)}>{intl.formatMessage({ id: "roster" })}</Button>
       )}
     </FullWidthSection>
   );

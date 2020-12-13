@@ -5,8 +5,11 @@ import { navigate } from 'gatsby';
 import Button from '../Button';
 import { colors, mediaQueries, smSectionHead } from '../../styles';
 import FullWidthSection from '../FullWidthSection';
+import { useIntl } from "react-intl";
+import { LocalizedLink as Link } from "gatsby-theme-i18n";
 
 const WhatWeDo = forwardRef((props, ref) => {
+  const intl = useIntl();
   const headingCss = css`
     margin-bottom: 5px;
     font-size: 48px;
@@ -50,18 +53,20 @@ const WhatWeDo = forwardRef((props, ref) => {
         }
       `}
     >
-      <h3 css={smSectionHead}>What We Do</h3>
+      <h3 css={smSectionHead}>{intl.formatMessage({ id: "navwhat" })}</h3>
       <h4 css={headingCss}>
-        <a href='/capabilities#technology'>Technology</a>
+        <Link to='/capabilities#artistmanagement'>{intl.formatMessage({ id: "navmanagement" })}</Link>
       </h4>
       <h4 css={headingCss}>
-        <a href='/capabilities#strategy'>Strategy</a>
+        <Link to='/capabilities#creative'>{intl.formatMessage({ id: "navcreative" })}</Link>
       </h4>
       <h4 css={headingCss}>
-        <a href='/capabilities#creative'>Creative</a>
+        <Link to='/capabilities#events'>{intl.formatMessage({ id: "navevents" })}</Link>
       </h4>
-      <Button onClick={() => navigate(`/capabilities/`)}>
-        Our Capabilities
+      <Button>
+        <Link to='/capabilities'>
+          {intl.formatMessage({ id: "navcaps" })}
+        </Link>
       </Button>
     </FullWidthSection>
   );

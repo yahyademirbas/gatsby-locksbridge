@@ -1,106 +1,82 @@
-import React from "react";
-import Slider from "react-slick";
+import React  from "react";
+import useSlider from "./useSlider";
 import { css } from "@emotion/core";
-import FullWidthSection from "../../components/FullWidthSection";
 
-function IndexSlider({ fontColor }) {
-  const settings = {
-    className: "center",
-    arrows: false,
-    vertical: true,
-    adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    infinite: true,
-    centerPadding: "42px",
-    slidesToShow: 1,
-    speed: 900
 
-  };
+export default function IndexSlider({ fill, data }) {
+  // use addItem for anything that needs loading confirmation like images or embeds
+  const { offset } = useSlider({
+    total: data.length,
+    enabled: true,
+    useLoaded: false,
+    speed: 3000
+  });
+
+  const Wrapper = css`
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    z-index: 2;
+  `;
 
   const ContainerCSS = css`
-    margin: 0;
-    padding: 40px;
-    width: 80%;
-    color: ${fontColor} !important;
+    height: 300px;
+    min-width: 700px;
+    align-self: center;
+    background-color: transparent;
+    margin: 0 auto;
+    position: absolute;
+    overflow: hidden;
+  `;
 
-    .variable-width .slick-slide h3 {
-      height: 100px;
-      color: ${fontColor};
-      margin: 5px;
-      line-height: 100px;
-      text-align: center;
-    }
+  const ScrollerCSS = css`
+    position: absolute;
+    transition: transform 350ms;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: translate3d(0, -${offset * 300}px, 0);
+    height: ${data.length * 300}px;
+  `;
 
-    .center .slick-center {
-      text-align: center;
-      color: ${fontColor};
-      opacity: 1;
-      transform: scale(1.08);
-    }
+  const SlideCSS = css`
+    width: 100%;
+    height: 300px;
+    display: flex;
+    font-size: 3rem;
+    flex-direction: column;
+    text-align: center;
+    color: ${fill};
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: opacity 350ms;
 
-    .center {
-      opacity: 0.8;
-      transition: all 300ms ease;
-    }
-
-    .content {
-      padding: 20px;
-      margin: auto;
-      width: 90%;
-    }
-
-    .slick-slider {
-      text-align: center;
-      margin: 30px auto 50px;
-    }
-
-    .slick-thumb {
-      bottom: -45px;
-    }
-
-    @media (max-width: 768px) {
-      .center {
-        margin-left: -40px;
-        margin-right: -40px;
-      }
-
-      .center .slick-center {
-        text-align: center;
-        color: ${fontColor};
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      .center {
-        opacity: 0.8;
-        transform: scale(0.95);
-        transition: all 300ms ease;
-      }
+    p {
+      font-size: 0.2rem;
     }
   `;
 
   return (
-    <FullWidthSection css={ContainerCSS}>
-      <Slider {...settings} >
-        <div>
-          <h3>LocksBridge is Turkey's first and leading international classical artist management company! </h3>
+    <div css={Wrapper}>
+      <div css={ContainerCSS}>
+        <div
+          css={ScrollerCSS}
+        >
+          {data.map(({ node, i }) => (
+              <div
+                key={i}
+                css={SlideCSS}
+              >
+                {node.childMdx.frontmatter.title}
+                <p>{node.childMdx.excerpt}</p>
+              </div>
+          ))}
         </div>
-        <div>
-          <h3>Above all, we are a curious team of young entrepreneurs simlpy thriving on the pleasure of creating the original.</h3>
-        </div>
-        <div>
-          <h3>yazı3</h3>
-        </div>
-        <div>
-          <h3>yazı4</h3>
-        </div>
-        <div>
-          <h3>yazı5</h3>
-        </div>
-      </Slider>
-    </FullWidthSection>
+
+      </div>
+    </div>
   );
 }
-
-export default IndexSlider;

@@ -15,13 +15,13 @@ export const Item = ({ title, selectedCategory, onClick, scrollToCenter }) => {
   }, [selectedCategory, tabRef]);
 
   return (
-    <li
+    <div
       ref={tabRef}
       className="item"
       role="tab"
       aria-selected={selectedCategory === title ? "true" : "false"}
     >
       <div onClick={handleClick}>{title}</div>
-    </li>
+    </div>
   );
 };

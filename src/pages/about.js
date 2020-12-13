@@ -8,7 +8,6 @@ import styled from "@emotion/styled";
 import Layout from "../components/layout";
 import FullWidthSection from "../components/FullWidthSection";
 import SplitSection from "../components/SplitSection";
-import LogoGrid from "../components/LogoGrid";
 import WhatWeDo from "../components/WhatWeDo";
 
 import {
@@ -23,8 +22,11 @@ import {
   contValues,
   pLight
 } from "../styles";
+import {useIntl} from "react-intl";
 
 const About = ({ data }) => {
+  const intl = useIntl();
+
   const leadersCss = css`
     padding-top: 20px;
 
@@ -77,51 +79,69 @@ const About = ({ data }) => {
     }
   `;
 
-  const Row = styled.section`
+  const LocationF = styled.section`
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    padding-top: 48px;
-    margin-bottom: 12px;
-
-    ${mediaQueries.phoneLarge} {
-      width: ${contValues.medium};
-      justify-content: space-around; // for Edge
+    flex-direction: column;
+    margin-bottom: 50px;
+    width: 50%;
+    h2,
+    h3,
+    p {
+      transition: opacity 0.3s ease;
+      opacity: 0.7;
     }
-
-    div {
-      width: 50%;
-      margin-bottom: 40px;
+    &:hover {
+      h2,
+      h3,
+      p {
+        opacity: 1;
+      }
+    }
+    h2 {
+      ${h1L};
+      padding-top: 10px;
+      margin-bottom: 8px;
+      ${mediaQueries.phoneLarge} {
+        text-align: center;
+      }
+    }
+    h3 {
+      color: ${colors.reallydarkgray};
+      font-family: ${fonts.sans};
+      font-size: 21px;
+      font-weight: ${weights.bold};
+      letter-spacing: -0.5px;
+      padding-top: 20px;
+      margin-bottom: 12px;
+      ${mediaQueries.phoneLarge} {
+        text-align: center;
+      }
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      ${mediaQueries.phoneLarge} {
+        align-items: center;
+      }
+      p {
+        ${pLight};
+        padding: 0;
+        margin: 0 0 1px 0;
+      }
+    }
+    .gatsby-image-wrapper > div {
+      // Forcing correct image aspect ratio, overriding inline
+      // gatsby-image provided styles
+      padding-bottom: 100% !important;
 
       ${mediaQueries.phoneLarge} {
-        width: auto;
-        padding: 0 36px;
-      }
-
-      h2 {
-        font-weight: ${weights.medium};
-        font-size: 48px;
-        color: ${colors.darkgray};
-        letter-spacing: -1.38px;
-        text-align: center;
-        margin-bottom: 12px;
-
-        ${mediaQueries.phoneLarge} {
-          margin-bottom: 36px;
-        }
-      }
-      h3 {
-        font-family: ${fonts.sans};
-        font-weight: ${weights.light};
-        font-size: 15px;
-        color: ${colors.darkgray};
-        letter-spacing: 0.2px;
-        text-align: center;
+        padding-bottom: 63.2% !important;
       }
     }
   `;
 
-  const Location = styled.section`
+  const LocationS = styled.section`
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
@@ -181,7 +201,6 @@ const About = ({ data }) => {
       }
     }
   `;
-
   const images = data.allFile.nodes;
 
   // returns the correct image source needed to render
@@ -210,7 +229,7 @@ const About = ({ data }) => {
   return (
     <Layout
       headerData={{
-        title: "A relentless pursuit of perfection.",
+        title: intl.formatMessage({ id: "navwho" }),
         mobileMinHeight: "93vh",
         height: "60vh"
       }}
@@ -224,9 +243,9 @@ const About = ({ data }) => {
           text-align: center;
         `}
       >
-        <h3 css={smSectionHead}>Radically Honest</h3>
+        <h3 css={smSectionHead}>{intl.formatMessage({ id: "navartists" })}</h3>
         <h2 css={[h1L, container.medium]}>
-          If you had a bit of food stuck in your teeth, we’d let you know.
+          {intl.formatMessage({ id: "Motto" })}
         </h2>
         <p
           css={[
@@ -240,21 +259,11 @@ const About = ({ data }) => {
             `
           ]}
         >
-          We work with brands we love and can’t wait to help grow. That means we
-          might not always tell you what you want to hear, but we’ll definitely
-          tell you what you need to hear.
+          {intl.formatMessage({ id: "OurDifference" })}
         </p>
       </FullWidthSection>
 
       <WhatWeDo />
-
-      <LogoGrid
-        logoset='awards'
-        title='Trophy Case'
-        subtitle='We’ve won a few awards'
-        backgroundColor={colors.yellow}
-        minHeight='0'
-      />
 
       <FullWidthSection
         css={css`
@@ -265,7 +274,7 @@ const About = ({ data }) => {
           }
         `}
       >
-        <h3 css={smSectionHead}>Who We Are</h3>
+        <h3 css={smSectionHead}>{intl.formatMessage({ id: "navteam" })}</h3>
 
         <div css={[leadersCss, container.medium]}>
           <div>
@@ -274,12 +283,12 @@ const About = ({ data }) => {
               fluid={getSrc("duygu-esenkar", "leader")}
             />
             <h2>Duygu Esenkar</h2>
-            <p>Director of Strategy</p>
+            <p>{intl.formatMessage({ id: "projects" })}</p>
           </div>
           <div>
             <Img alt='Onur Tahmaz' fluid={getSrc("onur-tahmaz", "leader")} />
             <h2>Onur Tahmaz</h2>
-            <p>Co-Founder, Chief Executive Officer</p>
+            <p>{intl.formatMessage({ id: "artistic" })}</p>
           </div>
           <div>
             <Img
@@ -287,25 +296,20 @@ const About = ({ data }) => {
               fluid={getSrc("kerim-sipahiler", "leader")}
             />
             <h2>Kerim Sipahiler</h2>
-            <p>Director of Operations</p>
+            <p>{intl.formatMessage({ id: "investing" })}</p>
           </div>
           <div>
             <Img alt='Yunus Mercan' fluid={getSrc("yunus-mercan", "leader")} />
             <h2>Yunus Mercan</h2>
-            <p>Creative Director</p>
+            <p>{intl.formatMessage({ id: "marketing" })}</p>
           </div>
           <div>
             <Img
               alt='Baran Sakallioglu'
               fluid={getSrc("baran-sakallioglu", "leader")}
             />
-            <h2>Baran Sakallıoglu</h2>
-            <p>Director of Project Management</p>
-          </div>
-          <div>
-            <Img alt='Tugce Temel' fluid={getSrc("tugce-temel", "leader")} />
-            <h2>Tugce Temel</h2>
-            <p>Director of Ecommerce Solutions</p>
+            <h2>Baran Sakallıoğlu</h2>
+            <p>{intl.formatMessage({ id: "webdev" })}</p>
           </div>
           <div>
             <Img
@@ -313,7 +317,7 @@ const About = ({ data }) => {
               fluid={getSrc("zekeriya-turkmen", "leader")}
             />
             <h2>Zekeriya Türkmen</h2>
-            <p>Director of Ecommerce Solutions</p>
+            <p>{intl.formatMessage({ id: "france" })}</p>
           </div>
           <div>
             <Img
@@ -321,7 +325,7 @@ const About = ({ data }) => {
               fluid={getSrc("babursah-tugrul", "leader")}
             />
             <h2>Babürşah Tugrul</h2>
-            <p>Director of Ecommerce Solutions</p>
+            <p>{intl.formatMessage({ id: "photography" })}</p>
           </div>
           <div>
             <Img
@@ -329,7 +333,15 @@ const About = ({ data }) => {
               fluid={getSrc("mark-stickney", "leader")}
             />
             <h2>Mark Stickney</h2>
-            <p>Director of Ecommerce Solutions</p>
+            <p>{intl.formatMessage({ id: "usa" })}</p>
+          </div>
+          <div>
+            <Img
+              alt='Yahya Demirbaş'
+              fluid={getSrc("yahya-demirbas", "leader")}
+            />
+            <h2>Yahya Demirbaş</h2>
+            <p>{intl.formatMessage({ id: "management" })}</p>
           </div>
         </div>
       </FullWidthSection>
@@ -344,28 +356,33 @@ const About = ({ data }) => {
           }
         `}
       >
-        <h3 css={smSectionHead}>Where We Are</h3>
-        <SplitSection css={container.large} gridColumnGap='20px'>
-          <Location>
-            <h2 css={h1L}>Boston</h2>
-            <Img fluid={getSrc("emond", "location")} alt='Boston' />
-            <h3>1st One’s on Us</h3>
-            <div>
-              <p>Wink &amp; Nod</p>
-              <p>Lucky&apos;s Lounge</p>
-              <p>UpperWest</p>
-            </div>
-          </Location>
-          <Location>
-            <h2 css={h1L}>San Francisco</h2>
-            <Img fluid={getSrc("emond", "location")} alt='Oakland' />
-            <h3>If it’s Done, We’re Probably Here</h3>
-            <div>
-              <p>Cafe Van Kleef</p>
-              <p>The Ruby Room</p>
-              <p>The Alley</p>
-            </div>
-          </Location>
+        <h3 css={smSectionHead}>{intl.formatMessage({ id: "navplace" })}</h3>
+        <LocationF>
+          <h2 css={h1L}>{intl.formatMessage({ id: "navtr" })}</h2>
+          <Img fluid={getSrc("emond", "location")} alt='Istanbul' />
+          <h3>{intl.formatMessage({ id: "navist" })}</h3>
+          <div>
+            <p>Maslak Mah. Maslak Meydan Sk.</p>
+            <p>Veko Giz Plaza No: 3/79</p>
+            <p>Sarıyer / İstanbul 34398</p>
+          </div>
+        </LocationF>
+        <SplitSection css={container.large} gridColumnGap='20px' gridTemplateColumns="repeat(3, 1fr)">
+          <LocationS>
+            <h2 css={h1L}>{intl.formatMessage({ id: "navus" })}</h2>
+            <Img fluid={getSrc("emond", "location")} alt='Rhode Island' />
+            <h3>Rhode Island</h3>
+          </LocationS>
+          <LocationS>
+            <h2 css={h1L}>{intl.formatMessage({ id: "navfr" })}</h2>
+            <Img fluid={getSrc("emond", "location")} alt='Paris' />
+            <h3>Paris</h3>
+          </LocationS>
+          <LocationS>
+            <h2 css={h1L}>{intl.formatMessage({ id: "navit" })}</h2>
+            <Img fluid={getSrc("emond", "location")} alt={intl.formatMessage({ id: "navFlr" })} />
+            <h3>{intl.formatMessage({ id: "navFlr" })}</h3>
+          </LocationS>
         </SplitSection>
       </FullWidthSection>
       <FullWidthSection
@@ -377,7 +394,7 @@ const About = ({ data }) => {
           z-index: 1;
         `}
       >
-        <h3 css={smSectionHead}>Making Moves?</h3>
+        <h3 css={smSectionHead}>{intl.formatMessage({ id: "workwithuscta" })}</h3>
         <h2
           css={css`
             color: ${colors.reallydarkgray};
@@ -394,7 +411,7 @@ const About = ({ data }) => {
             }
           `}
         >
-          Show us what you&apos;re made of.
+          {intl.formatMessage({ id: "workwithus" })}
         </h2>
       </FullWidthSection>
     </Layout>

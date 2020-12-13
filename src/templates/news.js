@@ -90,9 +90,10 @@ export const query = graphql`
     fragment AllNewsContent on Mdx {
         body
         id
+        excerpt(pruneLength: 200, truncate: true)
     }
     fragment AllNewsFrontMatters on MdxFrontmatter {
-        area
+        category: area
         class
         title
         subtitle

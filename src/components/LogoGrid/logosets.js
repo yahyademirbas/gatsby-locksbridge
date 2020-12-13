@@ -16,7 +16,6 @@ import wsiLogo from './logos/williamsSonoma.svg';
 import dwellLogo from './logos/dwell.svg';
 import benefitLogo from './logos/benefit.svg';
 import sunpowerLogo from './logos/sunpower.svg';
-import pernodLogo from './logos/pernodricard.svg';
 import mintLogo from './logos/intuit-mint.svg';
 import glanbia from './logos/glanbia.svg';
 import wvi from './logos/world-vision.svg';
@@ -39,11 +38,20 @@ import reebok from './logos/reebok-logo.svg';
 import dassault from './logos/dassault-systems-logo.svg';
 import vmware from './logos/vmware-logo.svg';
 import akamai from './logos/akamai_logo.svg';
-import draper from './logos/draper-logo.png';
-import alvinAiley from './logos/alvinailey-logo.png';
 import isgm from './logos/isgm_logo.svg';
 import prudential from './logos/prudential_logo.svg';
 import universal from './logos/universal_music_logo.png';
+
+import bsd from './logos/partners/basarim-sensin-dernegi.png';
+import phil from './logos/partners/bogazici-filarmoni.png';
+import nero from './logos/partners/caffe-nero.png';
+import eti from './logos/partners/eti.png';
+import kara from './logos/partners/karadag.png';
+import lutfi from './logos/partners/lutfi-kirdar.png';
+import seymen from './logos/partners/seymenoglu.png';
+import chic from './logos/partners/so-chic.png';
+import bomonti from './logos/partners/yapi-kredi-bomontiada.png';
+
 
 export default (logoset, isSmScreen) => {
   const sets = {
@@ -229,77 +237,59 @@ export default (logoset, isSmScreen) => {
     ],
     default: [
       <img
-        src={harvardLogo}
+        src={bsd}
         alt='Harvard'
         width={isSmScreen ? '100' : '129'}
         height={isSmScreen ? '40' : '34'}
       />,
       <img
-        src={googleLogo}
+        src={phil}
         alt='Google'
         width={isSmScreen ? '99' : '134'}
         height={isSmScreen ? '33' : '44'}
       />,
       <img
-        src={benefitLogo}
+        src={nero}
         alt='Benefit'
         width={isSmScreen ? '105' : '140'}
         height={isSmScreen ? '35' : '46'}
       />,
       <img
-        src={vmware}
+        src={eti}
         alt='VMWare'
         width={isSmScreen ? '99' : '136'}
         height={isSmScreen ? '37' : '50'}
       />,
       <img
-        src={geLogo}
+        src={kara}
         alt='GE'
         width={isSmScreen ? '53' : '72'}
         height={isSmScreen ? '53' : '72'}
       />,
       <img
-        src={wsiLogo}
+        src={lutfi}
         alt='Williams-Sonoma Inc.'
         width={isSmScreen ? '98' : '134'}
         height={isSmScreen ? '32' : '43'}
       />,
       <img
-        src={draper}
+        src={seymen}
         alt='Draper'
         width={isSmScreen ? '140' : '171'}
         height={isSmScreen ? '49' : '63'}
       />,
       <img
-        src={kingArthur}
+        src={chic}
         alt='King Arthur'
         width={isSmScreen ? '62' : '94'}
         height={isSmScreen ? '62' : '94'}
       />,
       <img
-        src={pernodLogo}
+        src={bomonti}
         alt='Pernod Ricard'
         width={isSmScreen ? '125' : '171'}
         height={isSmScreen ? '49' : '63'}
-      />,
-      <img
-        src={alvinAiley}
-        alt='King Arthur'
-        width={isSmScreen ? '125' : '171'}
-        height={isSmScreen ? '49' : '63'}
-      />,
-      <img
-        src={ccLogo}
-        alt='California Closets'
-        width={isSmScreen ? '99' : '136'}
-        height={isSmScreen ? '37' : '50'}
-      />,
-      <img
-        src={stubhub}
-        alt='StubHub'
-        width={isSmScreen ? '166' : '240'}
-        height={isSmScreen ? '142' : '100'}
-      />,
+      />
     ],
     about: [
       <img

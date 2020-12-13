@@ -18,30 +18,29 @@ const Index = ({ data }) => {
   return (
     <Layout
       headerData={{
-        metaTitle: intl.formatMessage({ id: "Motto" }),
-        title: "",
-        subTitle: "",
-        description: "Turkey's first and leading international classical artist management company!",
+        metaTitle: "LocksBridge Artists",
+        description: intl.formatMessage({ id: "Motto" }),
         mobileMinHeight: "100vh",
         color: colors.darkgray,
         height: "100vh",
         newsSlider: true,
+        newsData: data.allFile.edges,
         bgUrl: data.bgimage.childImageSharp.fluid
       }}
     >
 
       <ArtistsSlider data={data} backgroundColor={colors.lbWhite} />
 
-      <LogoGrid title='A Few of Our Friends' />
+      <LogoGrid title={intl.formatMessage({ id: "partners" })} />
 
       <SplitSection>
         <TextWrapper backgroundColor={colors.yellow}>
-          <h3>Catch up over coffee?</h3>
-          <Button onClick={() => navigate(`/contact/`)}>Get in Touch</Button>
+          <h3>{intl.formatMessage({ id: "contactus" })}</h3>
+          <Button onClick={() => navigate(`/contact/`)}>{intl.formatMessage({ id: "contactuscta" })}</Button>
         </TextWrapper>
         <TextWrapper backgroundColor={colors.lightblue}>
-          <h3>Join the best in Boston.</h3>
-          <Button onClick={() => navigate(`/careers/`)}>Work at TAG</Button>
+          <h3>{intl.formatMessage({ id: "workwithus" })}</h3>
+          <Button onClick={() => navigate(`/careers/`)}>{intl.formatMessage({ id: "workwithuscta" })}</Button>
         </TextWrapper>
       </SplitSection>
     </Layout>

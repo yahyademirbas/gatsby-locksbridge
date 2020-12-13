@@ -6,6 +6,7 @@ import { headerPropTypes } from "./Header/Header";
 import Header from "./Header";
 
 import "../styles/layout.css";
+import Footer from "./Footer";
 
 const Layout = ({ headerData, children }) => {
   function handleFirstTab(e) {
@@ -22,6 +23,8 @@ const Layout = ({ headerData, children }) => {
       <Header {...headerData} />
 
       <main>{children}</main>
+
+      <Footer/>
 
     </motion.div>
   );

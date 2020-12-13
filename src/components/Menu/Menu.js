@@ -4,8 +4,11 @@ import { LocalizedLink as Link } from 'gatsby-theme-i18n';
 import { css } from '@emotion/core';
 
 import { colors, mediaQueries, weights, container } from '../../styles';
+import { useIntl } from "react-intl";
 
 const Menu = ({ menuOpen, toggleOpen }) => {
+  const intl = useIntl();
+
   const textFadeIn = css`
     position: relative;
     opacity: ${menuOpen ? '1' : '0'};
@@ -208,7 +211,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
       >
         <section css={[sectionStyle, sectionPrimaryStyle, css`justify-self: flex-start; text-align: left`]}>
           <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1, css`text-align: left`]}>
-            What We Do
+            {intl.formatMessage({ id: "navwhat" })}
           </h5>
           <Link
             css={[
@@ -219,9 +222,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               desktopDelay1,
             ]}
             onClick={() => toggleOpen()}
-            to='/capabilities'
+            to='/work'
           >
-            Work
+            {intl.formatMessage({ id: "navwork" })}
           </Link>
           <Link
             onClick={() => toggleOpen()}
@@ -232,9 +235,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               mobileDelay2,
               desktopDelay2,
             ]}
-            to='/work'
+            to='/events'
           >
-            Events
+            {intl.formatMessage({ id: "navevents" })}
           </Link>
           <Link
             css={[
@@ -245,9 +248,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               desktopDelay3,
             ]}
             onClick={() => toggleOpen()}
-            to='/insights'
+            to='/creative'
           >
-            Creative
+            {intl.formatMessage({ id: "navcreative" })}
           </Link>
           <Link
             css={[
@@ -260,13 +263,13 @@ const Menu = ({ menuOpen, toggleOpen }) => {
             onClick={() => toggleOpen()}
             to='/capabilities'
           >
-            Capabilities
+            {intl.formatMessage({ id: "navcaps" })}
           </Link>
         </section>
 
         <section css={[sectionStyle, sectionPrimaryStyle, css`justify-self: center; text-align: center`]}>
           <h5 css={[sectionHeaderStyle, textFadeIn, desktopDelay1, css`text-align: center`]}>
-            Artist Management
+            {intl.formatMessage({ id: "navmanagement" })}
           </h5>
           <Link
             css={[
@@ -277,9 +280,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               desktopDelay1,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/'
+            to='/news'
           >
-            News
+            {intl.formatMessage({ id: "navnews" })}
           </Link>
           <Link
             css={[
@@ -290,9 +293,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               desktopDelay2,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/soloists/'
+            to='/international-tours'
           >
-            Tours
+            {intl.formatMessage({ id: "navtours" })}
           </Link>
           <Link
             css={[
@@ -303,9 +306,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               desktopDelay3,
             ]}
             onClick={() => toggleOpen()}
-            to='/lb-artists/soloists/'
+            to='/projects'
           >
-            Projects
+            {intl.formatMessage({ id: "navprojects" })}
           </Link>
           <Link
             css={[
@@ -318,7 +321,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
             onClick={() => toggleOpen()}
             to='/lb-artists/'
           >
-            LB Artists
+            {intl.formatMessage({ id: "navartists" })}
           </Link>
         </section>
 
@@ -326,7 +329,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
           <h5
             css={[sectionHeaderStyle, textFadeIn, mobileDelay7, desktopDelay1, css`text-align: right`]}
           >
-            Who We Are
+            {intl.formatMessage({ id: "navwho" })}
           </h5>
           <div css={linksWrapper}>
             <Link
@@ -340,7 +343,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               onClick={() => toggleOpen()}
               to='/team'
               >
-              Team
+              {intl.formatMessage({ id: "navteam" })}
             </Link>
             <Link
               css={[
@@ -353,7 +356,7 @@ const Menu = ({ menuOpen, toggleOpen }) => {
               onClick={() => toggleOpen()}
               to='/about'
             >
-              About
+              {intl.formatMessage({ id: "navabout" })}
             </Link>
             <Link
               css={[
@@ -364,9 +367,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
                 desktopDelay3,
               ]}
               onClick={() => toggleOpen()}
-              to='/work'
+              to='/work-with-us'
             >
-              Careers
+              {intl.formatMessage({ id: "navcareer" })}
             </Link>
           </div>
           <div>
@@ -379,9 +382,9 @@ const Menu = ({ menuOpen, toggleOpen }) => {
                 desktopDelay4,
               ]}
               onClick={() => toggleOpen()}
-              to='/contact'
+              to='/partners'
             >
-              Partners
+              {intl.formatMessage({ id: "navpartners" })}
             </Link>
           </div>
         </section>

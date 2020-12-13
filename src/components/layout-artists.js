@@ -6,6 +6,7 @@ import { headerPropTypes } from "./HeaderTemplate/HeaderTemplate";
 import HeaderTemplate from "./HeaderTemplate";
 
 import "../styles/layout.css";
+import Footer from "./Footer";
 
 const Layout = ({ children, headerData }) => {
 
@@ -23,6 +24,8 @@ const Layout = ({ children, headerData }) => {
       <HeaderTemplate {...headerData} />
 
       <main>{children}</main>
+
+      <Footer/>
 
     </motion.div>
   );

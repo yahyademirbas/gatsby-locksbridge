@@ -64,6 +64,7 @@ const LogoGrid = ({ title, subtitle, logoset, backgroundColor, minHeight }) => {
       width: ${logoCount === 5 ? '20%' : '25%'};
       max-width: ${logoCount === 5 ? '20%' : '25%'};
       margin-bottom: 70px;
+      filter: grayscale(100%);
     }
 
     img {
